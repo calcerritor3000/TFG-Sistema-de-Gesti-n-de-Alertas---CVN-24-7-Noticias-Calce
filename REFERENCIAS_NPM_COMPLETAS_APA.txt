@@ -1,0 +1,2542 @@
+Referencias — paquetes npm (dependencias y subdependencias)
+Total de entradas únicas (nombre@versión): 1269
+Formato: título primero cuando el autor del paquete no se detalla; (s. f.) = sin fecha en la fuente.
+Ajusta en Word: título Referencias, orden alfabético, sangría francesa, mismo interlineado que el cuerpo.
+
+*@alloc/quick-lru* (versión 5.2.0) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/@alloc/quick-lru
+
+*@apideck/better-ajv-errors* (versión 0.3.6) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/@apideck/better-ajv-errors
+
+*@babel/code-frame* (versión 7.28.6) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/@babel/code-frame
+
+*@babel/compat-data* (versión 7.28.6) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/@babel/compat-data
+
+*@babel/core* (versión 7.28.6) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/@babel/core
+
+*@babel/eslint-parser* (versión 7.28.6) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/@babel/eslint-parser
+
+*@babel/generator* (versión 7.28.6) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/@babel/generator
+
+*@babel/helper-annotate-as-pure* (versión 7.27.3) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/@babel/helper-annotate-as-pure
+
+*@babel/helper-compilation-targets* (versión 7.28.6) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/@babel/helper-compilation-targets
+
+*@babel/helper-create-class-features-plugin* (versión 7.28.6) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/@babel/helper-create-class-features-plugin
+
+*@babel/helper-create-regexp-features-plugin* (versión 7.28.5) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/@babel/helper-create-regexp-features-plugin
+
+*@babel/helper-define-polyfill-provider* (versión 0.6.6) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/@babel/helper-define-polyfill-provider
+
+*@babel/helper-globals* (versión 7.28.0) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/@babel/helper-globals
+
+*@babel/helper-member-expression-to-functions* (versión 7.28.5) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/@babel/helper-member-expression-to-functions
+
+*@babel/helper-module-imports* (versión 7.28.6) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/@babel/helper-module-imports
+
+*@babel/helper-module-transforms* (versión 7.28.6) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/@babel/helper-module-transforms
+
+*@babel/helper-optimise-call-expression* (versión 7.27.1) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/@babel/helper-optimise-call-expression
+
+*@babel/helper-plugin-utils* (versión 7.28.6) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/@babel/helper-plugin-utils
+
+*@babel/helper-remap-async-to-generator* (versión 7.27.1) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/@babel/helper-remap-async-to-generator
+
+*@babel/helper-replace-supers* (versión 7.28.6) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/@babel/helper-replace-supers
+
+*@babel/helper-skip-transparent-expression-wrappers* (versión 7.27.1) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/@babel/helper-skip-transparent-expression-wrappers
+
+*@babel/helper-string-parser* (versión 7.27.1) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/@babel/helper-string-parser
+
+*@babel/helper-validator-identifier* (versión 7.28.5) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/@babel/helper-validator-identifier
+
+*@babel/helper-validator-option* (versión 7.27.1) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/@babel/helper-validator-option
+
+*@babel/helper-wrap-function* (versión 7.28.6) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/@babel/helper-wrap-function
+
+*@babel/helpers* (versión 7.28.6) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/@babel/helpers
+
+*@babel/parser* (versión 7.28.6) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/@babel/parser
+
+*@babel/plugin-bugfix-firefox-class-in-computed-class-key* (versión 7.28.5) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/@babel/plugin-bugfix-firefox-class-in-computed-class-key
+
+*@babel/plugin-bugfix-safari-class-field-initializer-scope* (versión 7.27.1) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/@babel/plugin-bugfix-safari-class-field-initializer-scope
+
+*@babel/plugin-bugfix-safari-id-destructuring-collision-in-function-expression* (versión 7.27.1) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/@babel/plugin-bugfix-safari-id-destructuring-collision-in-function-expression
+
+*@babel/plugin-bugfix-v8-spread-parameters-in-optional-chaining* (versión 7.27.1) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/@babel/plugin-bugfix-v8-spread-parameters-in-optional-chaining
+
+*@babel/plugin-bugfix-v8-static-class-fields-redefine-readonly* (versión 7.28.6) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/@babel/plugin-bugfix-v8-static-class-fields-redefine-readonly
+
+*@babel/plugin-proposal-class-properties* (versión 7.18.6) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/@babel/plugin-proposal-class-properties
+
+*@babel/plugin-proposal-decorators* (versión 7.28.6) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/@babel/plugin-proposal-decorators
+
+*@babel/plugin-proposal-nullish-coalescing-operator* (versión 7.18.6) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/@babel/plugin-proposal-nullish-coalescing-operator
+
+*@babel/plugin-proposal-numeric-separator* (versión 7.18.6) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/@babel/plugin-proposal-numeric-separator
+
+*@babel/plugin-proposal-optional-chaining* (versión 7.21.0) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/@babel/plugin-proposal-optional-chaining
+
+*@babel/plugin-proposal-private-methods* (versión 7.18.6) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/@babel/plugin-proposal-private-methods
+
+*@babel/plugin-proposal-private-property-in-object* (versión 7.21.0-placeholder-for-preset-env.2) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/@babel/plugin-proposal-private-property-in-object
+
+*@babel/plugin-proposal-private-property-in-object* (versión 7.21.11) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/@babel/plugin-proposal-private-property-in-object
+
+*@babel/plugin-syntax-async-generators* (versión 7.8.4) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/@babel/plugin-syntax-async-generators
+
+*@babel/plugin-syntax-bigint* (versión 7.8.3) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/@babel/plugin-syntax-bigint
+
+*@babel/plugin-syntax-class-properties* (versión 7.12.13) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/@babel/plugin-syntax-class-properties
+
+*@babel/plugin-syntax-class-static-block* (versión 7.14.5) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/@babel/plugin-syntax-class-static-block
+
+*@babel/plugin-syntax-decorators* (versión 7.28.6) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/@babel/plugin-syntax-decorators
+
+*@babel/plugin-syntax-flow* (versión 7.28.6) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/@babel/plugin-syntax-flow
+
+*@babel/plugin-syntax-import-assertions* (versión 7.28.6) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/@babel/plugin-syntax-import-assertions
+
+*@babel/plugin-syntax-import-attributes* (versión 7.28.6) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/@babel/plugin-syntax-import-attributes
+
+*@babel/plugin-syntax-import-meta* (versión 7.10.4) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/@babel/plugin-syntax-import-meta
+
+*@babel/plugin-syntax-json-strings* (versión 7.8.3) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/@babel/plugin-syntax-json-strings
+
+*@babel/plugin-syntax-jsx* (versión 7.28.6) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/@babel/plugin-syntax-jsx
+
+*@babel/plugin-syntax-logical-assignment-operators* (versión 7.10.4) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/@babel/plugin-syntax-logical-assignment-operators
+
+*@babel/plugin-syntax-nullish-coalescing-operator* (versión 7.8.3) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/@babel/plugin-syntax-nullish-coalescing-operator
+
+*@babel/plugin-syntax-numeric-separator* (versión 7.10.4) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/@babel/plugin-syntax-numeric-separator
+
+*@babel/plugin-syntax-object-rest-spread* (versión 7.8.3) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/@babel/plugin-syntax-object-rest-spread
+
+*@babel/plugin-syntax-optional-catch-binding* (versión 7.8.3) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/@babel/plugin-syntax-optional-catch-binding
+
+*@babel/plugin-syntax-optional-chaining* (versión 7.8.3) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/@babel/plugin-syntax-optional-chaining
+
+*@babel/plugin-syntax-private-property-in-object* (versión 7.14.5) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/@babel/plugin-syntax-private-property-in-object
+
+*@babel/plugin-syntax-top-level-await* (versión 7.14.5) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/@babel/plugin-syntax-top-level-await
+
+*@babel/plugin-syntax-typescript* (versión 7.28.6) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/@babel/plugin-syntax-typescript
+
+*@babel/plugin-syntax-unicode-sets-regex* (versión 7.18.6) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/@babel/plugin-syntax-unicode-sets-regex
+
+*@babel/plugin-transform-arrow-functions* (versión 7.27.1) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/@babel/plugin-transform-arrow-functions
+
+*@babel/plugin-transform-async-generator-functions* (versión 7.28.6) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/@babel/plugin-transform-async-generator-functions
+
+*@babel/plugin-transform-async-to-generator* (versión 7.28.6) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/@babel/plugin-transform-async-to-generator
+
+*@babel/plugin-transform-block-scoped-functions* (versión 7.27.1) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/@babel/plugin-transform-block-scoped-functions
+
+*@babel/plugin-transform-block-scoping* (versión 7.28.6) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/@babel/plugin-transform-block-scoping
+
+*@babel/plugin-transform-class-properties* (versión 7.28.6) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/@babel/plugin-transform-class-properties
+
+*@babel/plugin-transform-class-static-block* (versión 7.28.6) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/@babel/plugin-transform-class-static-block
+
+*@babel/plugin-transform-classes* (versión 7.28.6) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/@babel/plugin-transform-classes
+
+*@babel/plugin-transform-computed-properties* (versión 7.28.6) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/@babel/plugin-transform-computed-properties
+
+*@babel/plugin-transform-destructuring* (versión 7.28.5) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/@babel/plugin-transform-destructuring
+
+*@babel/plugin-transform-dotall-regex* (versión 7.28.6) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/@babel/plugin-transform-dotall-regex
+
+*@babel/plugin-transform-duplicate-keys* (versión 7.27.1) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/@babel/plugin-transform-duplicate-keys
+
+*@babel/plugin-transform-duplicate-named-capturing-groups-regex* (versión 7.28.6) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/@babel/plugin-transform-duplicate-named-capturing-groups-regex
+
+*@babel/plugin-transform-dynamic-import* (versión 7.27.1) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/@babel/plugin-transform-dynamic-import
+
+*@babel/plugin-transform-explicit-resource-management* (versión 7.28.6) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/@babel/plugin-transform-explicit-resource-management
+
+*@babel/plugin-transform-exponentiation-operator* (versión 7.28.6) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/@babel/plugin-transform-exponentiation-operator
+
+*@babel/plugin-transform-export-namespace-from* (versión 7.27.1) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/@babel/plugin-transform-export-namespace-from
+
+*@babel/plugin-transform-flow-strip-types* (versión 7.27.1) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/@babel/plugin-transform-flow-strip-types
+
+*@babel/plugin-transform-for-of* (versión 7.27.1) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/@babel/plugin-transform-for-of
+
+*@babel/plugin-transform-function-name* (versión 7.27.1) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/@babel/plugin-transform-function-name
+
+*@babel/plugin-transform-json-strings* (versión 7.28.6) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/@babel/plugin-transform-json-strings
+
+*@babel/plugin-transform-literals* (versión 7.27.1) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/@babel/plugin-transform-literals
+
+*@babel/plugin-transform-logical-assignment-operators* (versión 7.28.6) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/@babel/plugin-transform-logical-assignment-operators
+
+*@babel/plugin-transform-member-expression-literals* (versión 7.27.1) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/@babel/plugin-transform-member-expression-literals
+
+*@babel/plugin-transform-modules-amd* (versión 7.27.1) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/@babel/plugin-transform-modules-amd
+
+*@babel/plugin-transform-modules-commonjs* (versión 7.28.6) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/@babel/plugin-transform-modules-commonjs
+
+*@babel/plugin-transform-modules-systemjs* (versión 7.28.5) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/@babel/plugin-transform-modules-systemjs
+
+*@babel/plugin-transform-modules-umd* (versión 7.27.1) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/@babel/plugin-transform-modules-umd
+
+*@babel/plugin-transform-named-capturing-groups-regex* (versión 7.27.1) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/@babel/plugin-transform-named-capturing-groups-regex
+
+*@babel/plugin-transform-new-target* (versión 7.27.1) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/@babel/plugin-transform-new-target
+
+*@babel/plugin-transform-nullish-coalescing-operator* (versión 7.28.6) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/@babel/plugin-transform-nullish-coalescing-operator
+
+*@babel/plugin-transform-numeric-separator* (versión 7.28.6) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/@babel/plugin-transform-numeric-separator
+
+*@babel/plugin-transform-object-rest-spread* (versión 7.28.6) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/@babel/plugin-transform-object-rest-spread
+
+*@babel/plugin-transform-object-super* (versión 7.27.1) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/@babel/plugin-transform-object-super
+
+*@babel/plugin-transform-optional-catch-binding* (versión 7.28.6) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/@babel/plugin-transform-optional-catch-binding
+
+*@babel/plugin-transform-optional-chaining* (versión 7.28.6) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/@babel/plugin-transform-optional-chaining
+
+*@babel/plugin-transform-parameters* (versión 7.27.7) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/@babel/plugin-transform-parameters
+
+*@babel/plugin-transform-private-methods* (versión 7.28.6) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/@babel/plugin-transform-private-methods
+
+*@babel/plugin-transform-private-property-in-object* (versión 7.28.6) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/@babel/plugin-transform-private-property-in-object
+
+*@babel/plugin-transform-property-literals* (versión 7.27.1) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/@babel/plugin-transform-property-literals
+
+*@babel/plugin-transform-react-constant-elements* (versión 7.27.1) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/@babel/plugin-transform-react-constant-elements
+
+*@babel/plugin-transform-react-display-name* (versión 7.28.0) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/@babel/plugin-transform-react-display-name
+
+*@babel/plugin-transform-react-jsx* (versión 7.28.6) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/@babel/plugin-transform-react-jsx
+
+*@babel/plugin-transform-react-jsx-development* (versión 7.27.1) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/@babel/plugin-transform-react-jsx-development
+
+*@babel/plugin-transform-react-pure-annotations* (versión 7.27.1) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/@babel/plugin-transform-react-pure-annotations
+
+*@babel/plugin-transform-regenerator* (versión 7.28.6) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/@babel/plugin-transform-regenerator
+
+*@babel/plugin-transform-regexp-modifiers* (versión 7.28.6) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/@babel/plugin-transform-regexp-modifiers
+
+*@babel/plugin-transform-reserved-words* (versión 7.27.1) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/@babel/plugin-transform-reserved-words
+
+*@babel/plugin-transform-runtime* (versión 7.28.5) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/@babel/plugin-transform-runtime
+
+*@babel/plugin-transform-shorthand-properties* (versión 7.27.1) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/@babel/plugin-transform-shorthand-properties
+
+*@babel/plugin-transform-spread* (versión 7.28.6) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/@babel/plugin-transform-spread
+
+*@babel/plugin-transform-sticky-regex* (versión 7.27.1) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/@babel/plugin-transform-sticky-regex
+
+*@babel/plugin-transform-template-literals* (versión 7.27.1) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/@babel/plugin-transform-template-literals
+
+*@babel/plugin-transform-typeof-symbol* (versión 7.27.1) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/@babel/plugin-transform-typeof-symbol
+
+*@babel/plugin-transform-typescript* (versión 7.28.6) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/@babel/plugin-transform-typescript
+
+*@babel/plugin-transform-unicode-escapes* (versión 7.27.1) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/@babel/plugin-transform-unicode-escapes
+
+*@babel/plugin-transform-unicode-property-regex* (versión 7.28.6) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/@babel/plugin-transform-unicode-property-regex
+
+*@babel/plugin-transform-unicode-regex* (versión 7.27.1) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/@babel/plugin-transform-unicode-regex
+
+*@babel/plugin-transform-unicode-sets-regex* (versión 7.28.6) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/@babel/plugin-transform-unicode-sets-regex
+
+*@babel/preset-env* (versión 7.28.6) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/@babel/preset-env
+
+*@babel/preset-modules* (versión 0.1.6-no-external-plugins) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/@babel/preset-modules
+
+*@babel/preset-react* (versión 7.28.5) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/@babel/preset-react
+
+*@babel/preset-typescript* (versión 7.28.5) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/@babel/preset-typescript
+
+*@babel/runtime* (versión 7.28.6) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/@babel/runtime
+
+*@babel/template* (versión 7.28.6) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/@babel/template
+
+*@babel/traverse* (versión 7.28.6) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/@babel/traverse
+
+*@babel/types* (versión 7.28.6) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/@babel/types
+
+*@bcoe/v8-coverage* (versión 0.2.3) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/@bcoe/v8-coverage
+
+*@csstools/normalize.css* (versión 12.1.1) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/@csstools/normalize.css
+
+*@csstools/postcss-cascade-layers* (versión 1.1.1) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/@csstools/postcss-cascade-layers
+
+*@csstools/postcss-color-function* (versión 1.1.1) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/@csstools/postcss-color-function
+
+*@csstools/postcss-font-format-keywords* (versión 1.0.1) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/@csstools/postcss-font-format-keywords
+
+*@csstools/postcss-hwb-function* (versión 1.0.2) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/@csstools/postcss-hwb-function
+
+*@csstools/postcss-ic-unit* (versión 1.0.1) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/@csstools/postcss-ic-unit
+
+*@csstools/postcss-is-pseudo-class* (versión 2.0.7) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/@csstools/postcss-is-pseudo-class
+
+*@csstools/postcss-nested-calc* (versión 1.0.0) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/@csstools/postcss-nested-calc
+
+*@csstools/postcss-normalize-display-values* (versión 1.0.1) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/@csstools/postcss-normalize-display-values
+
+*@csstools/postcss-oklab-function* (versión 1.1.1) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/@csstools/postcss-oklab-function
+
+*@csstools/postcss-progressive-custom-properties* (versión 1.3.0) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/@csstools/postcss-progressive-custom-properties
+
+*@csstools/postcss-stepped-value-functions* (versión 1.0.1) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/@csstools/postcss-stepped-value-functions
+
+*@csstools/postcss-text-decoration-shorthand* (versión 1.0.0) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/@csstools/postcss-text-decoration-shorthand
+
+*@csstools/postcss-trigonometric-functions* (versión 1.0.2) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/@csstools/postcss-trigonometric-functions
+
+*@csstools/postcss-unset-value* (versión 1.0.2) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/@csstools/postcss-unset-value
+
+*@csstools/selector-specificity* (versión 2.2.0) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/@csstools/selector-specificity
+
+*@eslint-community/eslint-utils* (versión 4.9.1) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/@eslint-community/eslint-utils
+
+*@eslint-community/regexpp* (versión 4.12.2) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/@eslint-community/regexpp
+
+*@eslint/eslintrc* (versión 2.1.4) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/@eslint/eslintrc
+
+*@eslint/js* (versión 8.57.1) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/@eslint/js
+
+*@humanwhocodes/config-array* (versión 0.13.0) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/@humanwhocodes/config-array
+
+*@humanwhocodes/module-importer* (versión 1.0.1) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/@humanwhocodes/module-importer
+
+*@humanwhocodes/object-schema* (versión 2.0.3) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/@humanwhocodes/object-schema
+
+*@istanbuljs/load-nyc-config* (versión 1.1.0) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/@istanbuljs/load-nyc-config
+
+*@istanbuljs/schema* (versión 0.1.3) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/@istanbuljs/schema
+
+*@jest/console* (versión 27.5.1) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/@jest/console
+
+*@jest/console* (versión 28.1.3) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/@jest/console
+
+*@jest/core* (versión 27.5.1) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/@jest/core
+
+*@jest/environment* (versión 27.5.1) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/@jest/environment
+
+*@jest/fake-timers* (versión 27.5.1) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/@jest/fake-timers
+
+*@jest/globals* (versión 27.5.1) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/@jest/globals
+
+*@jest/reporters* (versión 27.5.1) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/@jest/reporters
+
+*@jest/schemas* (versión 28.1.3) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/@jest/schemas
+
+*@jest/source-map* (versión 27.5.1) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/@jest/source-map
+
+*@jest/test-result* (versión 27.5.1) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/@jest/test-result
+
+*@jest/test-result* (versión 28.1.3) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/@jest/test-result
+
+*@jest/test-sequencer* (versión 27.5.1) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/@jest/test-sequencer
+
+*@jest/transform* (versión 27.5.1) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/@jest/transform
+
+*@jest/types* (versión 27.5.1) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/@jest/types
+
+*@jest/types* (versión 28.1.3) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/@jest/types
+
+*@jridgewell/gen-mapping* (versión 0.3.13) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/@jridgewell/gen-mapping
+
+*@jridgewell/remapping* (versión 2.3.5) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/@jridgewell/remapping
+
+*@jridgewell/resolve-uri* (versión 3.1.2) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/@jridgewell/resolve-uri
+
+*@jridgewell/source-map* (versión 0.3.11) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/@jridgewell/source-map
+
+*@jridgewell/sourcemap-codec* (versión 1.5.5) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/@jridgewell/sourcemap-codec
+
+*@jridgewell/trace-mapping* (versión 0.3.31) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/@jridgewell/trace-mapping
+
+*@leichtgewicht/ip-codec* (versión 2.0.5) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/@leichtgewicht/ip-codec
+
+*@nicolo-ribaudo/eslint-scope-5-internals* (versión 5.1.1-v1) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/@nicolo-ribaudo/eslint-scope-5-internals
+
+*@nodelib/fs.scandir* (versión 2.1.5) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/@nodelib/fs.scandir
+
+*@nodelib/fs.stat* (versión 2.0.5) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/@nodelib/fs.stat
+
+*@nodelib/fs.walk* (versión 1.2.8) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/@nodelib/fs.walk
+
+*@pmmmwh/react-refresh-webpack-plugin* (versión 0.5.17) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/@pmmmwh/react-refresh-webpack-plugin
+
+*@react-leaflet/core* (versión 3.0.0) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/@react-leaflet/core
+
+*@rollup/plugin-babel* (versión 5.3.1) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/@rollup/plugin-babel
+
+*@rollup/plugin-node-resolve* (versión 11.2.1) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/@rollup/plugin-node-resolve
+
+*@rollup/plugin-replace* (versión 2.4.2) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/@rollup/plugin-replace
+
+*@rollup/pluginutils* (versión 3.1.0) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/@rollup/pluginutils
+
+*@rtsao/scc* (versión 1.1.0) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/@rtsao/scc
+
+*@rushstack/eslint-patch* (versión 1.15.0) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/@rushstack/eslint-patch
+
+*@sinclair/typebox* (versión 0.24.51) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/@sinclair/typebox
+
+*@sinonjs/commons* (versión 1.8.6) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/@sinonjs/commons
+
+*@sinonjs/fake-timers* (versión 8.1.0) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/@sinonjs/fake-timers
+
+*@surma/rollup-plugin-off-main-thread* (versión 2.2.3) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/@surma/rollup-plugin-off-main-thread
+
+*@svgr/babel-plugin-add-jsx-attribute* (versión 5.4.0) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/@svgr/babel-plugin-add-jsx-attribute
+
+*@svgr/babel-plugin-remove-jsx-attribute* (versión 5.4.0) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/@svgr/babel-plugin-remove-jsx-attribute
+
+*@svgr/babel-plugin-remove-jsx-empty-expression* (versión 5.0.1) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/@svgr/babel-plugin-remove-jsx-empty-expression
+
+*@svgr/babel-plugin-replace-jsx-attribute-value* (versión 5.0.1) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/@svgr/babel-plugin-replace-jsx-attribute-value
+
+*@svgr/babel-plugin-svg-dynamic-title* (versión 5.4.0) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/@svgr/babel-plugin-svg-dynamic-title
+
+*@svgr/babel-plugin-svg-em-dimensions* (versión 5.4.0) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/@svgr/babel-plugin-svg-em-dimensions
+
+*@svgr/babel-plugin-transform-react-native-svg* (versión 5.4.0) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/@svgr/babel-plugin-transform-react-native-svg
+
+*@svgr/babel-plugin-transform-svg-component* (versión 5.5.0) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/@svgr/babel-plugin-transform-svg-component
+
+*@svgr/babel-preset* (versión 5.5.0) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/@svgr/babel-preset
+
+*@svgr/core* (versión 5.5.0) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/@svgr/core
+
+*@svgr/hast-util-to-babel-ast* (versión 5.5.0) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/@svgr/hast-util-to-babel-ast
+
+*@svgr/plugin-jsx* (versión 5.5.0) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/@svgr/plugin-jsx
+
+*@svgr/plugin-svgo* (versión 5.5.0) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/@svgr/plugin-svgo
+
+*@svgr/webpack* (versión 5.5.0) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/@svgr/webpack
+
+*@tootallnate/once* (versión 1.1.2) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/@tootallnate/once
+
+*@trysound/sax* (versión 0.2.0) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/@trysound/sax
+
+*@types/babel__core* (versión 7.20.5) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/@types/babel__core
+
+*@types/babel__generator* (versión 7.27.0) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/@types/babel__generator
+
+*@types/babel__template* (versión 7.4.4) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/@types/babel__template
+
+*@types/babel__traverse* (versión 7.28.0) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/@types/babel__traverse
+
+*@types/body-parser* (versión 1.19.6) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/@types/body-parser
+
+*@types/bonjour* (versión 3.5.13) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/@types/bonjour
+
+*@types/connect* (versión 3.4.38) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/@types/connect
+
+*@types/connect-history-api-fallback* (versión 1.5.4) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/@types/connect-history-api-fallback
+
+*@types/eslint* (versión 8.56.12) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/@types/eslint
+
+*@types/eslint-scope* (versión 3.7.7) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/@types/eslint-scope
+
+*@types/estree* (versión 0.0.39) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/@types/estree
+
+*@types/estree* (versión 1.0.8) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/@types/estree
+
+*@types/express* (versión 4.17.25) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/@types/express
+
+*@types/express-serve-static-core* (versión 4.19.8) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/@types/express-serve-static-core
+
+*@types/express-serve-static-core* (versión 5.1.1) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/@types/express-serve-static-core
+
+*@types/graceful-fs* (versión 4.1.9) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/@types/graceful-fs
+
+*@types/html-minifier-terser* (versión 6.1.0) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/@types/html-minifier-terser
+
+*@types/http-errors* (versión 2.0.5) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/@types/http-errors
+
+*@types/http-proxy* (versión 1.17.17) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/@types/http-proxy
+
+*@types/istanbul-lib-coverage* (versión 2.0.6) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/@types/istanbul-lib-coverage
+
+*@types/istanbul-lib-report* (versión 3.0.3) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/@types/istanbul-lib-report
+
+*@types/istanbul-reports* (versión 3.0.4) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/@types/istanbul-reports
+
+*@types/json-schema* (versión 7.0.15) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/@types/json-schema
+
+*@types/json5* (versión 0.0.29) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/@types/json5
+
+*@types/mime* (versión 1.3.5) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/@types/mime
+
+*@types/node* (versión 25.0.10) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/@types/node
+
+*@types/node-forge* (versión 1.3.14) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/@types/node-forge
+
+*@types/parse-json* (versión 4.0.2) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/@types/parse-json
+
+*@types/prettier* (versión 2.7.3) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/@types/prettier
+
+*@types/q* (versión 1.5.8) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/@types/q
+
+*@types/qs* (versión 6.14.0) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/@types/qs
+
+*@types/range-parser* (versión 1.2.7) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/@types/range-parser
+
+*@types/resolve* (versión 1.17.1) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/@types/resolve
+
+*@types/retry* (versión 0.12.0) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/@types/retry
+
+*@types/semver* (versión 7.7.1) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/@types/semver
+
+*@types/send* (versión 0.17.6) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/@types/send
+
+*@types/send* (versión 1.2.1) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/@types/send
+
+*@types/serve-index* (versión 1.9.4) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/@types/serve-index
+
+*@types/serve-static* (versión 1.15.10) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/@types/serve-static
+
+*@types/sockjs* (versión 0.3.36) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/@types/sockjs
+
+*@types/stack-utils* (versión 2.0.3) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/@types/stack-utils
+
+*@types/trusted-types* (versión 2.0.7) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/@types/trusted-types
+
+*@types/ws* (versión 8.18.1) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/@types/ws
+
+*@types/yargs* (versión 16.0.11) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/@types/yargs
+
+*@types/yargs* (versión 17.0.35) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/@types/yargs
+
+*@types/yargs-parser* (versión 21.0.3) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/@types/yargs-parser
+
+*@typescript-eslint/eslint-plugin* (versión 5.62.0) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/@typescript-eslint/eslint-plugin
+
+*@typescript-eslint/experimental-utils* (versión 5.62.0) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/@typescript-eslint/experimental-utils
+
+*@typescript-eslint/parser* (versión 5.62.0) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/@typescript-eslint/parser
+
+*@typescript-eslint/scope-manager* (versión 5.62.0) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/@typescript-eslint/scope-manager
+
+*@typescript-eslint/type-utils* (versión 5.62.0) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/@typescript-eslint/type-utils
+
+*@typescript-eslint/types* (versión 5.62.0) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/@typescript-eslint/types
+
+*@typescript-eslint/typescript-estree* (versión 5.62.0) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/@typescript-eslint/typescript-estree
+
+*@typescript-eslint/utils* (versión 5.62.0) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/@typescript-eslint/utils
+
+*@typescript-eslint/visitor-keys* (versión 5.62.0) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/@typescript-eslint/visitor-keys
+
+*@ungap/structured-clone* (versión 1.3.0) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/@ungap/structured-clone
+
+*@webassemblyjs/ast* (versión 1.14.1) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/@webassemblyjs/ast
+
+*@webassemblyjs/floating-point-hex-parser* (versión 1.13.2) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/@webassemblyjs/floating-point-hex-parser
+
+*@webassemblyjs/helper-api-error* (versión 1.13.2) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/@webassemblyjs/helper-api-error
+
+*@webassemblyjs/helper-buffer* (versión 1.14.1) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/@webassemblyjs/helper-buffer
+
+*@webassemblyjs/helper-numbers* (versión 1.13.2) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/@webassemblyjs/helper-numbers
+
+*@webassemblyjs/helper-wasm-bytecode* (versión 1.13.2) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/@webassemblyjs/helper-wasm-bytecode
+
+*@webassemblyjs/helper-wasm-section* (versión 1.14.1) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/@webassemblyjs/helper-wasm-section
+
+*@webassemblyjs/ieee754* (versión 1.13.2) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/@webassemblyjs/ieee754
+
+*@webassemblyjs/leb128* (versión 1.13.2) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/@webassemblyjs/leb128
+
+*@webassemblyjs/utf8* (versión 1.13.2) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/@webassemblyjs/utf8
+
+*@webassemblyjs/wasm-edit* (versión 1.14.1) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/@webassemblyjs/wasm-edit
+
+*@webassemblyjs/wasm-gen* (versión 1.14.1) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/@webassemblyjs/wasm-gen
+
+*@webassemblyjs/wasm-opt* (versión 1.14.1) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/@webassemblyjs/wasm-opt
+
+*@webassemblyjs/wasm-parser* (versión 1.14.1) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/@webassemblyjs/wasm-parser
+
+*@webassemblyjs/wast-printer* (versión 1.14.1) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/@webassemblyjs/wast-printer
+
+*@xtuc/ieee754* (versión 1.2.0) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/@xtuc/ieee754
+
+*@xtuc/long* (versión 4.2.2) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/@xtuc/long
+
+*abab* (versión 2.0.6) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/abab
+
+*accepts* (versión 1.3.8) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/accepts
+
+*acorn* (versión 7.4.1) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/acorn
+
+*acorn* (versión 8.15.0) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/acorn
+
+*acorn-globals* (versión 6.0.0) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/acorn-globals
+
+*acorn-import-phases* (versión 1.0.4) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/acorn-import-phases
+
+*acorn-jsx* (versión 5.3.2) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/acorn-jsx
+
+*acorn-walk* (versión 7.2.0) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/acorn-walk
+
+*address* (versión 1.2.2) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/address
+
+*adjust-sourcemap-loader* (versión 4.0.0) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/adjust-sourcemap-loader
+
+*agent-base* (versión 6.0.2) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/agent-base
+
+*agent-base* (versión 7.1.4) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/agent-base
+
+*ajv* (versión 6.12.6) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/ajv
+
+*ajv* (versión 8.17.1) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/ajv
+
+*ajv-formats* (versión 2.1.1) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/ajv-formats
+
+*ajv-keywords* (versión 3.5.2) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/ajv-keywords
+
+*ajv-keywords* (versión 5.1.0) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/ajv-keywords
+
+*ansi-escapes* (versión 4.3.2) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/ansi-escapes
+
+*ansi-html* (versión 0.0.9) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/ansi-html
+
+*ansi-html-community* (versión 0.0.8) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/ansi-html-community
+
+*ansi-regex* (versión 5.0.1) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/ansi-regex
+
+*ansi-regex* (versión 6.2.2) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/ansi-regex
+
+*ansi-styles* (versión 3.2.1) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/ansi-styles
+
+*ansi-styles* (versión 4.3.0) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/ansi-styles
+
+*ansi-styles* (versión 5.2.0) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/ansi-styles
+
+*any-promise* (versión 1.3.0) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/any-promise
+
+*anymatch* (versión 3.1.3) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/anymatch
+
+*arg* (versión 5.0.2) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/arg
+
+*argparse* (versión 1.0.10) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/argparse
+
+*argparse* (versión 2.0.1) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/argparse
+
+*aria-query* (versión 5.3.2) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/aria-query
+
+*array-buffer-byte-length* (versión 1.0.2) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/array-buffer-byte-length
+
+*array-flatten* (versión 1.1.1) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/array-flatten
+
+*array-includes* (versión 3.1.9) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/array-includes
+
+*array-union* (versión 2.1.0) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/array-union
+
+*array.prototype.findlast* (versión 1.2.5) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/array.prototype.findlast
+
+*array.prototype.findlastindex* (versión 1.2.6) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/array.prototype.findlastindex
+
+*array.prototype.flat* (versión 1.3.3) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/array.prototype.flat
+
+*array.prototype.flatmap* (versión 1.3.3) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/array.prototype.flatmap
+
+*array.prototype.reduce* (versión 1.0.8) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/array.prototype.reduce
+
+*array.prototype.tosorted* (versión 1.1.4) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/array.prototype.tosorted
+
+*arraybuffer.prototype.slice* (versión 1.0.4) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/arraybuffer.prototype.slice
+
+*asap* (versión 2.0.6) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/asap
+
+*asn1.js* (versión 5.4.1) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/asn1.js
+
+*ast-types-flow* (versión 0.0.8) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/ast-types-flow
+
+*async* (versión 3.2.6) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/async
+
+*async-function* (versión 1.0.0) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/async-function
+
+*asynckit* (versión 0.4.0) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/asynckit
+
+*at-least-node* (versión 1.0.0) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/at-least-node
+
+*autoprefixer* (versión 10.4.23) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/autoprefixer
+
+*available-typed-arrays* (versión 1.0.7) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/available-typed-arrays
+
+*aws-ssl-profiles* (versión 1.1.2) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/aws-ssl-profiles
+
+*axe-core* (versión 4.11.1) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/axe-core
+
+*axobject-query* (versión 4.1.0) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/axobject-query
+
+*babel-jest* (versión 27.5.1) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/babel-jest
+
+*babel-loader* (versión 8.4.1) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/babel-loader
+
+*babel-plugin-istanbul* (versión 6.1.1) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/babel-plugin-istanbul
+
+*babel-plugin-jest-hoist* (versión 27.5.1) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/babel-plugin-jest-hoist
+
+*babel-plugin-macros* (versión 3.1.0) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/babel-plugin-macros
+
+*babel-plugin-named-asset-import* (versión 0.3.8) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/babel-plugin-named-asset-import
+
+*babel-plugin-polyfill-corejs2* (versión 0.4.15) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/babel-plugin-polyfill-corejs2
+
+*babel-plugin-polyfill-corejs3* (versión 0.13.0) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/babel-plugin-polyfill-corejs3
+
+*babel-plugin-polyfill-regenerator* (versión 0.6.6) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/babel-plugin-polyfill-regenerator
+
+*babel-plugin-transform-react-remove-prop-types* (versión 0.4.24) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/babel-plugin-transform-react-remove-prop-types
+
+*babel-preset-current-node-syntax* (versión 1.2.0) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/babel-preset-current-node-syntax
+
+*babel-preset-jest* (versión 27.5.1) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/babel-preset-jest
+
+*babel-preset-react-app* (versión 10.1.0) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/babel-preset-react-app
+
+*balanced-match* (versión 1.0.2) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/balanced-match
+
+*baseline-browser-mapping* (versión 2.9.18) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/baseline-browser-mapping
+
+*batch* (versión 0.6.1) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/batch
+
+*bcrypt* (versión 6.0.0) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/bcrypt
+
+*bfj* (versión 7.1.0) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/bfj
+
+*big.js* (versión 5.2.2) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/big.js
+
+*binary-extensions* (versión 2.3.0) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/binary-extensions
+
+*bluebird* (versión 3.7.2) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/bluebird
+
+*bn.js* (versión 4.12.3) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/bn.js
+
+*body-parser* (versión 1.20.4) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/body-parser
+
+*bonjour-service* (versión 1.3.0) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/bonjour-service
+
+*boolbase* (versión 1.0.0) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/boolbase
+
+*brace-expansion* (versión 1.1.12) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/brace-expansion
+
+*brace-expansion* (versión 2.0.2) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/brace-expansion
+
+*braces* (versión 3.0.3) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/braces
+
+*browser-process-hrtime* (versión 1.0.0) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/browser-process-hrtime
+
+*browserslist* (versión 4.28.1) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/browserslist
+
+*bser* (versión 2.1.1) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/bser
+
+*buffer-equal-constant-time* (versión 1.0.1) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/buffer-equal-constant-time
+
+*buffer-from* (versión 1.1.2) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/buffer-from
+
+*builtin-modules* (versión 3.3.0) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/builtin-modules
+
+*bytes* (versión 3.1.2) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/bytes
+
+*call-bind* (versión 1.0.8) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/call-bind
+
+*call-bind-apply-helpers* (versión 1.0.2) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/call-bind-apply-helpers
+
+*call-bound* (versión 1.0.4) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/call-bound
+
+*callsites* (versión 3.1.0) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/callsites
+
+*camel-case* (versión 4.1.2) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/camel-case
+
+*camelcase* (versión 5.3.1) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/camelcase
+
+*camelcase* (versión 6.3.0) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/camelcase
+
+*camelcase-css* (versión 2.0.1) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/camelcase-css
+
+*caniuse-api* (versión 3.0.0) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/caniuse-api
+
+*caniuse-lite* (versión 1.0.30001766) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/caniuse-lite
+
+*case-sensitive-paths-webpack-plugin* (versión 2.4.0) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/case-sensitive-paths-webpack-plugin
+
+*chalk* (versión 2.4.2) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/chalk
+
+*chalk* (versión 4.1.2) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/chalk
+
+*char-regex* (versión 1.0.2) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/char-regex
+
+*char-regex* (versión 2.0.2) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/char-regex
+
+*check-types* (versión 11.2.3) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/check-types
+
+*chokidar* (versión 3.6.0) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/chokidar
+
+*chrome-trace-event* (versión 1.0.4) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/chrome-trace-event
+
+*ci-info* (versión 3.9.0) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/ci-info
+
+*cjs-module-lexer* (versión 1.4.3) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/cjs-module-lexer
+
+*clean-css* (versión 5.3.3) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/clean-css
+
+*cliui* (versión 7.0.4) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/cliui
+
+*co* (versión 4.6.0) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/co
+
+*coa* (versión 2.0.2) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/coa
+
+*collect-v8-coverage* (versión 1.0.3) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/collect-v8-coverage
+
+*color-convert* (versión 1.9.3) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/color-convert
+
+*color-convert* (versión 2.0.1) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/color-convert
+
+*color-name* (versión 1.1.3) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/color-name
+
+*color-name* (versión 1.1.4) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/color-name
+
+*colord* (versión 2.9.3) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/colord
+
+*colorette* (versión 2.0.20) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/colorette
+
+*combined-stream* (versión 1.0.8) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/combined-stream
+
+*commander* (versión 2.20.3) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/commander
+
+*commander* (versión 4.1.1) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/commander
+
+*commander* (versión 7.2.0) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/commander
+
+*commander* (versión 8.3.0) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/commander
+
+*common-tags* (versión 1.8.2) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/common-tags
+
+*commondir* (versión 1.0.1) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/commondir
+
+*compressible* (versión 2.0.18) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/compressible
+
+*compression* (versión 1.8.1) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/compression
+
+*concat-map* (versión 0.0.1) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/concat-map
+
+*confusing-browser-globals* (versión 1.0.11) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/confusing-browser-globals
+
+*connect-history-api-fallback* (versión 2.0.0) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/connect-history-api-fallback
+
+*content-disposition* (versión 0.5.4) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/content-disposition
+
+*content-type* (versión 1.0.5) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/content-type
+
+*convert-source-map* (versión 1.9.0) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/convert-source-map
+
+*convert-source-map* (versión 2.0.0) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/convert-source-map
+
+*cookie* (versión 0.7.2) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/cookie
+
+*cookie* (versión 1.1.1) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/cookie
+
+*cookie-signature* (versión 1.0.7) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/cookie-signature
+
+*core-js* (versión 3.48.0) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/core-js
+
+*core-js-compat* (versión 3.48.0) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/core-js-compat
+
+*core-js-pure* (versión 3.48.0) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/core-js-pure
+
+*core-util-is* (versión 1.0.3) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/core-util-is
+
+*cosmiconfig* (versión 6.0.0) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/cosmiconfig
+
+*cosmiconfig* (versión 7.1.0) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/cosmiconfig
+
+*cross-spawn* (versión 7.0.6) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/cross-spawn
+
+*crypto-random-string* (versión 2.0.0) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/crypto-random-string
+
+*css-blank-pseudo* (versión 3.0.3) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/css-blank-pseudo
+
+*css-declaration-sorter* (versión 6.4.1) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/css-declaration-sorter
+
+*css-has-pseudo* (versión 3.0.4) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/css-has-pseudo
+
+*css-loader* (versión 6.11.0) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/css-loader
+
+*css-minimizer-webpack-plugin* (versión 3.4.1) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/css-minimizer-webpack-plugin
+
+*css-prefers-color-scheme* (versión 6.0.3) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/css-prefers-color-scheme
+
+*css-select* (versión 2.1.0) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/css-select
+
+*css-select* (versión 4.3.0) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/css-select
+
+*css-select-base-adapter* (versión 0.1.1) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/css-select-base-adapter
+
+*css-tree* (versión 1.0.0-alpha.37) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/css-tree
+
+*css-tree* (versión 1.1.3) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/css-tree
+
+*css-what* (versión 3.4.2) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/css-what
+
+*css-what* (versión 6.2.2) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/css-what
+
+*cssdb* (versión 7.11.2) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/cssdb
+
+*cssesc* (versión 3.0.0) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/cssesc
+
+*cssnano* (versión 5.1.15) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/cssnano
+
+*cssnano-preset-default* (versión 5.2.14) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/cssnano-preset-default
+
+*cssnano-utils* (versión 3.1.0) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/cssnano-utils
+
+*csso* (versión 4.2.0) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/csso
+
+*cssom* (versión 0.3.8) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/cssom
+
+*cssom* (versión 0.4.4) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/cssom
+
+*cssstyle* (versión 2.3.0) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/cssstyle
+
+*damerau-levenshtein* (versión 1.0.8) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/damerau-levenshtein
+
+*data-urls* (versión 2.0.0) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/data-urls
+
+*data-view-buffer* (versión 1.0.2) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/data-view-buffer
+
+*data-view-byte-length* (versión 1.0.2) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/data-view-byte-length
+
+*data-view-byte-offset* (versión 1.0.1) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/data-view-byte-offset
+
+*debug* (versión 2.6.9) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/debug
+
+*debug* (versión 3.2.7) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/debug
+
+*debug* (versión 4.4.3) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/debug
+
+*decimal.js* (versión 10.6.0) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/decimal.js
+
+*dedent* (versión 0.7.0) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/dedent
+
+*deep-is* (versión 0.1.4) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/deep-is
+
+*deepmerge* (versión 4.3.1) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/deepmerge
+
+*default-gateway* (versión 6.0.3) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/default-gateway
+
+*define-data-property* (versión 1.1.4) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/define-data-property
+
+*define-lazy-prop* (versión 2.0.0) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/define-lazy-prop
+
+*define-properties* (versión 1.2.1) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/define-properties
+
+*delayed-stream* (versión 1.0.0) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/delayed-stream
+
+*denque* (versión 2.1.0) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/denque
+
+*depd* (versión 1.1.2) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/depd
+
+*depd* (versión 2.0.0) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/depd
+
+*destroy* (versión 1.2.0) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/destroy
+
+*detect-newline* (versión 3.1.0) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/detect-newline
+
+*detect-node* (versión 2.1.0) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/detect-node
+
+*detect-port-alt* (versión 1.1.6) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/detect-port-alt
+
+*didyoumean* (versión 1.2.2) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/didyoumean
+
+*diff-sequences* (versión 27.5.1) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/diff-sequences
+
+*dir-glob* (versión 3.0.1) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/dir-glob
+
+*dlv* (versión 1.1.3) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/dlv
+
+*dns-packet* (versión 5.6.1) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/dns-packet
+
+*doctrine* (versión 2.1.0) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/doctrine
+
+*doctrine* (versión 3.0.0) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/doctrine
+
+*dom-converter* (versión 0.2.0) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/dom-converter
+
+*dom-serializer* (versión 0.2.2) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/dom-serializer
+
+*dom-serializer* (versión 1.4.1) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/dom-serializer
+
+*domelementtype* (versión 1.3.1) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/domelementtype
+
+*domelementtype* (versión 2.3.0) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/domelementtype
+
+*domexception* (versión 2.0.1) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/domexception
+
+*domhandler* (versión 4.3.1) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/domhandler
+
+*domutils* (versión 1.7.0) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/domutils
+
+*domutils* (versión 2.8.0) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/domutils
+
+*dot-case* (versión 3.0.4) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/dot-case
+
+*dotenv* (versión 10.0.0) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/dotenv
+
+*dotenv* (versión 17.2.3) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/dotenv
+
+*dotenv-expand* (versión 5.1.0) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/dotenv-expand
+
+*dunder-proto* (versión 1.0.1) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/dunder-proto
+
+*duplexer* (versión 0.1.2) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/duplexer
+
+*ecdsa-sig-formatter* (versión 1.0.11) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/ecdsa-sig-formatter
+
+*ee-first* (versión 1.1.1) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/ee-first
+
+*ejs* (versión 3.1.10) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/ejs
+
+*electron-to-chromium* (versión 1.5.278) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/electron-to-chromium
+
+*emittery* (versión 0.8.1) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/emittery
+
+*emittery* (versión 0.10.2) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/emittery
+
+*emoji-regex* (versión 8.0.0) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/emoji-regex
+
+*emoji-regex* (versión 9.2.2) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/emoji-regex
+
+*emojis-list* (versión 3.0.0) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/emojis-list
+
+*encodeurl* (versión 2.0.0) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/encodeurl
+
+*enhanced-resolve* (versión 5.18.4) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/enhanced-resolve
+
+*entities* (versión 2.2.0) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/entities
+
+*error-ex* (versión 1.3.4) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/error-ex
+
+*error-stack-parser* (versión 2.1.4) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/error-stack-parser
+
+*es-abstract* (versión 1.24.1) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/es-abstract
+
+*es-array-method-boxes-properly* (versión 1.0.0) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/es-array-method-boxes-properly
+
+*es-define-property* (versión 1.0.1) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/es-define-property
+
+*es-errors* (versión 1.3.0) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/es-errors
+
+*es-iterator-helpers* (versión 1.2.2) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/es-iterator-helpers
+
+*es-module-lexer* (versión 2.0.0) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/es-module-lexer
+
+*es-object-atoms* (versión 1.1.1) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/es-object-atoms
+
+*es-set-tostringtag* (versión 2.1.0) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/es-set-tostringtag
+
+*es-shim-unscopables* (versión 1.1.0) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/es-shim-unscopables
+
+*es-to-primitive* (versión 1.3.0) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/es-to-primitive
+
+*escalade* (versión 3.2.0) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/escalade
+
+*escape-html* (versión 1.0.3) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/escape-html
+
+*escape-string-regexp* (versión 1.0.5) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/escape-string-regexp
+
+*escape-string-regexp* (versión 2.0.0) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/escape-string-regexp
+
+*escape-string-regexp* (versión 4.0.0) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/escape-string-regexp
+
+*escodegen* (versión 1.14.3) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/escodegen
+
+*escodegen* (versión 2.1.0) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/escodegen
+
+*eslint* (versión 8.57.1) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/eslint
+
+*eslint-config-react-app* (versión 7.0.1) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/eslint-config-react-app
+
+*eslint-import-resolver-node* (versión 0.3.9) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/eslint-import-resolver-node
+
+*eslint-module-utils* (versión 2.12.1) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/eslint-module-utils
+
+*eslint-plugin-flowtype* (versión 8.0.3) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/eslint-plugin-flowtype
+
+*eslint-plugin-import* (versión 2.32.0) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/eslint-plugin-import
+
+*eslint-plugin-jest* (versión 25.7.0) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/eslint-plugin-jest
+
+*eslint-plugin-jsx-a11y* (versión 6.10.2) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/eslint-plugin-jsx-a11y
+
+*eslint-plugin-react* (versión 7.37.5) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/eslint-plugin-react
+
+*eslint-plugin-react-hooks* (versión 4.6.2) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/eslint-plugin-react-hooks
+
+*eslint-plugin-testing-library* (versión 5.11.1) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/eslint-plugin-testing-library
+
+*eslint-scope* (versión 5.1.1) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/eslint-scope
+
+*eslint-scope* (versión 7.2.2) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/eslint-scope
+
+*eslint-visitor-keys* (versión 2.1.0) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/eslint-visitor-keys
+
+*eslint-visitor-keys* (versión 3.4.3) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/eslint-visitor-keys
+
+*eslint-webpack-plugin* (versión 3.2.0) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/eslint-webpack-plugin
+
+*espree* (versión 9.6.1) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/espree
+
+*esprima* (versión 1.2.2) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/esprima
+
+*esprima* (versión 4.0.1) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/esprima
+
+*esquery* (versión 1.7.0) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/esquery
+
+*esrecurse* (versión 4.3.0) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/esrecurse
+
+*estraverse* (versión 4.3.0) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/estraverse
+
+*estraverse* (versión 5.3.0) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/estraverse
+
+*estree-walker* (versión 1.0.1) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/estree-walker
+
+*esutils* (versión 2.0.3) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/esutils
+
+*etag* (versión 1.8.1) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/etag
+
+*eventemitter3* (versión 4.0.7) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/eventemitter3
+
+*events* (versión 3.3.0) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/events
+
+*execa* (versión 5.1.1) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/execa
+
+*exit* (versión 0.1.2) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/exit
+
+*expect* (versión 27.5.1) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/expect
+
+*express* (versión 4.22.1) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/express
+
+*fast-deep-equal* (versión 3.1.3) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/fast-deep-equal
+
+*fast-glob* (versión 3.3.3) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/fast-glob
+
+*fast-json-stable-stringify* (versión 2.1.0) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/fast-json-stable-stringify
+
+*fast-levenshtein* (versión 2.0.6) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/fast-levenshtein
+
+*fast-uri* (versión 3.1.0) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/fast-uri
+
+*fastq* (versión 1.20.1) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/fastq
+
+*faye-websocket* (versión 0.11.4) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/faye-websocket
+
+*fb-watchman* (versión 2.0.2) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/fb-watchman
+
+*fdir* (versión 6.5.0) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/fdir
+
+*file-entry-cache* (versión 6.0.1) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/file-entry-cache
+
+*file-loader* (versión 6.2.0) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/file-loader
+
+*filelist* (versión 1.0.4) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/filelist
+
+*filesize* (versión 8.0.7) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/filesize
+
+*fill-range* (versión 7.1.1) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/fill-range
+
+*finalhandler* (versión 1.3.2) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/finalhandler
+
+*find-cache-dir* (versión 3.3.2) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/find-cache-dir
+
+*find-up* (versión 3.0.0) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/find-up
+
+*find-up* (versión 4.1.0) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/find-up
+
+*find-up* (versión 5.0.0) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/find-up
+
+*flat-cache* (versión 3.2.0) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/flat-cache
+
+*flatted* (versión 3.3.3) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/flatted
+
+*follow-redirects* (versión 1.15.11) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/follow-redirects
+
+*for-each* (versión 0.3.5) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/for-each
+
+*fork-ts-checker-webpack-plugin* (versión 6.5.3) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/fork-ts-checker-webpack-plugin
+
+*form-data* (versión 3.0.4) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/form-data
+
+*forwarded* (versión 0.2.0) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/forwarded
+
+*fraction.js* (versión 5.3.4) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/fraction.js
+
+*fresh* (versión 0.5.2) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/fresh
+
+*fs-extra* (versión 9.1.0) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/fs-extra
+
+*fs-extra* (versión 10.1.0) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/fs-extra
+
+*fs-monkey* (versión 1.1.0) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/fs-monkey
+
+*fs.realpath* (versión 1.0.0) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/fs.realpath
+
+*function-bind* (versión 1.1.2) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/function-bind
+
+*function.prototype.name* (versión 1.1.8) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/function.prototype.name
+
+*functions-have-names* (versión 1.2.3) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/functions-have-names
+
+*generate-function* (versión 2.3.1) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/generate-function
+
+*generator-function* (versión 2.0.1) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/generator-function
+
+*gensync* (versión 1.0.0-beta.2) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/gensync
+
+*get-caller-file* (versión 2.0.5) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/get-caller-file
+
+*get-intrinsic* (versión 1.3.0) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/get-intrinsic
+
+*get-own-enumerable-property-symbols* (versión 3.0.2) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/get-own-enumerable-property-symbols
+
+*get-package-type* (versión 0.1.0) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/get-package-type
+
+*get-proto* (versión 1.0.1) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/get-proto
+
+*get-stream* (versión 6.0.1) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/get-stream
+
+*get-symbol-description* (versión 1.1.0) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/get-symbol-description
+
+*glob* (versión 7.2.3) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/glob
+
+*glob-parent* (versión 5.1.2) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/glob-parent
+
+*glob-parent* (versión 6.0.2) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/glob-parent
+
+*glob-to-regexp* (versión 0.4.1) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/glob-to-regexp
+
+*global-modules* (versión 2.0.0) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/global-modules
+
+*global-prefix* (versión 3.0.0) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/global-prefix
+
+*globals* (versión 13.24.0) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/globals
+
+*globalthis* (versión 1.0.4) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/globalthis
+
+*globby* (versión 11.1.0) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/globby
+
+*gopd* (versión 1.2.0) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/gopd
+
+*graceful-fs* (versión 4.2.11) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/graceful-fs
+
+*graphemer* (versión 1.4.0) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/graphemer
+
+*gzip-size* (versión 6.0.0) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/gzip-size
+
+*handle-thing* (versión 2.0.1) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/handle-thing
+
+*harmony-reflect* (versión 1.6.2) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/harmony-reflect
+
+*has-bigints* (versión 1.1.0) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/has-bigints
+
+*has-flag* (versión 3.0.0) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/has-flag
+
+*has-flag* (versión 4.0.0) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/has-flag
+
+*has-property-descriptors* (versión 1.0.2) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/has-property-descriptors
+
+*has-proto* (versión 1.2.0) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/has-proto
+
+*has-symbols* (versión 1.1.0) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/has-symbols
+
+*has-tostringtag* (versión 1.0.2) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/has-tostringtag
+
+*hasown* (versión 2.0.2) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/hasown
+
+*he* (versión 1.2.0) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/he
+
+*hoopy* (versión 0.1.4) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/hoopy
+
+*hpack.js* (versión 2.1.6) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/hpack.js
+
+*html-encoding-sniffer* (versión 2.0.1) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/html-encoding-sniffer
+
+*html-entities* (versión 2.6.0) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/html-entities
+
+*html-escaper* (versión 2.0.2) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/html-escaper
+
+*html-minifier-terser* (versión 6.1.0) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/html-minifier-terser
+
+*html-webpack-plugin* (versión 5.6.6) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/html-webpack-plugin
+
+*htmlparser2* (versión 6.1.0) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/htmlparser2
+
+*http_ece* (versión 1.2.0) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/http_ece
+
+*http-deceiver* (versión 1.2.7) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/http-deceiver
+
+*http-errors* (versión 1.8.1) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/http-errors
+
+*http-errors* (versión 2.0.1) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/http-errors
+
+*http-parser-js* (versión 0.5.10) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/http-parser-js
+
+*http-proxy* (versión 1.18.1) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/http-proxy
+
+*http-proxy-agent* (versión 4.0.1) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/http-proxy-agent
+
+*http-proxy-middleware* (versión 2.0.9) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/http-proxy-middleware
+
+*https-proxy-agent* (versión 5.0.1) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/https-proxy-agent
+
+*https-proxy-agent* (versión 7.0.6) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/https-proxy-agent
+
+*human-signals* (versión 2.1.0) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/human-signals
+
+*iconv-lite* (versión 0.4.24) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/iconv-lite
+
+*iconv-lite* (versión 0.6.3) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/iconv-lite
+
+*iconv-lite* (versión 0.7.2) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/iconv-lite
+
+*icss-utils* (versión 5.1.0) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/icss-utils
+
+*idb* (versión 7.1.1) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/idb
+
+*identity-obj-proxy* (versión 3.0.0) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/identity-obj-proxy
+
+*ignore* (versión 5.3.2) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/ignore
+
+*ignore-by-default* (versión 1.0.1) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/ignore-by-default
+
+*immer* (versión 9.0.21) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/immer
+
+*import-fresh* (versión 3.3.1) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/import-fresh
+
+*import-local* (versión 3.2.0) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/import-local
+
+*imurmurhash* (versión 0.1.4) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/imurmurhash
+
+*inflight* (versión 1.0.6) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/inflight
+
+*inherits* (versión 2.0.4) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/inherits
+
+*ini* (versión 1.3.8) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/ini
+
+*internal-slot* (versión 1.1.0) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/internal-slot
+
+*ipaddr.js* (versión 1.9.1) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/ipaddr.js
+
+*ipaddr.js* (versión 2.3.0) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/ipaddr.js
+
+*is-array-buffer* (versión 3.0.5) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/is-array-buffer
+
+*is-arrayish* (versión 0.2.1) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/is-arrayish
+
+*is-async-function* (versión 2.1.1) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/is-async-function
+
+*is-bigint* (versión 1.1.0) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/is-bigint
+
+*is-binary-path* (versión 2.1.0) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/is-binary-path
+
+*is-boolean-object* (versión 1.2.2) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/is-boolean-object
+
+*is-callable* (versión 1.2.7) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/is-callable
+
+*is-core-module* (versión 2.16.1) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/is-core-module
+
+*is-data-view* (versión 1.0.2) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/is-data-view
+
+*is-date-object* (versión 1.1.0) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/is-date-object
+
+*is-docker* (versión 2.2.1) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/is-docker
+
+*is-extglob* (versión 2.1.1) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/is-extglob
+
+*is-finalizationregistry* (versión 1.1.1) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/is-finalizationregistry
+
+*is-fullwidth-code-point* (versión 3.0.0) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/is-fullwidth-code-point
+
+*is-generator-fn* (versión 2.1.0) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/is-generator-fn
+
+*is-generator-function* (versión 1.1.2) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/is-generator-function
+
+*is-glob* (versión 4.0.3) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/is-glob
+
+*is-map* (versión 2.0.3) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/is-map
+
+*is-module* (versión 1.0.0) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/is-module
+
+*is-negative-zero* (versión 2.0.3) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/is-negative-zero
+
+*is-number* (versión 7.0.0) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/is-number
+
+*is-number-object* (versión 1.1.1) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/is-number-object
+
+*is-obj* (versión 1.0.1) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/is-obj
+
+*is-path-inside* (versión 3.0.3) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/is-path-inside
+
+*is-plain-obj* (versión 3.0.0) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/is-plain-obj
+
+*is-potential-custom-element-name* (versión 1.0.1) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/is-potential-custom-element-name
+
+*is-property* (versión 1.0.2) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/is-property
+
+*is-regex* (versión 1.2.1) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/is-regex
+
+*is-regexp* (versión 1.0.0) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/is-regexp
+
+*is-root* (versión 2.1.0) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/is-root
+
+*is-set* (versión 2.0.3) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/is-set
+
+*is-shared-array-buffer* (versión 1.0.4) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/is-shared-array-buffer
+
+*is-stream* (versión 2.0.1) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/is-stream
+
+*is-string* (versión 1.1.1) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/is-string
+
+*is-symbol* (versión 1.1.1) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/is-symbol
+
+*is-typed-array* (versión 1.1.15) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/is-typed-array
+
+*is-typedarray* (versión 1.0.0) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/is-typedarray
+
+*is-weakmap* (versión 2.0.2) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/is-weakmap
+
+*is-weakref* (versión 1.1.1) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/is-weakref
+
+*is-weakset* (versión 2.0.4) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/is-weakset
+
+*is-wsl* (versión 2.2.0) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/is-wsl
+
+*isarray* (versión 1.0.0) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/isarray
+
+*isarray* (versión 2.0.5) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/isarray
+
+*isexe* (versión 2.0.0) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/isexe
+
+*istanbul-lib-coverage* (versión 3.2.2) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/istanbul-lib-coverage
+
+*istanbul-lib-instrument* (versión 5.2.1) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/istanbul-lib-instrument
+
+*istanbul-lib-report* (versión 3.0.1) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/istanbul-lib-report
+
+*istanbul-lib-source-maps* (versión 4.0.1) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/istanbul-lib-source-maps
+
+*istanbul-reports* (versión 3.2.0) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/istanbul-reports
+
+*iterator.prototype* (versión 1.1.5) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/iterator.prototype
+
+*jake* (versión 10.9.4) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/jake
+
+*jest* (versión 27.5.1) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/jest
+
+*jest-changed-files* (versión 27.5.1) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/jest-changed-files
+
+*jest-circus* (versión 27.5.1) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/jest-circus
+
+*jest-cli* (versión 27.5.1) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/jest-cli
+
+*jest-config* (versión 27.5.1) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/jest-config
+
+*jest-diff* (versión 27.5.1) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/jest-diff
+
+*jest-docblock* (versión 27.5.1) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/jest-docblock
+
+*jest-each* (versión 27.5.1) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/jest-each
+
+*jest-environment-jsdom* (versión 27.5.1) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/jest-environment-jsdom
+
+*jest-environment-node* (versión 27.5.1) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/jest-environment-node
+
+*jest-get-type* (versión 27.5.1) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/jest-get-type
+
+*jest-haste-map* (versión 27.5.1) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/jest-haste-map
+
+*jest-jasmine2* (versión 27.5.1) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/jest-jasmine2
+
+*jest-leak-detector* (versión 27.5.1) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/jest-leak-detector
+
+*jest-matcher-utils* (versión 27.5.1) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/jest-matcher-utils
+
+*jest-message-util* (versión 27.5.1) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/jest-message-util
+
+*jest-message-util* (versión 28.1.3) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/jest-message-util
+
+*jest-mock* (versión 27.5.1) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/jest-mock
+
+*jest-pnp-resolver* (versión 1.2.3) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/jest-pnp-resolver
+
+*jest-regex-util* (versión 27.5.1) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/jest-regex-util
+
+*jest-regex-util* (versión 28.0.2) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/jest-regex-util
+
+*jest-resolve* (versión 27.5.1) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/jest-resolve
+
+*jest-resolve-dependencies* (versión 27.5.1) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/jest-resolve-dependencies
+
+*jest-runner* (versión 27.5.1) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/jest-runner
+
+*jest-runtime* (versión 27.5.1) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/jest-runtime
+
+*jest-serializer* (versión 27.5.1) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/jest-serializer
+
+*jest-snapshot* (versión 27.5.1) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/jest-snapshot
+
+*jest-util* (versión 27.5.1) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/jest-util
+
+*jest-util* (versión 28.1.3) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/jest-util
+
+*jest-validate* (versión 27.5.1) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/jest-validate
+
+*jest-watch-typeahead* (versión 1.1.0) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/jest-watch-typeahead
+
+*jest-watcher* (versión 27.5.1) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/jest-watcher
+
+*jest-watcher* (versión 28.1.3) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/jest-watcher
+
+*jest-worker* (versión 26.6.2) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/jest-worker
+
+*jest-worker* (versión 27.5.1) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/jest-worker
+
+*jest-worker* (versión 28.1.3) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/jest-worker
+
+*jiti* (versión 1.21.7) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/jiti
+
+*js-tokens* (versión 4.0.0) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/js-tokens
+
+*js-yaml* (versión 3.14.2) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/js-yaml
+
+*js-yaml* (versión 4.1.1) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/js-yaml
+
+*jsdom* (versión 16.7.0) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/jsdom
+
+*jsesc* (versión 3.1.0) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/jsesc
+
+*json-buffer* (versión 3.0.1) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/json-buffer
+
+*json-parse-even-better-errors* (versión 2.3.1) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/json-parse-even-better-errors
+
+*json-schema* (versión 0.4.0) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/json-schema
+
+*json-schema-traverse* (versión 0.4.1) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/json-schema-traverse
+
+*json-schema-traverse* (versión 1.0.0) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/json-schema-traverse
+
+*json-stable-stringify-without-jsonify* (versión 1.0.1) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/json-stable-stringify-without-jsonify
+
+*json5* (versión 1.0.2) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/json5
+
+*json5* (versión 2.2.3) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/json5
+
+*jsonfile* (versión 6.2.0) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/jsonfile
+
+*jsonpath* (versión 1.1.1) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/jsonpath
+
+*jsonpointer* (versión 5.0.1) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/jsonpointer
+
+*jsonwebtoken* (versión 9.0.3) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/jsonwebtoken
+
+*jsx-ast-utils* (versión 3.3.5) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/jsx-ast-utils
+
+*jwa* (versión 2.0.1) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/jwa
+
+*jws* (versión 4.0.1) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/jws
+
+*keyv* (versión 4.5.4) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/keyv
+
+*kind-of* (versión 6.0.3) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/kind-of
+
+*kleur* (versión 3.0.3) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/kleur
+
+*klona* (versión 2.0.6) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/klona
+
+*language-subtag-registry* (versión 0.3.23) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/language-subtag-registry
+
+*language-tags* (versión 1.0.9) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/language-tags
+
+*launch-editor* (versión 2.12.0) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/launch-editor
+
+*leaflet* (versión 1.9.4) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/leaflet
+
+*leven* (versión 3.1.0) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/leven
+
+*levn* (versión 0.3.0) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/levn
+
+*levn* (versión 0.4.1) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/levn
+
+*lilconfig* (versión 2.1.0) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/lilconfig
+
+*lilconfig* (versión 3.1.3) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/lilconfig
+
+*lines-and-columns* (versión 1.2.4) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/lines-and-columns
+
+*loader-runner* (versión 4.3.1) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/loader-runner
+
+*loader-utils* (versión 2.0.4) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/loader-utils
+
+*loader-utils* (versión 3.3.1) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/loader-utils
+
+*locate-path* (versión 3.0.0) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/locate-path
+
+*locate-path* (versión 5.0.0) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/locate-path
+
+*locate-path* (versión 6.0.0) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/locate-path
+
+*lodash* (versión 4.17.23) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/lodash
+
+*lodash.debounce* (versión 4.0.8) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/lodash.debounce
+
+*lodash.includes* (versión 4.3.0) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/lodash.includes
+
+*lodash.isboolean* (versión 3.0.3) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/lodash.isboolean
+
+*lodash.isinteger* (versión 4.0.4) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/lodash.isinteger
+
+*lodash.isnumber* (versión 3.0.3) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/lodash.isnumber
+
+*lodash.isplainobject* (versión 4.0.6) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/lodash.isplainobject
+
+*lodash.isstring* (versión 4.0.1) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/lodash.isstring
+
+*lodash.memoize* (versión 4.1.2) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/lodash.memoize
+
+*lodash.merge* (versión 4.6.2) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/lodash.merge
+
+*lodash.once* (versión 4.1.1) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/lodash.once
+
+*lodash.sortby* (versión 4.7.0) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/lodash.sortby
+
+*lodash.uniq* (versión 4.5.0) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/lodash.uniq
+
+*long* (versión 5.3.2) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/long
+
+*loose-envify* (versión 1.4.0) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/loose-envify
+
+*lower-case* (versión 2.0.2) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/lower-case
+
+*lru-cache* (versión 5.1.1) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/lru-cache
+
+*lru.min* (versión 1.1.3) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/lru.min
+
+*magic-string* (versión 0.25.9) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/magic-string
+
+*make-dir* (versión 3.1.0) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/make-dir
+
+*make-dir* (versión 4.0.0) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/make-dir
+
+*makeerror* (versión 1.0.12) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/makeerror
+
+*math-intrinsics* (versión 1.1.0) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/math-intrinsics
+
+*mdn-data* (versión 2.0.4) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/mdn-data
+
+*mdn-data* (versión 2.0.14) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/mdn-data
+
+*media-typer* (versión 0.3.0) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/media-typer
+
+*memfs* (versión 3.5.3) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/memfs
+
+*merge-descriptors* (versión 1.0.3) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/merge-descriptors
+
+*merge-stream* (versión 2.0.0) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/merge-stream
+
+*merge2* (versión 1.4.1) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/merge2
+
+*methods* (versión 1.1.2) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/methods
+
+*micromatch* (versión 4.0.8) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/micromatch
+
+*mime* (versión 1.6.0) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/mime
+
+*mime-db* (versión 1.52.0) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/mime-db
+
+*mime-types* (versión 2.1.35) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/mime-types
+
+*mimic-fn* (versión 2.1.0) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/mimic-fn
+
+*mini-css-extract-plugin* (versión 2.10.0) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/mini-css-extract-plugin
+
+*minimalistic-assert* (versión 1.0.1) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/minimalistic-assert
+
+*minimatch* (versión 3.1.2) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/minimatch
+
+*minimatch* (versión 5.1.6) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/minimatch
+
+*minimist* (versión 1.2.8) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/minimist
+
+*mkdirp* (versión 0.5.6) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/mkdirp
+
+*ms* (versión 2.0.0) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/ms
+
+*ms* (versión 2.1.3) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/ms
+
+*multicast-dns* (versión 7.2.5) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/multicast-dns
+
+*mysql2* (versión 3.16.1) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/mysql2
+
+*mz* (versión 2.7.0) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/mz
+
+*named-placeholders* (versión 1.1.6) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/named-placeholders
+
+*nanoid* (versión 3.3.11) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/nanoid
+
+*natural-compare* (versión 1.4.0) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/natural-compare
+
+*natural-compare-lite* (versión 1.4.0) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/natural-compare-lite
+
+*negotiator* (versión 0.6.3) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/negotiator
+
+*negotiator* (versión 0.6.4) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/negotiator
+
+*neo-async* (versión 2.6.2) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/neo-async
+
+*no-case* (versión 3.0.4) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/no-case
+
+*node-addon-api* (versión 8.5.0) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/node-addon-api
+
+*node-forge* (versión 1.3.3) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/node-forge
+
+*node-gyp-build* (versión 4.8.4) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/node-gyp-build
+
+*node-int64* (versión 0.4.0) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/node-int64
+
+*node-releases* (versión 2.0.27) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/node-releases
+
+*nodemon* (versión 3.1.11) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/nodemon
+
+*normalize-path* (versión 3.0.0) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/normalize-path
+
+*normalize-url* (versión 6.1.0) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/normalize-url
+
+*npm-run-path* (versión 4.0.1) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/npm-run-path
+
+*nth-check* (versión 1.0.2) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/nth-check
+
+*nth-check* (versión 2.1.1) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/nth-check
+
+*nwsapi* (versión 2.2.23) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/nwsapi
+
+*object-assign* (versión 4.1.1) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/object-assign
+
+*object-hash* (versión 3.0.0) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/object-hash
+
+*object-inspect* (versión 1.13.4) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/object-inspect
+
+*object-keys* (versión 1.1.1) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/object-keys
+
+*object.assign* (versión 4.1.7) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/object.assign
+
+*object.entries* (versión 1.1.9) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/object.entries
+
+*object.fromentries* (versión 2.0.8) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/object.fromentries
+
+*object.getownpropertydescriptors* (versión 2.1.9) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/object.getownpropertydescriptors
+
+*object.groupby* (versión 1.0.3) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/object.groupby
+
+*object.values* (versión 1.2.1) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/object.values
+
+*obuf* (versión 1.1.2) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/obuf
+
+*on-finished* (versión 2.4.1) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/on-finished
+
+*on-headers* (versión 1.1.0) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/on-headers
+
+*once* (versión 1.4.0) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/once
+
+*onetime* (versión 5.1.2) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/onetime
+
+*open* (versión 8.4.2) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/open
+
+*optionator* (versión 0.8.3) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/optionator
+
+*optionator* (versión 0.9.4) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/optionator
+
+*own-keys* (versión 1.0.1) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/own-keys
+
+*p-limit* (versión 2.3.0) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/p-limit
+
+*p-limit* (versión 3.1.0) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/p-limit
+
+*p-locate* (versión 3.0.0) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/p-locate
+
+*p-locate* (versión 4.1.0) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/p-locate
+
+*p-locate* (versión 5.0.0) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/p-locate
+
+*p-retry* (versión 4.6.2) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/p-retry
+
+*p-try* (versión 2.2.0) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/p-try
+
+*param-case* (versión 3.0.4) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/param-case
+
+*parent-module* (versión 1.0.1) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/parent-module
+
+*parse-json* (versión 5.2.0) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/parse-json
+
+*parse5* (versión 6.0.1) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/parse5
+
+*parseurl* (versión 1.3.3) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/parseurl
+
+*pascal-case* (versión 3.1.2) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/pascal-case
+
+*path-exists* (versión 3.0.0) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/path-exists
+
+*path-exists* (versión 4.0.0) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/path-exists
+
+*path-is-absolute* (versión 1.0.1) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/path-is-absolute
+
+*path-key* (versión 3.1.1) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/path-key
+
+*path-parse* (versión 1.0.7) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/path-parse
+
+*path-to-regexp* (versión 0.1.12) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/path-to-regexp
+
+*path-type* (versión 4.0.0) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/path-type
+
+*performance-now* (versión 2.1.0) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/performance-now
+
+*picocolors* (versión 0.2.1) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/picocolors
+
+*picocolors* (versión 1.1.1) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/picocolors
+
+*picomatch* (versión 2.3.1) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/picomatch
+
+*picomatch* (versión 4.0.3) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/picomatch
+
+*pify* (versión 2.3.0) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/pify
+
+*pirates* (versión 4.0.7) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/pirates
+
+*pkg-dir* (versión 4.2.0) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/pkg-dir
+
+*pkg-up* (versión 3.1.0) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/pkg-up
+
+*possible-typed-array-names* (versión 1.1.0) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/possible-typed-array-names
+
+*postcss* (versión 7.0.39) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/postcss
+
+*postcss* (versión 8.5.6) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/postcss
+
+*postcss-attribute-case-insensitive* (versión 5.0.2) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/postcss-attribute-case-insensitive
+
+*postcss-browser-comments* (versión 4.0.0) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/postcss-browser-comments
+
+*postcss-calc* (versión 8.2.4) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/postcss-calc
+
+*postcss-clamp* (versión 4.1.0) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/postcss-clamp
+
+*postcss-color-functional-notation* (versión 4.2.4) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/postcss-color-functional-notation
+
+*postcss-color-hex-alpha* (versión 8.0.4) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/postcss-color-hex-alpha
+
+*postcss-color-rebeccapurple* (versión 7.1.1) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/postcss-color-rebeccapurple
+
+*postcss-colormin* (versión 5.3.1) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/postcss-colormin
+
+*postcss-convert-values* (versión 5.1.3) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/postcss-convert-values
+
+*postcss-custom-media* (versión 8.0.2) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/postcss-custom-media
+
+*postcss-custom-properties* (versión 12.1.11) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/postcss-custom-properties
+
+*postcss-custom-selectors* (versión 6.0.3) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/postcss-custom-selectors
+
+*postcss-dir-pseudo-class* (versión 6.0.5) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/postcss-dir-pseudo-class
+
+*postcss-discard-comments* (versión 5.1.2) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/postcss-discard-comments
+
+*postcss-discard-duplicates* (versión 5.1.0) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/postcss-discard-duplicates
+
+*postcss-discard-empty* (versión 5.1.1) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/postcss-discard-empty
+
+*postcss-discard-overridden* (versión 5.1.0) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/postcss-discard-overridden
+
+*postcss-double-position-gradients* (versión 3.1.2) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/postcss-double-position-gradients
+
+*postcss-env-function* (versión 4.0.6) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/postcss-env-function
+
+*postcss-flexbugs-fixes* (versión 5.0.2) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/postcss-flexbugs-fixes
+
+*postcss-focus-visible* (versión 6.0.4) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/postcss-focus-visible
+
+*postcss-focus-within* (versión 5.0.4) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/postcss-focus-within
+
+*postcss-font-variant* (versión 5.0.0) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/postcss-font-variant
+
+*postcss-gap-properties* (versión 3.0.5) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/postcss-gap-properties
+
+*postcss-image-set-function* (versión 4.0.7) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/postcss-image-set-function
+
+*postcss-import* (versión 15.1.0) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/postcss-import
+
+*postcss-initial* (versión 4.0.1) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/postcss-initial
+
+*postcss-js* (versión 4.1.0) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/postcss-js
+
+*postcss-lab-function* (versión 4.2.1) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/postcss-lab-function
+
+*postcss-load-config* (versión 6.0.1) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/postcss-load-config
+
+*postcss-loader* (versión 6.2.1) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/postcss-loader
+
+*postcss-logical* (versión 5.0.4) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/postcss-logical
+
+*postcss-media-minmax* (versión 5.0.0) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/postcss-media-minmax
+
+*postcss-merge-longhand* (versión 5.1.7) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/postcss-merge-longhand
+
+*postcss-merge-rules* (versión 5.1.4) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/postcss-merge-rules
+
+*postcss-minify-font-values* (versión 5.1.0) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/postcss-minify-font-values
+
+*postcss-minify-gradients* (versión 5.1.1) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/postcss-minify-gradients
+
+*postcss-minify-params* (versión 5.1.4) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/postcss-minify-params
+
+*postcss-minify-selectors* (versión 5.2.1) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/postcss-minify-selectors
+
+*postcss-modules-extract-imports* (versión 3.1.0) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/postcss-modules-extract-imports
+
+*postcss-modules-local-by-default* (versión 4.2.0) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/postcss-modules-local-by-default
+
+*postcss-modules-scope* (versión 3.2.1) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/postcss-modules-scope
+
+*postcss-modules-values* (versión 4.0.0) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/postcss-modules-values
+
+*postcss-nested* (versión 6.2.0) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/postcss-nested
+
+*postcss-nesting* (versión 10.2.0) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/postcss-nesting
+
+*postcss-normalize* (versión 10.0.1) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/postcss-normalize
+
+*postcss-normalize-charset* (versión 5.1.0) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/postcss-normalize-charset
+
+*postcss-normalize-display-values* (versión 5.1.0) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/postcss-normalize-display-values
+
+*postcss-normalize-positions* (versión 5.1.1) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/postcss-normalize-positions
+
+*postcss-normalize-repeat-style* (versión 5.1.1) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/postcss-normalize-repeat-style
+
+*postcss-normalize-string* (versión 5.1.0) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/postcss-normalize-string
+
+*postcss-normalize-timing-functions* (versión 5.1.0) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/postcss-normalize-timing-functions
+
+*postcss-normalize-unicode* (versión 5.1.1) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/postcss-normalize-unicode
+
+*postcss-normalize-url* (versión 5.1.0) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/postcss-normalize-url
+
+*postcss-normalize-whitespace* (versión 5.1.1) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/postcss-normalize-whitespace
+
+*postcss-opacity-percentage* (versión 1.1.3) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/postcss-opacity-percentage
+
+*postcss-ordered-values* (versión 5.1.3) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/postcss-ordered-values
+
+*postcss-overflow-shorthand* (versión 3.0.4) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/postcss-overflow-shorthand
+
+*postcss-page-break* (versión 3.0.4) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/postcss-page-break
+
+*postcss-place* (versión 7.0.5) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/postcss-place
+
+*postcss-preset-env* (versión 7.8.3) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/postcss-preset-env
+
+*postcss-pseudo-class-any-link* (versión 7.1.6) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/postcss-pseudo-class-any-link
+
+*postcss-reduce-initial* (versión 5.1.2) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/postcss-reduce-initial
+
+*postcss-reduce-transforms* (versión 5.1.0) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/postcss-reduce-transforms
+
+*postcss-replace-overflow-wrap* (versión 4.0.0) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/postcss-replace-overflow-wrap
+
+*postcss-selector-not* (versión 6.0.1) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/postcss-selector-not
+
+*postcss-selector-parser* (versión 6.1.2) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/postcss-selector-parser
+
+*postcss-selector-parser* (versión 7.1.1) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/postcss-selector-parser
+
+*postcss-svgo* (versión 5.1.0) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/postcss-svgo
+
+*postcss-unique-selectors* (versión 5.1.1) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/postcss-unique-selectors
+
+*postcss-value-parser* (versión 4.2.0) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/postcss-value-parser
+
+*prelude-ls* (versión 1.1.2) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/prelude-ls
+
+*prelude-ls* (versión 1.2.1) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/prelude-ls
+
+*pretty-bytes* (versión 5.6.0) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/pretty-bytes
+
+*pretty-error* (versión 4.0.0) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/pretty-error
+
+*pretty-format* (versión 27.5.1) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/pretty-format
+
+*pretty-format* (versión 28.1.3) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/pretty-format
+
+*process-nextick-args* (versión 2.0.1) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/process-nextick-args
+
+*promise* (versión 8.3.0) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/promise
+
+*prompts* (versión 2.4.2) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/prompts
+
+*prop-types* (versión 15.8.1) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/prop-types
+
+*proxy-addr* (versión 2.0.7) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/proxy-addr
+
+*psl* (versión 1.15.0) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/psl
+
+*pstree.remy* (versión 1.1.8) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/pstree.remy
+
+*punycode* (versión 2.3.1) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/punycode
+
+*q* (versión 1.5.1) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/q
+
+*qs* (versión 6.14.1) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/qs
+
+*querystringify* (versión 2.2.0) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/querystringify
+
+*queue-microtask* (versión 1.2.3) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/queue-microtask
+
+*raf* (versión 3.4.1) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/raf
+
+*randombytes* (versión 2.1.0) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/randombytes
+
+*range-parser* (versión 1.2.1) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/range-parser
+
+*raw-body* (versión 2.5.3) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/raw-body
+
+*react* (versión 19.2.3) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/react
+
+*react-app-polyfill* (versión 3.0.0) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/react-app-polyfill
+
+*react-dev-utils* (versión 12.0.1) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/react-dev-utils
+
+*react-dom* (versión 19.2.3) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/react-dom
+
+*react-error-overlay* (versión 6.1.0) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/react-error-overlay
+
+*react-is* (versión 16.13.1) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/react-is
+
+*react-is* (versión 17.0.2) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/react-is
+
+*react-is* (versión 18.3.1) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/react-is
+
+*react-leaflet* (versión 5.0.0) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/react-leaflet
+
+*react-refresh* (versión 0.11.0) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/react-refresh
+
+*react-router* (versión 7.13.0) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/react-router
+
+*react-router-dom* (versión 7.13.0) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/react-router-dom
+
+*react-scripts* (versión 5.0.1) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/react-scripts
+
+*read-cache* (versión 1.0.0) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/read-cache
+
+*readable-stream* (versión 2.3.8) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/readable-stream
+
+*readable-stream* (versión 3.6.2) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/readable-stream
+
+*readdirp* (versión 3.6.0) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/readdirp
+
+*recursive-readdir* (versión 2.2.3) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/recursive-readdir
+
+*reflect.getprototypeof* (versión 1.0.10) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/reflect.getprototypeof
+
+*regenerate* (versión 1.4.2) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/regenerate
+
+*regenerate-unicode-properties* (versión 10.2.2) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/regenerate-unicode-properties
+
+*regenerator-runtime* (versión 0.13.11) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/regenerator-runtime
+
+*regex-parser* (versión 2.3.1) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/regex-parser
+
+*regexp.prototype.flags* (versión 1.5.4) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/regexp.prototype.flags
+
+*regexpu-core* (versión 6.4.0) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/regexpu-core
+
+*regjsgen* (versión 0.8.0) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/regjsgen
+
+*regjsparser* (versión 0.13.0) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/regjsparser
+
+*relateurl* (versión 0.2.7) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/relateurl
+
+*renderkid* (versión 3.0.0) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/renderkid
+
+*require-directory* (versión 2.1.1) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/require-directory
+
+*require-from-string* (versión 2.0.2) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/require-from-string
+
+*requires-port* (versión 1.0.0) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/requires-port
+
+*resolve* (versión 1.22.11) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/resolve
+
+*resolve* (versión 2.0.0-next.5) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/resolve
+
+*resolve-cwd* (versión 3.0.0) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/resolve-cwd
+
+*resolve-from* (versión 4.0.0) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/resolve-from
+
+*resolve-from* (versión 5.0.0) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/resolve-from
+
+*resolve-url-loader* (versión 4.0.0) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/resolve-url-loader
+
+*resolve.exports* (versión 1.1.1) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/resolve.exports
+
+*retry* (versión 0.13.1) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/retry
+
+*reusify* (versión 1.1.0) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/reusify
+
+*rimraf* (versión 3.0.2) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/rimraf
+
+*rollup* (versión 2.79.2) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/rollup
+
+*rollup-plugin-terser* (versión 7.0.2) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/rollup-plugin-terser
+
+*run-parallel* (versión 1.2.0) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/run-parallel
+
+*safe-array-concat* (versión 1.1.3) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/safe-array-concat
+
+*safe-buffer* (versión 5.1.2) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/safe-buffer
+
+*safe-buffer* (versión 5.2.1) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/safe-buffer
+
+*safe-push-apply* (versión 1.0.0) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/safe-push-apply
+
+*safe-regex-test* (versión 1.1.0) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/safe-regex-test
+
+*safer-buffer* (versión 2.1.2) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/safer-buffer
+
+*sanitize.css* (versión 13.0.0) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/sanitize.css
+
+*sass-loader* (versión 12.6.0) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/sass-loader
+
+*sax* (versión 1.2.4) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/sax
+
+*saxes* (versión 5.0.1) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/saxes
+
+*scheduler* (versión 0.27.0) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/scheduler
+
+*schema-utils* (versión 2.7.0) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/schema-utils
+
+*schema-utils* (versión 2.7.1) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/schema-utils
+
+*schema-utils* (versión 3.3.0) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/schema-utils
+
+*schema-utils* (versión 4.3.3) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/schema-utils
+
+*select-hose* (versión 2.0.0) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/select-hose
+
+*selfsigned* (versión 2.4.1) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/selfsigned
+
+*semver* (versión 6.3.1) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/semver
+
+*semver* (versión 7.7.3) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/semver
+
+*send* (versión 0.19.2) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/send
+
+*seq-queue* (versión 0.0.5) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/seq-queue
+
+*serialize-javascript* (versión 4.0.0) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/serialize-javascript
+
+*serialize-javascript* (versión 6.0.2) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/serialize-javascript
+
+*serve-index* (versión 1.9.2) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/serve-index
+
+*serve-static* (versión 1.16.3) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/serve-static
+
+*set-cookie-parser* (versión 2.7.2) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/set-cookie-parser
+
+*set-function-length* (versión 1.2.2) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/set-function-length
+
+*set-function-name* (versión 2.0.2) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/set-function-name
+
+*set-proto* (versión 1.0.0) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/set-proto
+
+*setprototypeof* (versión 1.2.0) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/setprototypeof
+
+*shebang-command* (versión 2.0.0) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/shebang-command
+
+*shebang-regex* (versión 3.0.0) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/shebang-regex
+
+*shell-quote* (versión 1.8.3) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/shell-quote
+
+*side-channel* (versión 1.1.0) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/side-channel
+
+*side-channel-list* (versión 1.0.0) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/side-channel-list
+
+*side-channel-map* (versión 1.0.1) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/side-channel-map
+
+*side-channel-weakmap* (versión 1.0.2) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/side-channel-weakmap
+
+*signal-exit* (versión 3.0.7) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/signal-exit
+
+*simple-update-notifier* (versión 2.0.0) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/simple-update-notifier
+
+*sisteransi* (versión 1.0.5) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/sisteransi
+
+*slash* (versión 3.0.0) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/slash
+
+*slash* (versión 4.0.0) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/slash
+
+*sockjs* (versión 0.3.24) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/sockjs
+
+*source-list-map* (versión 2.0.1) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/source-list-map
+
+*source-map* (versión 0.6.1) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/source-map
+
+*source-map* (versión 0.7.6) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/source-map
+
+*source-map* (versión 0.8.0-beta.0) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/source-map
+
+*source-map-js* (versión 1.2.1) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/source-map-js
+
+*source-map-loader* (versión 3.0.2) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/source-map-loader
+
+*source-map-support* (versión 0.5.21) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/source-map-support
+
+*sourcemap-codec* (versión 1.4.8) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/sourcemap-codec
+
+*spdy* (versión 4.0.2) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/spdy
+
+*spdy-transport* (versión 3.0.0) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/spdy-transport
+
+*sprintf-js* (versión 1.0.3) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/sprintf-js
+
+*sqlstring* (versión 2.3.3) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/sqlstring
+
+*stable* (versión 0.1.8) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/stable
+
+*stack-utils* (versión 2.0.6) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/stack-utils
+
+*stackframe* (versión 1.3.4) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/stackframe
+
+*static-eval* (versión 2.0.2) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/static-eval
+
+*statuses* (versión 1.5.0) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/statuses
+
+*statuses* (versión 2.0.2) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/statuses
+
+*stop-iteration-iterator* (versión 1.1.0) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/stop-iteration-iterator
+
+*string_decoder* (versión 1.1.1) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/string_decoder
+
+*string_decoder* (versión 1.3.0) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/string_decoder
+
+*string-length* (versión 4.0.2) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/string-length
+
+*string-length* (versión 5.0.1) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/string-length
+
+*string-natural-compare* (versión 3.0.1) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/string-natural-compare
+
+*string-width* (versión 4.2.3) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/string-width
+
+*string.prototype.includes* (versión 2.0.1) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/string.prototype.includes
+
+*string.prototype.matchall* (versión 4.0.12) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/string.prototype.matchall
+
+*string.prototype.repeat* (versión 1.0.0) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/string.prototype.repeat
+
+*string.prototype.trim* (versión 1.2.10) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/string.prototype.trim
+
+*string.prototype.trimend* (versión 1.0.9) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/string.prototype.trimend
+
+*string.prototype.trimstart* (versión 1.0.8) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/string.prototype.trimstart
+
+*stringify-object* (versión 3.3.0) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/stringify-object
+
+*strip-ansi* (versión 6.0.1) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/strip-ansi
+
+*strip-ansi* (versión 7.1.2) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/strip-ansi
+
+*strip-bom* (versión 3.0.0) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/strip-bom
+
+*strip-bom* (versión 4.0.0) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/strip-bom
+
+*strip-comments* (versión 2.0.1) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/strip-comments
+
+*strip-final-newline* (versión 2.0.0) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/strip-final-newline
+
+*strip-json-comments* (versión 3.1.1) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/strip-json-comments
+
+*style-loader* (versión 3.3.4) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/style-loader
+
+*stylehacks* (versión 5.1.1) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/stylehacks
+
+*sucrase* (versión 3.35.1) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/sucrase
+
+*supports-color* (versión 5.5.0) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/supports-color
+
+*supports-color* (versión 7.2.0) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/supports-color
+
+*supports-color* (versión 8.1.1) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/supports-color
+
+*supports-hyperlinks* (versión 2.3.0) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/supports-hyperlinks
+
+*supports-preserve-symlinks-flag* (versión 1.0.0) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/supports-preserve-symlinks-flag
+
+*svg-parser* (versión 2.0.4) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/svg-parser
+
+*svgo* (versión 1.3.2) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/svgo
+
+*svgo* (versión 2.8.0) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/svgo
+
+*symbol-tree* (versión 3.2.4) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/symbol-tree
+
+*tailwindcss* (versión 3.4.19) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/tailwindcss
+
+*tapable* (versión 1.1.3) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/tapable
+
+*tapable* (versión 2.3.0) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/tapable
+
+*temp-dir* (versión 2.0.0) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/temp-dir
+
+*tempy* (versión 0.6.0) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/tempy
+
+*terminal-link* (versión 2.1.1) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/terminal-link
+
+*terser* (versión 5.46.0) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/terser
+
+*terser-webpack-plugin* (versión 5.3.16) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/terser-webpack-plugin
+
+*test-exclude* (versión 6.0.0) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/test-exclude
+
+*text-table* (versión 0.2.0) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/text-table
+
+*thenify* (versión 3.3.1) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/thenify
+
+*thenify-all* (versión 1.6.0) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/thenify-all
+
+*throat* (versión 6.0.2) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/throat
+
+*thunky* (versión 1.1.0) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/thunky
+
+*tinyglobby* (versión 0.2.15) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/tinyglobby
+
+*tmpl* (versión 1.0.5) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/tmpl
+
+*to-regex-range* (versión 5.0.1) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/to-regex-range
+
+*toidentifier* (versión 1.0.1) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/toidentifier
+
+*touch* (versión 3.1.1) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/touch
+
+*tough-cookie* (versión 4.1.4) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/tough-cookie
+
+*tr46* (versión 1.0.1) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/tr46
+
+*tr46* (versión 2.1.0) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/tr46
+
+*tryer* (versión 1.0.1) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/tryer
+
+*ts-interface-checker* (versión 0.1.13) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/ts-interface-checker
+
+*tsconfig-paths* (versión 3.15.0) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/tsconfig-paths
+
+*tslib* (versión 1.14.1) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/tslib
+
+*tslib* (versión 2.8.1) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/tslib
+
+*tsutils* (versión 3.21.0) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/tsutils
+
+*type-check* (versión 0.3.2) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/type-check
+
+*type-check* (versión 0.4.0) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/type-check
+
+*type-detect* (versión 4.0.8) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/type-detect
+
+*type-fest* (versión 0.16.0) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/type-fest
+
+*type-fest* (versión 0.20.2) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/type-fest
+
+*type-fest* (versión 0.21.3) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/type-fest
+
+*type-is* (versión 1.6.18) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/type-is
+
+*typed-array-buffer* (versión 1.0.3) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/typed-array-buffer
+
+*typed-array-byte-length* (versión 1.0.3) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/typed-array-byte-length
+
+*typed-array-byte-offset* (versión 1.0.4) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/typed-array-byte-offset
+
+*typed-array-length* (versión 1.0.7) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/typed-array-length
+
+*typedarray-to-buffer* (versión 3.1.5) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/typedarray-to-buffer
+
+*typescript* (versión 4.9.5) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/typescript
+
+*unbox-primitive* (versión 1.1.0) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/unbox-primitive
+
+*undefsafe* (versión 2.0.5) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/undefsafe
+
+*underscore* (versión 1.12.1) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/underscore
+
+*undici-types* (versión 7.16.0) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/undici-types
+
+*unicode-canonical-property-names-ecmascript* (versión 2.0.1) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/unicode-canonical-property-names-ecmascript
+
+*unicode-match-property-ecmascript* (versión 2.0.0) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/unicode-match-property-ecmascript
+
+*unicode-match-property-value-ecmascript* (versión 2.2.1) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/unicode-match-property-value-ecmascript
+
+*unicode-property-aliases-ecmascript* (versión 2.2.0) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/unicode-property-aliases-ecmascript
+
+*unique-string* (versión 2.0.0) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/unique-string
+
+*universalify* (versión 0.2.0) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/universalify
+
+*universalify* (versión 2.0.1) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/universalify
+
+*unpipe* (versión 1.0.0) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/unpipe
+
+*unquote* (versión 1.1.1) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/unquote
+
+*upath* (versión 1.2.0) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/upath
+
+*update-browserslist-db* (versión 1.2.3) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/update-browserslist-db
+
+*uri-js* (versión 4.4.1) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/uri-js
+
+*url-parse* (versión 1.5.10) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/url-parse
+
+*util-deprecate* (versión 1.0.2) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/util-deprecate
+
+*util.promisify* (versión 1.0.1) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/util.promisify
+
+*utila* (versión 0.4.0) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/utila
+
+*utils-merge* (versión 1.0.1) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/utils-merge
+
+*uuid* (versión 8.3.2) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/uuid
+
+*v8-to-istanbul* (versión 8.1.1) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/v8-to-istanbul
+
+*vary* (versión 1.1.2) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/vary
+
+*w3c-hr-time* (versión 1.0.2) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/w3c-hr-time
+
+*w3c-xmlserializer* (versión 2.0.0) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/w3c-xmlserializer
+
+*walker* (versión 1.0.8) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/walker
+
+*watchpack* (versión 2.5.1) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/watchpack
+
+*wbuf* (versión 1.7.3) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/wbuf
+
+*web-push* (versión 3.6.7) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/web-push
+
+*webidl-conversions* (versión 4.0.2) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/webidl-conversions
+
+*webidl-conversions* (versión 5.0.0) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/webidl-conversions
+
+*webidl-conversions* (versión 6.1.0) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/webidl-conversions
+
+*webpack* (versión 5.104.1) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/webpack
+
+*webpack-dev-middleware* (versión 5.3.4) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/webpack-dev-middleware
+
+*webpack-dev-server* (versión 4.15.2) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/webpack-dev-server
+
+*webpack-manifest-plugin* (versión 4.1.1) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/webpack-manifest-plugin
+
+*webpack-sources* (versión 1.4.3) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/webpack-sources
+
+*webpack-sources* (versión 2.3.1) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/webpack-sources
+
+*webpack-sources* (versión 3.3.3) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/webpack-sources
+
+*websocket-driver* (versión 0.7.4) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/websocket-driver
+
+*websocket-extensions* (versión 0.1.4) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/websocket-extensions
+
+*whatwg-encoding* (versión 1.0.5) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/whatwg-encoding
+
+*whatwg-fetch* (versión 3.6.20) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/whatwg-fetch
+
+*whatwg-mimetype* (versión 2.3.0) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/whatwg-mimetype
+
+*whatwg-url* (versión 7.1.0) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/whatwg-url
+
+*whatwg-url* (versión 8.7.0) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/whatwg-url
+
+*which* (versión 1.3.1) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/which
+
+*which* (versión 2.0.2) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/which
+
+*which-boxed-primitive* (versión 1.1.1) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/which-boxed-primitive
+
+*which-builtin-type* (versión 1.2.1) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/which-builtin-type
+
+*which-collection* (versión 1.0.2) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/which-collection
+
+*which-typed-array* (versión 1.1.20) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/which-typed-array
+
+*word-wrap* (versión 1.2.5) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/word-wrap
+
+*workbox-background-sync* (versión 6.6.0) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/workbox-background-sync
+
+*workbox-broadcast-update* (versión 6.6.0) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/workbox-broadcast-update
+
+*workbox-build* (versión 6.6.0) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/workbox-build
+
+*workbox-cacheable-response* (versión 6.6.0) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/workbox-cacheable-response
+
+*workbox-core* (versión 6.6.0) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/workbox-core
+
+*workbox-expiration* (versión 6.6.0) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/workbox-expiration
+
+*workbox-google-analytics* (versión 6.6.0) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/workbox-google-analytics
+
+*workbox-navigation-preload* (versión 6.6.0) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/workbox-navigation-preload
+
+*workbox-precaching* (versión 6.6.0) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/workbox-precaching
+
+*workbox-range-requests* (versión 6.6.0) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/workbox-range-requests
+
+*workbox-recipes* (versión 6.6.0) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/workbox-recipes
+
+*workbox-routing* (versión 6.6.0) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/workbox-routing
+
+*workbox-strategies* (versión 6.6.0) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/workbox-strategies
+
+*workbox-streams* (versión 6.6.0) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/workbox-streams
+
+*workbox-sw* (versión 6.6.0) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/workbox-sw
+
+*workbox-webpack-plugin* (versión 6.6.0) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/workbox-webpack-plugin
+
+*workbox-window* (versión 6.6.0) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/workbox-window
+
+*wrap-ansi* (versión 7.0.0) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/wrap-ansi
+
+*wrappy* (versión 1.0.2) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/wrappy
+
+*write-file-atomic* (versión 3.0.3) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/write-file-atomic
+
+*ws* (versión 7.5.10) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/ws
+
+*ws* (versión 8.19.0) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/ws
+
+*xml-name-validator* (versión 3.0.0) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/xml-name-validator
+
+*xmlchars* (versión 2.2.0) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/xmlchars
+
+*y18n* (versión 5.0.8) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/y18n
+
+*yallist* (versión 3.1.1) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/yallist
+
+*yaml* (versión 1.10.2) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/yaml
+
+*yaml* (versión 2.8.2) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/yaml
+
+*yargs* (versión 16.2.0) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/yargs
+
+*yargs-parser* (versión 20.2.9) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/yargs-parser
+
+*yocto-queue* (versión 0.1.0) [Software]. (s. f.). Registro de paquetes npm. https://www.npmjs.com/package/yocto-queue

@@ -1,0 +1,3 @@
+echo .gradle/ > .gitignore
+echo build/ >> .gitignore
+echo node_modules/ >> .gitignore
