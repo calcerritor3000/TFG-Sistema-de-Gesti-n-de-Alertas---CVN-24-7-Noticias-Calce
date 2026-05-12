@@ -38,7 +38,7 @@ const app = express();
 // CONSTANTES DE DOMINIO
 // ============================================
 const VALID_LEVELS = ['verde', 'amarillo', 'rojo'];
-const VALID_CATEGORIES = ['incendio', 'inundacion', 'trafico', 'obras', 'meteorologia', 'seguridad', 'salud', 'medio_ambiente', 'infraestructura', 'otro'];
+const VALID_CATEGORIES = ['incendio', 'inundacion', 'dana', 'trafico', 'obras', 'meteorologia', 'seguridad', 'salud', 'medio_ambiente', 'infraestructura', 'otro'];
 const VALID_STATUSES = ['activa', 'resuelta', 'en_revision', 'desmentida'];
 const ALERT_DEFAULT_RADIUS_BY_LEVEL = { verde: 300, amarillo: 400, rojo: 500 };
 const ALERT_RADIUS_MIN = 50;
@@ -174,7 +174,7 @@ async function inicializarBaseDatos() {
         descripcion TEXT,
         image_url TEXT NULL,
         nivel ENUM('verde', 'amarillo', 'rojo') DEFAULT 'verde',
-        categoria ENUM('incendio', 'inundacion', 'trafico', 'obras', 'meteorologia', 'seguridad', 'salud', 'medio_ambiente', 'infraestructura', 'otro') DEFAULT 'otro',
+        categoria ENUM('incendio', 'inundacion', 'dana', 'trafico', 'obras', 'meteorologia', 'seguridad', 'salud', 'medio_ambiente', 'infraestructura', 'otro') DEFAULT 'otro',
         estado ENUM('activa', 'resuelta', 'en_revision', 'desmentida') DEFAULT 'activa',
         lat DECIMAL(10, 8) NOT NULL,
         lng DECIMAL(11, 8) NOT NULL,
@@ -394,12 +394,27 @@ async function inicializarBaseDatos() {
     try {
       await pool.execute(`
         ALTER TABLE alerts_new 
-        ADD COLUMN IF NOT EXISTS categoria ENUM('incendio', 'inundacion', 'trafico', 'obras', 'meteorologia', 'seguridad', 'salud', 'medio_ambiente', 'infraestructura', 'otro') DEFAULT 'otro' AFTER nivel
+        ADD COLUMN IF NOT EXISTS categoria ENUM('incendio', 'inundacion', 'dana', 'trafico', 'obras', 'meteorologia', 'seguridad', 'salud', 'medio_ambiente', 'infraestructura', 'otro') DEFAULT 'otro' AFTER nivel
       `);
     } catch (err) {
       if (err.code !== 'ER_DUP_FIELDNAME') {
         console.log("Columna categoria ya existe o no se pudo agregar");
       }
+    }
+
+    // Incluir categoría 'dana' en instalaciones que ya tenían el ENUM antiguo
+    try {
+      await pool.execute(`
+        ALTER TABLE alerts_new
+        MODIFY COLUMN categoria ENUM(
+          'incendio', 'inundacion', 'dana', 'trafico', 'obras',
+          'meteorologia', 'seguridad', 'salud', 'medio_ambiente',
+          'infraestructura', 'otro'
+        ) DEFAULT 'otro'
+      `);
+      console.log("ENUM categoria comprobado (incluye dana)");
+    } catch (err) {
+      console.log("ENUM categoria:", err.message);
     }
 
     try {
@@ -1090,8 +1105,7 @@ app.put('/api/alerts/:id', autenticar, soloAdmin, async (req, res) => {
   }
 
   // Validar categoría y estado
-  const categoriasValidas = ['incendio', 'inundacion', 'trafico', 'obras', 'meteorologia', 'seguridad', 'salud', 'medio_ambiente', 'infraestructura', 'otro'];
-  const categoriaFinal = categoria && categoriasValidas.includes(categoria) ? categoria : undefined;
+  const categoriaFinal = categoria && VALID_CATEGORIES.includes(categoria) ? categoria : undefined;
   const estadoFinal = estado && ['activa', 'resuelta', 'en_revision', 'desmentida'].includes(estado) ? estado : undefined;
 
   const imageUrlFinal = image_url && String(image_url).trim().length > 0 ? String(image_url).trim() : null;

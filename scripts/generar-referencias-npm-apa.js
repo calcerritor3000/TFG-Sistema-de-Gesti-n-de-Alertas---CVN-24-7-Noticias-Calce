@@ -1,5 +1,9 @@
 /**
  * Genera referencias tipo APA 7 para todos los paquetes de npm ls --json (incluye subdependencias).
+ * Entradas (en la raíz del proyecto, no van al repositorio si las borras):
+ *   npm-ls-backend.json       → desde la raíz backend: npm ls --all --json > npm-ls-backend.json
+ *   alertas-frontend/npm-ls-frontend.json → cd alertas-frontend && npm ls --all --json > npm-ls-frontend.json
+ * Salida: REFERENCIAS_NPM_COMPLETAS_APA.txt en la raíz.
  * Uso: node scripts/generar-referencias-npm-apa.js
  */
 const fs = require("fs");
