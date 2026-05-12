@@ -1,0 +1,350 @@
+/* Estilos para la página de login */
+.login-page {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #000000 0%, #1a1a1a 50%, #0d0d0d 100%);
+  background-size: 200% 200%;
+  background-attachment: fixed;
+  animation: gradientShift 15s ease infinite;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 10px 15px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.login-page::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: 
+    radial-gradient(circle at 20% 50%, rgba(255, 255, 255, 0.05) 0%, transparent 50%),
+    radial-gradient(circle at 80% 80%, rgba(255, 255, 255, 0.03) 0%, transparent 50%);
+  pointer-events: none;
+  animation: pulse 4s ease-in-out infinite;
+}
+
+@keyframes gradientShift {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.8;
+  }
+}
+
+@keyframes slideInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes bounce {
+  0%, 20%, 50%, 80%, 100% {
+    transform: translateY(0);
+  }
+  40% {
+    transform: translateY(-10px);
+  }
+  60% {
+    transform: translateY(-5px);
+  }
+}
+
+@keyframes shake {
+  0%, 100% {
+    transform: translateX(0);
+  }
+  10%, 30%, 50%, 70%, 90% {
+    transform: translateX(-5px);
+  }
+  20%, 40%, 60%, 80% {
+    transform: translateX(5px);
+  }
+}
+
+@keyframes glow {
+  0%, 100% {
+    box-shadow: 0 0 5px rgba(255, 255, 255, 0.1);
+  }
+  50% {
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
+  }
+}
+
+/* Efectos hover mejorados */
+.login-page > div:first-child > div:hover {
+  transform: translateY(-5px) scale(1.02);
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.6);
+}
+
+.login-page > div:last-child > div:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.4);
+}
+
+/* Animación de entrada escalonada para inputs */
+.login-page input {
+  animation: fadeIn 0.5s ease-out both;
+}
+
+.login-page input:nth-of-type(1) {
+  animation-delay: 0.6s;
+}
+
+.login-page input:nth-of-type(2) {
+  animation-delay: 0.7s;
+}
+
+.login-page input:nth-of-type(3) {
+  animation-delay: 0.8s;
+}
+
+/* Efecto de brillo en inputs al enfocar */
+.login-page input:focus {
+  position: relative;
+  animation: none;
+}
+
+.login-page input:focus::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+  animation: shine 0.5s;
+  pointer-events: none;
+}
+
+@keyframes shine {
+  0% {
+    left: -100%;
+  }
+  100% {
+    left: 100%;
+  }
+}
+
+/* Efecto de ondas en botones */
+.login-page button[type="submit"] {
+  position: relative;
+  overflow: hidden;
+}
+
+.login-page button[type="submit"]::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.1);
+  transform: translate(-50%, -50%);
+  transition: width 0.6s, height 0.6s;
+}
+
+.login-page button[type="submit"]:hover::before {
+  width: 300px;
+  height: 300px;
+}
+
+/* Animación de carga */
+.login-page button[type="submit"]:disabled {
+  animation: pulse 1.5s ease-in-out infinite;
+}
+
+/* Estilos para el contenedor de contraseña con icono */
+.password-input-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.password-input-container input {
+  padding-right: 45px;
+  width: 100%;
+}
+
+.password-toggle-btn {
+  position: absolute;
+  right: 8px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: 18px;
+  padding: 5px 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+  border-radius: 4px;
+  opacity: 0.7;
+  z-index: 10;
+}
+
+.password-toggle-btn:hover {
+  opacity: 1;
+  transform: scale(1.1);
+  background: rgba(0, 123, 255, 0.1);
+}
+
+.password-toggle-btn:active {
+  transform: scale(0.95);
+}
+
+.password-toggle-btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+/* ============================================
+   DISEÑO MÓVIL - iPhone y dispositivos pequeños
+   ============================================ */
+
+/* iPhone y móviles pequeños (hasta 480px) */
+@media (max-width: 480px) {
+  .login-page {
+    padding: 20px 15px;
+    min-height: 100vh;
+    min-height: -webkit-fill-available; /* iOS Safari fix */
+  }
+
+  /* Logo más pequeño en móvil */
+  .login-page img {
+    max-width: 200px;
+    height: auto;
+  }
+
+  /* Panel de autenticación más compacto */
+  .login-page > div:nth-child(2) {
+    max-width: 100%;
+    width: 100%;
+    padding: 20px 15px;
+    margin: 0;
+  }
+
+  /* Inputs más grandes para mejor usabilidad táctil */
+  .login-page input {
+    font-size: 16px; /* Evita zoom automático en iOS */
+    padding: 14px 16px;
+  }
+
+  /* Botones más grandes y fáciles de tocar */
+  .login-page button {
+    padding: 14px 20px;
+    font-size: 16px;
+    min-height: 48px; /* Tamaño mínimo recomendado para touch */
+  }
+
+  /* Footer más compacto */
+  .login-page > div:last-child {
+    margin-top: 30px;
+    font-size: 12px;
+    padding: 0 15px;
+  }
+
+  /* Reducir animaciones en móvil para mejor rendimiento */
+  .login-page::before {
+    animation: none;
+  }
+
+  .login-page input {
+    animation: fadeIn 0.3s ease-out both;
+  }
+}
+
+/* iPhone en modo landscape y tablets pequeñas (481px - 768px) */
+@media (min-width: 481px) and (max-width: 768px) {
+  .login-page {
+    padding: 30px 20px;
+  }
+
+  .login-page > div:nth-child(2) {
+    max-width: 420px;
+    padding: 25px 20px;
+  }
+}
+
+/* Optimizaciones específicas para iOS Safari */
+@supports (-webkit-touch-callout: none) {
+  .login-page {
+    min-height: -webkit-fill-available;
+  }
+
+  /* Evitar zoom al hacer doble tap en inputs en iOS */
+  .login-page input {
+    font-size: 16px;
+  }
+
+  /* Scroll suave en iOS */
+  .login-page {
+    -webkit-overflow-scrolling: touch;
+  }
+}
+
+/* Safe area para iPhone X y superiores (notch) */
+@supports (padding: max(0px)) {
+  .login-page {
+    padding-top: max(20px, env(safe-area-inset-top));
+    padding-bottom: max(20px, env(safe-area-inset-bottom));
+    padding-left: max(15px, env(safe-area-inset-left));
+    padding-right: max(15px, env(safe-area-inset-right));
+  }
+}
