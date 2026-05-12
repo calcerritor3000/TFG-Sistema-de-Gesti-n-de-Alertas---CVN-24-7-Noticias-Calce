@@ -1,4 +1,0 @@
-node_modules/
-.env
-alertas-frontend/node_modules/
-alertas-frontend/.env
