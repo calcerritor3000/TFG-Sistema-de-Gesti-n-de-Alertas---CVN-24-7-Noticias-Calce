@@ -30,6 +30,7 @@ const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const path = require('path');
 const fs = require('fs');
+const crypto = require('crypto');
 const webpush = require('web-push');
 
 const app = express();
@@ -114,8 +115,17 @@ const dbConfig = {
   user: process.env.DB_USER || 'root',
   password: process.env.DB_PASSWORD || '',
   database: process.env.DB_NAME || 'alertas_db',
-  port: parseInt(process.env.DB_PORT) || 3306
+  port: parseInt(process.env.DB_PORT, 10) || 3306,
+  waitForConnections: true,
+  connectionLimit: 10,
+  enableKeepAlive: true
 };
+
+if (process.env.DB_SSL === 'true') {
+  dbConfig.ssl = {
+    rejectUnauthorized: process.env.DB_SSL_REJECT_UNAUTHORIZED !== 'false'
+  };
+}
 
 // Mostrar configuración (sin mostrar contraseña)
 console.log('Configuración de base de datos:');
@@ -495,6 +505,80 @@ function validarNivel(nivel) {
   return VALID_LEVELS.includes(nivel);
 }
 
+const ALERT_CATEGORY_COLORS = {
+  incendio: '#e74c3c',
+  inundacion: '#3498db',
+  dana: '#1abc9c',
+  trafico: '#f39c12',
+  obras: '#95a5a6',
+  meteorologia: '#9b59b6',
+  seguridad: '#2c3e50',
+  salud: '#e91e63',
+  medio_ambiente: '#27ae60',
+  infraestructura: '#34495e',
+  otro: '#7f8c8d'
+};
+
+const ALERT_CATEGORY_EMOJIS = {
+  incendio: '🔥',
+  inundacion: '💧',
+  dana: '🌀',
+  trafico: '🚗',
+  obras: '🚧',
+  meteorologia: '🌦️',
+  seguridad: '🛡️',
+  salud: '🏥',
+  medio_ambiente: '🌳',
+  infraestructura: '🏗️',
+  otro: '📍'
+};
+
+const ALERT_LEVEL_EMOJIS = {
+  rojo: '🔴',
+  amarillo: '🟡',
+  verde: '🟢'
+};
+
+function getAlertLevelColor(level) {
+  switch (level) {
+    case 'rojo': return '#e74c3c';
+    case 'amarillo': return '#f39c12';
+    case 'verde': return '#27ae60';
+    default: return '#3498db';
+  }
+}
+
+function buildAlertNotificationSvg(categoria, nivel) {
+  const catKey = String(categoria || 'otro').toLowerCase();
+  const ring = ALERT_CATEGORY_COLORS[catKey] || ALERT_CATEGORY_COLORS.otro;
+  const fill = getAlertLevelColor(String(nivel || 'verde').toLowerCase());
+  const letter = ALERT_CATEGORY_INITIALS[catKey] || '?';
+  return `<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="128" height="128" viewBox="0 0 128 128">
+  <circle cx="64" cy="64" r="58" fill="${ring}"/>
+  <circle cx="64" cy="64" r="46" fill="${fill}" stroke="#ffffff" stroke-width="6"/>
+  <text x="64" y="72" text-anchor="middle" fill="#ffffff" font-family="Arial,sans-serif" font-size="44" font-weight="700">${letter}</text>
+</svg>`;
+}
+
+function getApiPublicOrigin() {
+  if (process.env.API_PUBLIC_URL) return process.env.API_PUBLIC_URL.replace(/\/$/, '');
+  const port = process.env.PORT || 4000;
+  return `http://127.0.0.1:${port}`;
+}
+
+function resolveAlertPushIconUrl(alertData) {
+  const origin = getApiPublicOrigin();
+  const imageUrl = alertData?.image_url && String(alertData.image_url).trim();
+  if (imageUrl) {
+    if (imageUrl.startsWith('http://') || imageUrl.startsWith('https://')) return imageUrl;
+    return `${origin}${imageUrl.startsWith('/') ? imageUrl : `/${imageUrl}`}`;
+  }
+  const categoria = encodeURIComponent(alertData?.categoria || 'otro');
+  const nivel = encodeURIComponent(alertData?.level || alertData?.nivel || 'verde');
+  return `${origin}/api/alert-notification-icon?categoria=${categoria}&nivel=${nivel}`;
+}
+
 function calcularDistanciaMetros(lat1, lng1, lat2, lng2) {
   const toRad = (value) => (value * Math.PI) / 180;
   const r = 6371000; // metros
@@ -533,7 +617,11 @@ async function notificarUsuariosPorZona(alertData) {
         parseFloat(alertData.lng)
       );
 
-      if (distance > parseInt(row.zone_radius, 10)) {
+      const zoneRadius = parseInt(row.zone_radius, 10) || 1000;
+      const alertRadius = parseInt(alertData.radius, 10) || 500;
+      const centerInsideZone = distance <= zoneRadius;
+      const zoneInsideAlert = distance <= alertRadius;
+      if (!centerInsideZone && !zoneInsideAlert) {
         continue;
       }
 
@@ -553,17 +641,18 @@ async function notificarUsuariosPorZona(alertData) {
       return;
     }
 
+    const alertIcon = resolveAlertPushIconUrl(alertData);
     const payloadBase = {
-      icon: '/logo192.png',
-      badge: '/logo192.png',
+      icon: alertIcon,
+      badge: alertIcon,
       url: '/mapa',
       alertId: alertData.id
     };
 
     await Promise.all(Array.from(subscriptionsToNotify.entries()).map(async ([pushId, sub]) => {
       const payload = JSON.stringify({
-        title: `⚠️ Alerta en "${sub.zoneName}"`,
-        body: `${alertData.title} (${sub.distance}m de tu zona)`,
+        title: `Hay una alerta en tu zona "${sub.zoneName}"`,
+        body: `${alertData.title || alertData.titulo || 'Nueva alerta'} (dentro o afecta tu zona, ${sub.distance} m)`,
         ...payloadBase
       });
 
@@ -704,6 +793,17 @@ app.post('/api/login', async (req, res) => {
 // ============================================
 app.get('/api/push/public-key', (_req, res) => {
   res.json({ publicKey: effectiveVapidPublicKey });
+});
+
+// Icono SVG para notificaciones (categoría + nivel, mismo estilo que el mapa)
+app.get('/api/alert-notification-icon', (req, res) => {
+  const categoriaRaw = String(req.query.categoria || 'otro').toLowerCase();
+  const nivelRaw = String(req.query.nivel || 'verde').toLowerCase();
+  const categoria = VALID_CATEGORIES.includes(categoriaRaw) ? categoriaRaw : 'otro';
+  const nivel = VALID_LEVELS.includes(nivelRaw) ? nivelRaw : 'verde';
+  res.setHeader('Content-Type', 'image/svg+xml; charset=utf-8');
+  res.setHeader('Cache-Control', 'public, max-age=86400');
+  res.send(buildAlertNotificationSvg(categoria, nivel));
 });
 
 app.post('/api/push/subscribe', autenticar, async (req, res) => {
@@ -1465,9 +1565,8 @@ app.post('/api/subscriptions', autenticar, async (req, res) => {
     return res.status(400).json({ error: 'Coordenadas inválidas' });
   }
 
-  if (!validarComunidadValenciana(lat, lng)) {
-    return res.status(400).json({ error: 'La zona debe estar dentro de la Comunidad Valenciana' });
-  }
+  // Para zonas de interés permitimos cualquier coordenada válida (estilo Life360).
+  // La restricción a Comunidad Valenciana se mantiene solo para alertas.
 
   const radioFinal = parseInt(radius) || 1000;
   if (radioFinal < 100 || radioFinal > 10000) {
@@ -1647,6 +1746,7 @@ async function fetchOpenMeteoDailyForecast(lat, lng) {
     latitude: String(lat),
     longitude: String(lng),
     timezone: 'Europe/Madrid',
+    forecast_days: '14',
     daily: [
       'weathercode',
       'temperature_2m_max',
@@ -1832,12 +1932,15 @@ app.get('/api/weather/weekdays', async (req, res) => {
       const sunday = new Date(monday);
       sunday.setDate(monday.getDate() + 6);
 
-      // Usar fecha local para evitar desplazamientos por UTC (que vaciaban el domingo)
+      // Hasta el jueves de la semana siguiente (domingo + 4)
+      const nextThursday = new Date(sunday);
+      nextThursday.setDate(sunday.getDate() + 4);
+
       const mondayStr = formatLocalDateYYYYMMDD(monday);
-      const sundayStr = formatLocalDateYYYYMMDD(sunday);
+      const endStr = formatLocalDateYYYYMMDD(nextThursday);
 
       query += ' AND fecha BETWEEN ? AND ?';
-      params.push(mondayStr, sundayStr);
+      params.push(mondayStr, endStr);
     } else if (weekMode !== 'all') {
       return res.status(400).json({ error: 'Parámetro week inválido. Usa "current" o "all".' });
     }

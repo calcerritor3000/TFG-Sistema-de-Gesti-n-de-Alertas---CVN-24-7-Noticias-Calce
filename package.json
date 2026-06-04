@@ -2,9 +2,14 @@
   "name": "alertas-backend",
   "version": "1.0.0",
   "main": "app.js",
+  "engines": {
+    "node": ">=18"
+  },
   "scripts": {
     "start": "node app.js",
-    "dev": "nodemon app.js"
+    "dev": "nodemon app.js",
+    "build:frontend": "cd alertas-frontend && npm run build",
+    "build": "npm run build:frontend"
   },
   "dependencies": {
     "bcrypt": "^6.0.0",

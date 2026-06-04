@@ -1,0 +1,21 @@
+# Blueprint Render — despliega Web Service + variables base.
+# La base MySQL va APARTE (Aiven, Railway solo MySQL, etc.): Render no ofrece MySQL gestionado.
+# En el panel de Render añade DB_HOST, DB_USER, DB_PASSWORD, DB_NAME, DB_SSL=true
+
+services:
+  - type: web
+    name: alertas-cvn
+    runtime: node
+    plan: free
+    buildCommand: npm install && npm run build
+    startCommand: npm start
+    healthCheckPath: /api/alerts
+    envVars:
+      - key: NODE_VERSION
+        value: 20
+      - key: REACT_APP_API_URL
+        value: ""
+      - key: JWT_SECRET
+        generateValue: true
+      - key: DB_SSL
+        value: "true"

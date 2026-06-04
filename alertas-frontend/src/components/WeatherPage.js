@@ -9,10 +9,39 @@ import React, { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './WeatherPage.css';
 
-const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:4000';
+import { apiUrl } from '../config';
+const API_URL = apiUrl('');
 const DEFAULT_MUNICIPALITY_OPTIONS = [
   { value: 'auto', label: 'Automático (mi ubicación)' }
 ];
+
+const formatLocalDate = (d) => {
+  const y = d.getFullYear();
+  const m = String(d.getMonth() + 1).padStart(2, '0');
+  const day = String(d.getDate()).padStart(2, '0');
+  return `${y}-${m}-${day}`;
+};
+
+const parseLocalDate = (dateStr) => {
+  const [y, m, d] = String(dateStr).split('T')[0].split('-').map(Number);
+  return new Date(y, m - 1, d);
+};
+
+const getTodayLocalDateStr = () => formatLocalDate(new Date());
+
+/** Hasta el jueves de la semana que viene (después del domingo de esta semana) */
+const getExtendedForecastEndDateStr = () => {
+  const today = new Date();
+  today.setHours(0, 0, 0, 0);
+  const dayOfWeek = today.getDay();
+  const todayIndex = dayOfWeek === 0 ? 6 : dayOfWeek - 1;
+  const daysUntilSunday = 6 - todayIndex;
+  const sunday = new Date(today);
+  sunday.setDate(today.getDate() + daysUntilSunday);
+  const nextThursday = new Date(sunday);
+  nextThursday.setDate(sunday.getDate() + 4);
+  return formatLocalDate(nextThursday);
+};
 
 const WeatherPage = ({ user, onLogout }) => {
   const [forecast, setForecast] = useState([]);
@@ -33,6 +62,12 @@ const WeatherPage = ({ user, onLogout }) => {
   useEffect(() => {
     fetchForecast();
   }, [selectedMunicipality]);
+
+  useEffect(() => {
+    if (weekScrollRef.current) {
+      weekScrollRef.current.scrollLeft = 0;
+    }
+  }, [forecast, selectedMunicipality]);
 
   useEffect(() => {
     const loadMunicipalities = async () => {
@@ -102,15 +137,43 @@ const WeatherPage = ({ user, onLogout }) => {
   };
 
   const getDayOfWeek = (dateString) => {
-    const date = new Date(dateString);
-    const dayOfWeek = date.getDay(); // 0 = Domingo, 1 = Lunes, ..., 6 = Sábado
-    // Convertir a formato donde 0 = Lunes, 6 = Domingo
+    const date = parseLocalDate(dateString);
+    const dayOfWeek = date.getDay();
     return dayOfWeek === 0 ? 6 : dayOfWeek - 1;
   };
 
   const getDayName = (dayIndex) => {
     const days = ['Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado', 'Domingo'];
     return days[dayIndex];
+  };
+
+  const getDayDisplayNameForDate = (dateStr) => {
+    if (dateStr === getTodayLocalDateStr()) return 'Hoy';
+    return getDayName(getDayOfWeek(dateStr));
+  };
+
+  /** Desde hoy hasta el jueves de la semana que viene (incluye lun–jue próximos) */
+  const getVisibleForecastDates = () => {
+    const todayStr = getTodayLocalDateStr();
+    const endStr = getExtendedForecastEndDateStr();
+    const dates = [];
+    const cursor = parseLocalDate(todayStr);
+    const end = parseLocalDate(endStr);
+    while (cursor <= end) {
+      dates.push(formatLocalDate(cursor));
+      cursor.setDate(cursor.getDate() + 1);
+    }
+    return dates;
+  };
+
+  const groupForecastByDate = () => {
+    const grouped = {};
+    forecast.forEach((item) => {
+      const key = String(item.fecha).split('T')[0];
+      if (!grouped[key]) grouped[key] = [];
+      grouped[key].push(item);
+    });
+    return grouped;
   };
 
   const formatTime = (timeString) => {
@@ -121,7 +184,7 @@ const WeatherPage = ({ user, onLogout }) => {
 
   const formatShortDate = (dateString) => {
     if (!dateString) return '';
-    const date = new Date(dateString);
+    const date = parseLocalDate(dateString);
     return date.toLocaleDateString('es-ES', { day: '2-digit', month: 'short' });
   };
 
@@ -151,28 +214,6 @@ const WeatherPage = ({ user, onLogout }) => {
       'NO': 'NO'
     };
     return directions[direccion] || 'E';
-  };
-
-  const groupForecastByDayOfWeek = () => {
-    // Crear estructura para los 7 días de la semana (Lunes a Domingo)
-    const grouped = {
-      0: [], // Lunes
-      1: [], // Martes
-      2: [], // Miércoles
-      3: [], // Jueves
-      4: [], // Viernes
-      5: [], // Sábado
-      6: []  // Domingo
-    };
-    
-    forecast.forEach(item => {
-      const dayOfWeek = getDayOfWeek(item.fecha);
-      if (grouped[dayOfWeek] !== undefined) {
-        grouped[dayOfWeek].push(item);
-      }
-    });
-    
-    return grouped;
   };
 
   const getMinMaxTemp = (dayItems) => {
@@ -322,6 +363,8 @@ const WeatherPage = ({ user, onLogout }) => {
     );
   }
 
+  const visibleForecastDates = getVisibleForecastDates();
+
   return (
     <div className="weather-page">
       <header className="weather-header">
@@ -391,7 +434,7 @@ const WeatherPage = ({ user, onLogout }) => {
 
       <div className="weather-widget-container">
         <div className="weather-summary-strip">
-          <span><strong>Boletín:</strong> 7 días</span>
+          <span><strong>Boletín:</strong> {visibleForecastDates.length} días (hoy → jueves próxima semana)</span>
           <span><strong>Zona:</strong> {locationLabel}</span>
           <span><strong>Última actualización:</strong> {new Date().toLocaleString('es-ES')}</span>
         </div>
@@ -434,21 +477,21 @@ const WeatherPage = ({ user, onLogout }) => {
             onWheel={handleWeekWheel}
           >
             {(() => {
-              const groupedForecast = groupForecastByDayOfWeek();
-              return [0, 1, 2, 3, 4, 5, 6].map(dayIndex => {
-              const dayItems = groupedForecast[dayIndex] || [];
+              const groupedForecast = groupForecastByDate();
+              return visibleForecastDates.map((dateStr) => {
+              const dayItems = groupedForecast[dateStr] || [];
               const { min, max } = getMinMaxTemp(dayItems);
               const mainIcon = getMainIcon(dayItems);
               const precipitation = getPrecipitationProbability(dayItems);
               const maxWind = getMaxWind(dayItems);
-              const dayName = getDayName(dayIndex);
+              const dayName = getDayDisplayNameForDate(dateStr);
               
               return (
-                <div key={dayIndex} className="weather-day-widget">
+                <div key={dateStr} className="weather-day-widget">
                   <div className="widget-day-header">
                     <div>
                       <h3>{dayName}</h3>
-                      <div className="widget-day-date">{formatShortDate(dayItems[0]?.fecha)}</div>
+                      <div className="widget-day-date">{formatShortDate(dateStr)}</div>
                     </div>
                     {isAdmin && dayItems.length > 0 && (
                       <button 
@@ -520,16 +563,8 @@ const WeatherPage = ({ user, onLogout }) => {
                     <button 
                       className="widget-add-btn"
                       onClick={() => {
-                        // Calcular la fecha del próximo día de la semana
-                        const today = new Date();
-                        const currentDay = today.getDay();
-                        const daysUntilTarget = (dayIndex + 1 - currentDay + 7) % 7 || 7;
-                        const targetDate = new Date(today);
-                        targetDate.setDate(today.getDate() + daysUntilTarget);
-                        const dateString = targetDate.toISOString().split('T')[0];
-                        
                         setEditingForecast({
-                          fecha: dateString,
+                          fecha: dateStr,
                           hora_inicio: '00:00:00',
                           hora_fin: '12:00:00',
                           temperatura: null,

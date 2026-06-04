@@ -1,0 +1,26 @@
+# Dependencias
+node_modules/
+alertas-frontend/node_modules/
+
+# Secretos y entorno local (NUNCA subir)
+.env
+.env.*
+!.env.example
+!alertas-frontend/.env.example
+!alertas-frontend/.env.production
+alertas-frontend/.env.local
+
+# Build (Render lo genera en deploy)
+alertas-frontend/build/
+
+# Subidas de usuarios
+uploads/*
+!uploads/alerts/
+!uploads/alerts/.gitkeep
+
+# Logs y caché
+*.log
+npm-debug.log*
+.DS_Store
+Thumbs.db
+.cursor/

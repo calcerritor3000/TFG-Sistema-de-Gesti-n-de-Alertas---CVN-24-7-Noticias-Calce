@@ -6,6 +6,7 @@
 import React, { useState } from 'react';
 import './LoginPage.css';
 import './LoginPageAnimations.css';
+import { apiUrl } from '../config';
 
 const LoginPage = ({ onLogin }) => {
   const [activeTab, setActiveTab] = useState('login');
@@ -23,7 +24,7 @@ const LoginPage = ({ onLogin }) => {
     setLoading(true);
     
     try {
-      const response = await fetch('http://localhost:4000/api/login', {  // URL absoluta al API
+      const response = await fetch(apiUrl('/api/login'), {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(loginForm)
@@ -53,7 +54,7 @@ const LoginPage = ({ onLogin }) => {
     setLoading(true);
     
     try {
-      const response = await fetch('http://localhost:4000/api/register', {  // URL absoluta al API
+      const response = await fetch(apiUrl('/api/register'), {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(registerForm)
@@ -64,7 +65,7 @@ const LoginPage = ({ onLogin }) => {
       if (data.error) {
         alert('Error: ' + data.error);
       } else {
-        alert('✅ Usuario registrado correctamente');
+        alert('Usuario registrado correctamente');
         setRegisterForm({ username: '', email: '', password: '' });
         setActiveTab('login');
       }
@@ -97,14 +98,14 @@ const LoginPage = ({ onLogin }) => {
             onClick={() => setActiveTab('login')}
             disabled={loading}
           >
-            🔑 Iniciar Sesión
+            Iniciar sesión
           </button>
           <button 
             style={activeTab === 'register' ? activeTabStyle : tabStyle}
             onClick={() => setActiveTab('register')}
             disabled={loading}
           >
-            📝 Registrarse
+            Registrarse
           </button>
         </div>
 
@@ -144,7 +145,7 @@ const LoginPage = ({ onLogin }) => {
                   disabled={loading}
                   aria-label={showLoginPassword ? "Ocultar contraseña" : "Mostrar contraseña"}
                 >
-                  {showLoginPassword ? '👁️' : '👁️‍🗨️'}
+                  {showLoginPassword ? 'Ocultar' : 'Mostrar'}
                 </button>
               </div>
             </div>
@@ -153,7 +154,7 @@ const LoginPage = ({ onLogin }) => {
               style={loading ? disabledButtonStyle : primaryButtonStyle}
               disabled={loading}
             >
-              {loading ? '⏳ Conectando...' : 'Iniciar Sesión'}
+              {loading ? 'Conectando…' : 'Iniciar sesión'}
             </button>
 
           </form>
@@ -209,7 +210,7 @@ const LoginPage = ({ onLogin }) => {
                   disabled={loading}
                   aria-label={showRegisterPassword ? "Ocultar contraseña" : "Mostrar contraseña"}
                 >
-                  {showRegisterPassword ? '👁️' : '👁️‍🗨️'}
+                  {showRegisterPassword ? 'Ocultar' : 'Mostrar'}
                 </button>
               </div>
             </div>
@@ -218,7 +219,7 @@ const LoginPage = ({ onLogin }) => {
               style={loading ? disabledButtonStyle : primaryButtonStyle}
               disabled={loading}
             >
-              {loading ? '⏳ Creando cuenta...' : '📝 Crear Cuenta'}
+              {loading ? 'Creando cuenta…' : 'Crear cuenta'}
             </button>
           </form>
         )}
@@ -232,7 +233,7 @@ const LoginPage = ({ onLogin }) => {
   );
 };
 
-// 🎨 Estilos para la página de login
+// Estilos para la página de login
 const logoContainerStyle = {
   textAlign: 'center',
   marginBottom: '10px',

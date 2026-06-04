@@ -196,7 +196,7 @@ self.addEventListener('message', (event) => {
     caches.open(RUNTIME_CACHE)
       .then((cache) => {
         cache.put(
-          new Request('http://localhost:4000/api/alerts'),
+          new Request(`${self.location.origin}/api/alerts`),
           new Response(JSON.stringify(alerts), {
             headers: { 'Content-Type': 'application/json' }
           })
@@ -222,7 +222,7 @@ self.addEventListener('push', (event) => {
   const options = {
     body: payload.body || 'Se ha detectado una alerta dentro de tu zona de interés.',
     icon: payload.icon || '/logo192.png',
-    badge: payload.badge || '/logo192.png',
+    badge: payload.badge || payload.icon || '/logo192.png',
     data: {
       url: payload.url || '/mapa',
       alertId: payload.alertId || null

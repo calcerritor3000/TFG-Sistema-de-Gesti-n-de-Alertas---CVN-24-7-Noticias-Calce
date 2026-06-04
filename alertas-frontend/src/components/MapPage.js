@@ -26,6 +26,119 @@ import { MapContainer, TileLayer, Marker, Popup, Circle, useMap, useMapEvents } 
 import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 import './MapPage.css';
+import {
+  CATEGORIAS_OPTIONS,
+  getCategoryColor,
+  getCategoryEmoji,
+  getLevelColor,
+  getLevelEmoji,
+  getLevelLabelText,
+  resolveAlertNotificationIcon
+} from '../alertVisuals';
+import { LevelChip, CategoryBrief } from './AlertChips';
+import { apiUrl } from '../config';
+
+const API_ORIGIN = apiUrl('');
+
+function distanceMeters(lat1, lon1, lat2, lon2) {
+  const R = 6371000;
+  const dLat = ((lat2 - lat1) * Math.PI) / 180;
+  const dLon = ((lon2 - lon1) * Math.PI) / 180;
+  const a =
+    Math.sin(dLat / 2) ** 2 +
+    Math.cos((lat1 * Math.PI) / 180) *
+      Math.cos((lat2 * Math.PI) / 180) *
+      Math.sin(dLon / 2) ** 2;
+  return R * 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+}
+
+/**
+ * En PC conviene empezar con red/Wi‑Fi (rápido). Alta precisión solo si responde;
+ * si no, el watch con enableHighAccuracy:true dispara timeout (code 3) una y otra vez.
+ */
+const GEO_OPTS_FAST = { enableHighAccuracy: false, timeout: 25000, maximumAge: 300000 };
+const GEO_OPTS_HIGH = { enableHighAccuracy: true, timeout: 45000, maximumAge: 0 };
+
+function getCurrentPositionReliable(onSuccess, onError) {
+  navigator.geolocation.getCurrentPosition(
+    onSuccess,
+    () => {
+      navigator.geolocation.getCurrentPosition(onSuccess, onError, GEO_OPTS_HIGH);
+    },
+    GEO_OPTS_FAST
+  );
+}
+
+function tryRefineHighAccuracy(onSuccess) {
+  navigator.geolocation.getCurrentPosition(onSuccess, () => {}, GEO_OPTS_HIGH);
+}
+
+const USER_LOC_MAP_KEY = '__cvnUserLocationLayer';
+
+function ensureUserLocationPane(map) {
+  if (!map.getPane('userLocationPane')) {
+    const pane = map.createPane('userLocationPane');
+    pane.style.zIndex = '700';
+  }
+}
+
+/** Pinta el punto azul directamente en Leaflet (más fiable que solo React state). */
+function paintUserLocationOnMap(map, lat, lng) {
+  if (!map || !Number.isFinite(lat) || !Number.isFinite(lng)) return;
+
+  ensureUserLocationPane(map);
+
+  const existing = map[USER_LOC_MAP_KEY];
+  if (existing) map.removeLayer(existing);
+
+  const circle = L.circle([lat, lng], {
+    pane: 'userLocationPane',
+    radius: 50,
+    color: '#3498db',
+    fillColor: '#3498db',
+    fillOpacity: 0.15,
+    weight: 2,
+    dashArray: '5, 5'
+  });
+
+  const marker = L.marker([lat, lng], {
+    pane: 'userLocationPane',
+    icon: createUserLocationIcon(),
+    zIndexOffset: 1000
+  });
+
+  const label = 'Tu ubicación';
+  marker.bindPopup(
+    `<div style="text-align:center;padding:8px"><strong>${label}</strong><br>` +
+      `<small>Lat: ${lat.toFixed(6)}<br>Lng: ${lng.toFixed(6)}</small></div>`
+  );
+
+  const group = L.layerGroup([circle, marker]);
+  group.addTo(map);
+  if (typeof group.bringToFront === 'function') group.bringToFront();
+  map[USER_LOC_MAP_KEY] = group;
+}
+
+/** Sincroniza userLocation con capas Leaflet imperativas. */
+function UserLocationPainter({ location }) {
+  const map = useMap();
+
+  useEffect(() => {
+    if (!location || !Number.isFinite(location.lat) || !Number.isFinite(location.lng)) {
+      const existing = map[USER_LOC_MAP_KEY];
+      if (existing) {
+        map.removeLayer(existing);
+        map[USER_LOC_MAP_KEY] = null;
+      }
+      return undefined;
+    }
+
+    paintUserLocationOnMap(map, location.lat, location.lng);
+    return undefined;
+  }, [map, location?.lat, location?.lng]);
+
+  return null;
+}
 
 // Sin WebSockets - se usa polling automático para actualizaciones
 
@@ -61,24 +174,15 @@ function clampAlertRadiusMeters(value, fallback) {
  * @returns {L.DivIcon} Icono de Leaflet
  */
 const createCustomIcon = (level, categoria = 'otro') => {
-  const colors = {
-    rojo: '#e74c3c',
-    amarillo: '#f39c12',
-    verde: '#27ae60'
-  };
-  
-  const icons = {
-    rojo: '🔴',
-    amarillo: '🟡',
-    verde: '🟢'
-  };
-
-  const categoryIcon = getCategoryIcon(categoria);
+  const fill = getLevelColor(level);
+  const levelEmoji = getLevelEmoji(level);
+  const categoryIcon = getCategoryEmoji(categoria);
+  const catColor = getCategoryColor(categoria);
 
   return L.divIcon({
     className: 'custom-marker',
     html: `<div style="
-      background: ${colors[level]};
+      background: ${fill};
       width: 36px;
       height: 36px;
       border-radius: 50%;
@@ -90,11 +194,12 @@ const createCustomIcon = (level, categoria = 'otro') => {
       font-size: 20px;
       color: white;
       position: relative;
+      box-sizing: border-box;
     ">
-      <div style="font-size: 14px; position: absolute; bottom: -2px; right: -2px; background: ${getCategoryColor(categoria)}; border-radius: 50%; width: 18px; height: 18px; display: flex; align-items: center; justify-content: center; border: 2px solid white;">
+      <div style="font-size: 14px; position: absolute; bottom: -2px; right: -2px; background: ${catColor}; border-radius: 50%; width: 18px; height: 18px; display: flex; align-items: center; justify-content: center; border: 2px solid white;">
         ${categoryIcon}
       </div>
-      ${icons[level]}
+      ${levelEmoji}
     </div>`,
     iconSize: [36, 36],
     iconAnchor: [18, 18],
@@ -117,7 +222,6 @@ const createUserLocationIcon = () => {
       align-items: center;
       justify-content: center;
     ">
-      <!-- Círculo exterior animado -->
       <div class="user-location-pulse-outer" style="
         position: absolute;
         width: 50px;
@@ -129,7 +233,6 @@ const createUserLocationIcon = () => {
         left: 50%;
         transform: translate(-50%, -50%);
       "></div>
-      <!-- Círculo medio animado -->
       <div class="user-location-pulse-middle" style="
         position: absolute;
         width: 40px;
@@ -141,7 +244,6 @@ const createUserLocationIcon = () => {
         left: 50%;
         transform: translate(-50%, -50%);
       "></div>
-      <!-- Círculo principal -->
       <div style="
         position: absolute;
         z-index: 10;
@@ -181,12 +283,22 @@ const createUserLocationIcon = () => {
  */
 function ChangeMapView({ coords, zoom }) {
   const map = useMap();
+  const lastAppliedRef = useRef('');
   useEffect(() => {
-    if (coords) {
-      const z = zoom === null || zoom === undefined ? 13 : zoom;
-      // Sin animación: evita “doble zoom” o pan raro al cambiar rápido de una alerta a otra
-      map.setView(coords, z, { animate: false });
+    if (!coords) return;
+    const z = zoom === null || zoom === undefined ? map.getZoom() : zoom;
+    const key = `${coords[0].toFixed(6)},${coords[1].toFixed(6)},${z}`;
+    if (lastAppliedRef.current === key) return;
+    if (map.dragging?.moving()) return;
+    const c = map.getCenter();
+    const sameCenter =
+      Math.abs(c.lat - coords[0]) < 1e-6 && Math.abs(c.lng - coords[1]) < 1e-6;
+    if (sameCenter && map.getZoom() === z) {
+      lastAppliedRef.current = key;
+      return;
     }
+    lastAppliedRef.current = key;
+    map.setView(coords, z, { animate: false });
   }, [coords, zoom, map]);
   return null;
 }
@@ -199,6 +311,9 @@ function ChangeMapView({ coords, zoom }) {
  * Límites geográficos de la Comunidad Valenciana
  * Cubre las tres provincias: Alicante, Valencia y Castellón
  */
+const DEFAULT_MAP_CENTER = [39.4699, -0.3774];
+const DEFAULT_MAP_ZOOM = 8;
+
 const COMUNIDAD_VALENCIANA_BOUNDS = {
   LAT_MIN: 38.2,   // Sur (extremo sur de Alicante)
   LAT_MAX: 40.7,   // Norte (extremo norte de Castellón)
@@ -228,9 +343,11 @@ function validarComunidadValenciana(lat, lng) {
 function MapClickHandler({ setNewAlert, setEditingAlert, editingAlert, showAppModal }) {
   useMapEvents({
     click(e) {
+      const map = e.target;
+      if (map.dragging?.moved()) return;
+
       const { lat, lng } = e.latlng;
-      
-      // Validar que el click esté dentro de la Comunidad Valenciana
+
       if (validarComunidadValenciana(lat, lng)) {
         if (editingAlert) {
           // Si estamos editando, actualizar la alerta en edición
@@ -242,7 +359,7 @@ function MapClickHandler({ setNewAlert, setEditingAlert, editingAlert, showAppMo
       } else {
         showAppModal(
           'Ubicación no permitida',
-          '⚠️ Solo se pueden crear alertas dentro de la Comunidad Valenciana',
+          'Solo se pueden crear alertas dentro de la Comunidad Valenciana.',
           'warning'
         );
       }
@@ -268,67 +385,8 @@ function SingleOpenPopupManager() {
   return null;
 }
 
-/**
- * Devuelve el icono emoji según la categoría
- * @param {string} categoria - Categoría de la alerta
- * @returns {string} Emoji del icono
- */
-const getCategoryIcon = (categoria) => {
-  const icons = {
-    incendio: '🔥',
-    inundacion: '💧',
-    dana: '🌀',
-    trafico: '🚗',
-    obras: '🚧',
-    meteorologia: '🌦️',
-    seguridad: '🛡️',
-    salud: '🏥',
-    medio_ambiente: '🌳',
-    infraestructura: '🏗️',
-    otro: '📍'
-  };
-  return icons[categoria] || '📍';
-};
-
-/**
- * Devuelve el color hexadecimal según la categoría
- * @param {string} categoria - Categoría de la alerta
- * @returns {string} Color hexadecimal
- */
-const getCategoryColor = (categoria) => {
-  const colors = {
-    incendio: '#e74c3c',
-    inundacion: '#3498db',
-    dana: '#1abc9c',
-    trafico: '#f39c12',
-    obras: '#95a5a6',
-    meteorologia: '#9b59b6',
-    seguridad: '#2c3e50',
-    salud: '#e91e63',
-    medio_ambiente: '#27ae60',
-    infraestructura: '#34495e',
-    otro: '#7f8c8d'
-  };
-  return colors[categoria] || '#7f8c8d';
-};
-
-/**
- * Lista de todas las categorías disponibles
- * Cada categoría tiene: value (código), label (nombre), icon (emoji)
- */
-const CATEGORIAS = [
-  { value: 'incendio', label: '🔥 Incendio', icon: '🔥' },
-  { value: 'inundacion', label: '💧 Inundación', icon: '💧' },
-  { value: 'dana', label: '🌀 DANA', icon: '🌀' },
-  { value: 'trafico', label: '🚗 Tráfico', icon: '🚗' },
-  { value: 'obras', label: '🚧 Obras', icon: '🚧' },
-  { value: 'meteorologia', label: '🌦️ Meteorología', icon: '🌦️' },
-  { value: 'seguridad', label: '🛡️ Seguridad', icon: '🛡️' },
-  { value: 'salud', label: '🏥 Salud', icon: '🏥' },
-  { value: 'medio_ambiente', label: '🌳 Medio Ambiente', icon: '🌳' },
-  { value: 'infraestructura', label: '🏗️ Infraestructura', icon: '🏗️' },
-  { value: 'otro', label: '📍 Otro', icon: '📍' }
-];
+/** Categorías para selects y formularios */
+const CATEGORIAS = CATEGORIAS_OPTIONS;
 
 // ============================================
 // COMPONENTE PRINCIPAL - MapPage
@@ -353,7 +411,7 @@ const MapPage = ({ user, onLogout }) => {
   
   // Estados principales
   const [alerts, setAlerts] = useState([]); // Array de todas las alertas
-  const [mapCenter, setMapCenter] = useState([39.4699, -0.3774]); // Centro del mapa [lat, lng] - Por defecto: Valencia
+  const [mapCenter, setMapCenter] = useState(DEFAULT_MAP_CENTER);
   // Estados de formularios
   const [newAlert, setNewAlert] = useState({ title: '', description: '', image_url: '', level: 'verde', categoria: 'otro', lat: '', lng: '', radius: '' }); // Datos de nueva alerta
   const [editingAlert, setEditingAlert] = useState(null); // Alerta en edición (null si no hay ninguna)
@@ -365,10 +423,9 @@ const MapPage = ({ user, onLogout }) => {
   const [openPopupAlertId, setOpenPopupAlertId] = useState(null); // ID de alerta con popup abierto
   const alertMarkerRefs = useRef(new Map()); // Referencias a marcadores por ID
   const activePopupAlertIdRef = useRef(null); // ID del popup activo
-  const leafletMapRef = useRef(null); // Referencia al mapa de Leaflet
   const [showAlertsList, setShowAlertsList] = useState(false); // Mostrar lista de alertas
   const [showCircles, setShowCircles] = useState(true); // Mostrar círculos de área
-  const [showAdminPanel, setShowAdminPanel] = useState(user?.role === 'admin'); // Panel admin (solo admins)
+  const [showAdminPanel, setShowAdminPanel] = useState(user?.role === 'admin');
   // Estados de filtros
   const [filterCategoria, setFilterCategoria] = useState('todos'); // Filtro por categoría
   const [searchQuery, setSearchQuery] = useState(''); // Búsqueda por texto
@@ -386,6 +443,8 @@ const MapPage = ({ user, onLogout }) => {
   
   // Estados de geolocalización
   const [userLocation, setUserLocation] = useState(null); // Ubicación del usuario
+  const [locatingUser, setLocatingUser] = useState(false);
+  const [geoHint, setGeoHint] = useState('');
   const [proximityAlerts, setProximityAlerts] = useState([]); // Alertas cuya zona de afectación cubre tu posición
   const [proximityAlertDismissed, setProximityAlertDismissed] = useState(
     () => localStorage.getItem('proximityAlertDismissed') === 'true'
@@ -398,6 +457,7 @@ const MapPage = ({ user, onLogout }) => {
   // Estados de zonas de interés
   const [showSubscriptions, setShowSubscriptions] = useState(false); // Mostrar modal de zonas de interés
   const [subscriptions, setSubscriptions] = useState([]); // Zonas de interés del usuario
+  const [subscriptionsLoaded, setSubscriptionsLoaded] = useState(false); // Evita notificaciones prematuras antes de cargar zonas
   const [newSubscription, setNewSubscription] = useState({ nombre_zona: '', lat: '', lng: '', radius: 1000 }); // Nueva zona de interés
   const [uploadingNewImage, setUploadingNewImage] = useState(false);
   const [uploadingEditImage, setUploadingEditImage] = useState(false);
@@ -434,12 +494,86 @@ const MapPage = ({ user, onLogout }) => {
   // Ref para evitar notificaciones duplicadas
   const notifiedAlertsRef = useRef(new Set());
   const notifiedSubscriptionAlertsRef = useRef(new Set());
+  /** IDs de alertas en las que estabas en el ciclo anterior (para detectar "entrar"). */
+  const wasInsideAlertIdsRef = useRef(new Set());
+  /** Pares zona-alerta ya avisados en el ciclo anterior (zonas de interés). */
+  const wasInsideSubscriptionKeysRef = useRef(new Set());
   
   // Ref para controlar si está cargando
   const isLoadingRef = useRef(false);
 
   /** Solo centrar en el “promedio” de alertas una vez al cargar; no al deseleccionar tras timeout */
   const hasAppliedInitialAlertsCenterRef = useRef(false);
+  const hasCenteredOnUserRef = useRef(false);
+  const applyLocationCoords = useCallback((lat, lng, options = {}) => {
+    const { centerMap = false } = options;
+    setUserLocation({ lat, lng, approximate: false });
+    setGeoHint('');
+
+    if (centerMap || !hasCenteredOnUserRef.current) {
+      hasCenteredOnUserRef.current = true;
+      setMapCenter([lat, lng]);
+      setTargetZoom(16);
+      setTimeout(() => setTargetZoom(null), 400);
+    }
+  }, []);
+
+  const applyGeolocationPosition = useCallback((position, centerMap = false) => {
+    applyLocationCoords(position.coords.latitude, position.coords.longitude, { centerMap });
+  }, [applyLocationCoords]);
+
+  const requestUserLocation = useCallback((centerMap = false) => {
+    if (!navigator.geolocation) {
+      setGeoHint('Tu navegador no soporta geolocalización');
+      return Promise.reject(new Error('unsupported'));
+    }
+
+    setLocatingUser(true);
+    setGeoHint('');
+
+    return new Promise((resolve, reject) => {
+      const onSuccess = (position) => {
+        applyGeolocationPosition(position, centerMap);
+        setLocatingUser(false);
+        resolve(position);
+      };
+
+      const onFinalError = (error) => {
+        setLocatingUser(false);
+        const code = error?.code;
+        if (code === 1) {
+          setGeoHint('Ubicación bloqueada en el navegador');
+        } else if (code === 3) {
+          setGeoHint('Tiempo agotado del GPS. Reintenta en unos segundos.');
+        } else {
+          setGeoHint('No se pudo obtener la ubicación actual');
+        }
+        reject(error || new Error('geo-fail'));
+      };
+
+      getCurrentPositionReliable(onSuccess, onFinalError);
+    });
+  }, [applyGeolocationPosition]);
+
+  const goToMyLocation = () => {
+    if (userLocation) {
+      setMapCenter([userLocation.lat, userLocation.lng]);
+      setTargetZoom(16);
+      setTimeout(() => setTargetZoom(null), 400);
+      return;
+    }
+    requestUserLocation(true).catch(() => {});
+  };
+
+  useEffect(() => {
+    if (!newAlert.lat || !newAlert.lng) return;
+    const lat = parseFloat(newAlert.lat);
+    const lng = parseFloat(newAlert.lng);
+    if (!validarComunidadValenciana(lat, lng)) {
+      setNewAlert((prev) => ({ ...prev, lat: '', lng: '' }));
+    }
+  }, []);
+
   /** Un solo temporizador al pulsar alertas seguidas (evita saltos al centro medio) */
   const clearSelectedAlertTimeoutRef = useRef(null);
 
@@ -481,9 +615,16 @@ const MapPage = ({ user, onLogout }) => {
       return { ok: false, reason: 'permission_not_granted' };
     }
 
+    const alertForIcon = options.alert;
+    const { alert: _omitAlert, ...notificationOptions } = options;
+    const alertIcon = alertForIcon
+      ? resolveAlertNotificationIcon(alertForIcon, API_ORIGIN)
+      : '/logo192.png';
+
     const payload = {
-      icon: '/logo192.png',
-      ...options
+      icon: alertIcon,
+      badge: alertIcon,
+      ...notificationOptions
     };
 
     try {
@@ -523,7 +664,7 @@ const MapPage = ({ user, onLogout }) => {
       await navigator.serviceWorker.register('/service-worker.js');
       const registration = await navigator.serviceWorker.ready;
 
-      const keyResponse = await fetch('http://localhost:4000/api/push/public-key');
+      const keyResponse = await fetch(apiUrl('/api/push/public-key'));
       if (!keyResponse.ok) {
         throw new Error(`No se pudo obtener VAPID key (${keyResponse.status})`);
       }
@@ -540,7 +681,7 @@ const MapPage = ({ user, onLogout }) => {
         });
       }
 
-      await fetch('http://localhost:4000/api/push/subscribe', {
+      await fetch(apiUrl('/api/push/subscribe'), {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -570,6 +711,19 @@ const MapPage = ({ user, onLogout }) => {
       default: return 300;
     }
   };
+
+  /** Huella para saber si una alerta cambió de posición, radio o estado. */
+  const alertSyncFingerprint = (alert) =>
+    [
+      alert.id,
+      alert.lat,
+      alert.lng,
+      alert.radius,
+      alert.estado,
+      alert.title,
+      alert.level,
+      alert.categoria
+    ].join('|');
 
   /**
    * Calcular distancia entre dos puntos (Haversine)
@@ -629,7 +783,7 @@ const MapPage = ({ user, onLogout }) => {
       params.set('categoria', categoriaToUse.toLowerCase().trim());
     }
     
-    const url = `http://localhost:4000/api/alerts?${params.toString()}`;
+    const url = apiUrl(`/api/alerts?${params.toString()}`);
     
     fetch(url, {
       signal: abortController.signal
@@ -666,18 +820,16 @@ const MapPage = ({ user, onLogout }) => {
           radius: alert.radius || getDefaultRadius(alert.level)
         }));
         
-        // Solo actualizar si hay cambios reales (evitar re-renders innecesarios)
-        setAlerts(prevAlerts => {
-          const prevIds = new Set(prevAlerts.map(a => a.id));
-          const newIds = new Set(alertsWithRadius.map(a => a.id));
-          
-          // Si son iguales, no actualizar
-          if (prevIds.size === newIds.size && 
-              [...prevIds].every(id => newIds.has(id)) &&
-              prevAlerts.length === alertsWithRadius.length) {
+        // Actualizar si cambian IDs o datos (posición, radio, estado…)
+        setAlerts((prevAlerts) => {
+          if (prevAlerts.length !== alertsWithRadius.length) {
+            return alertsWithRadius;
+          }
+          const prevFp = prevAlerts.map(alertSyncFingerprint).sort().join(';;');
+          const nextFp = alertsWithRadius.map(alertSyncFingerprint).sort().join(';;');
+          if (prevFp === nextFp) {
             return prevAlerts;
           }
-          
           return alertsWithRadius;
         });
         
@@ -729,7 +881,7 @@ const MapPage = ({ user, onLogout }) => {
             }));
             setAlerts(alertsWithRadius);
             setIsOnline(false);
-            console.log('📦 Usando alertas en caché debido a error de conexión');
+            console.log('Usando alertas en caché (error de conexión)');
           } catch (e) {
             console.error('Error al cargar desde caché:', e);
             setAlerts([]);
@@ -764,7 +916,7 @@ const MapPage = ({ user, onLogout }) => {
             radius: alert.radius || getDefaultRadius(alert.level)
           }));
           setAlerts(alertsWithRadius);
-          console.log('📦 Alertas cargadas desde caché (modo offline)');
+          console.log('Alertas cargadas desde caché (modo sin conexión)');
         } catch (err) {
           console.error('Error al cargar alertas desde caché:', err);
         }
@@ -838,46 +990,6 @@ const MapPage = ({ user, onLogout }) => {
       });
     }
 
-    let watchId = null;
-
-    // Intentar obtener la ubicación del usuario (sin cambiar el centro del mapa automáticamente)
-    if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(
-        (position) => {
-          const lat = position.coords.latitude;
-          const lng = position.coords.longitude;
-          
-          // Guardar la ubicación del usuario
-          setUserLocation({ lat, lng });
-          
-          // NO cambiar el centro del mapa automáticamente para no perder las alertas visibles
-          // El usuario puede centrar manualmente si lo desea
-        },
-        (error) => {
-          // Si no permite o hay error, no hacer nada
-          console.log('Geolocalización no disponible:', error);
-        }
-      );
-      
-      // También configurar watchPosition para actualizar la ubicación en tiempo real
-      watchId = navigator.geolocation.watchPosition(
-        (position) => {
-          const lat = position.coords.latitude;
-          const lng = position.coords.longitude;
-          setUserLocation({ lat, lng });
-        },
-        (error) => {
-          console.log('Error al actualizar geolocalización:', error);
-        },
-        {
-          enableHighAccuracy: true,
-          maximumAge: 30000, // Actualizar cada 30 segundos
-          timeout: 10000
-        }
-      );
-      
-    }
-
     // Polling automático cada 60 segundos para actualizar alertas (reducido para mejor rendimiento)
     const pollingInterval = setInterval(() => {
       if (fetchAlertsRef.current && !isLoadingRef.current) {
@@ -886,12 +998,45 @@ const MapPage = ({ user, onLogout }) => {
     }, 60000); // 60 segundos (antes era 30)
 
     return () => {
-      if (watchId) {
-        navigator.geolocation.clearWatch(watchId);
-      }
       clearInterval(pollingInterval);
     };
   }, [loadAlerts]);
+
+  /**
+   * Ubicación solo por GPS del navegador (sin respaldo artificial).
+   */
+  useEffect(() => {
+    let watchId = null;
+    let cancelled = false;
+
+    if (navigator.geolocation) {
+      const onGps = (position) => {
+        if (cancelled) return;
+        applyGeolocationPosition(position, !hasCenteredOnUserRef.current);
+      };
+
+      navigator.geolocation.getCurrentPosition(onGps, () => {}, GEO_OPTS_FAST);
+
+      watchId = navigator.geolocation.watchPosition(onGps, () => {}, GEO_OPTS_FAST);
+
+      tryRefineHighAccuracy((position) => {
+        if (!cancelled) onGps(position);
+      });
+    }
+
+    return () => {
+      cancelled = true;
+      if (watchId != null) navigator.geolocation.clearWatch(watchId);
+    };
+  }, [applyGeolocationPosition]);
+
+  useEffect(() => {
+    if (userLocation) return undefined;
+    const timer = setTimeout(() => {
+      setGeoHint('Esperando GPS… Pulsa ◎ si no aparece el punto azul');
+    }, 6000);
+    return () => clearTimeout(timer);
+  }, [userLocation]);
 
   // Sincroniza el permiso cuando el usuario cambia ajustes del navegador
   useEffect(() => {
@@ -1018,8 +1163,8 @@ const MapPage = ({ user, onLogout }) => {
       }
       // Si las alertas aún no están cargadas, el efecto se ejecutará de nuevo cuando se carguen
     } else if (alerts.length > 0 && !alertaId && !isNavigatingToAlert) {
-      // Centrar en el punto medio solo la primera vez con datos (no al deseleccionar tras 2s)
-      if (!selectedAlert && !hasAppliedInitialAlertsCenterRef.current) {
+      // Centrar en alertas solo si aún no hemos centrado en la ubicación del usuario
+      if (!selectedAlert && !hasAppliedInitialAlertsCenterRef.current && !hasCenteredOnUserRef.current) {
         const avgLat = alerts.reduce((sum, a) => sum + parseFloat(a.lat), 0) / alerts.length;
         const avgLng = alerts.reduce((sum, a) => sum + parseFloat(a.lng), 0) / alerts.length;
         setMapCenter([avgLat, avgLng]);
@@ -1034,40 +1179,38 @@ const MapPage = ({ user, onLogout }) => {
   // ============================================
   
   /**
-   * Devuelve el color hexadecimal según el nivel de alerta
-   * @param {string} level - Nivel (rojo/amarillo/verde)
-   * @returns {string} Color hexadecimal
-   */
-  const getColor = level => {
-    switch (level) {
-      case 'rojo': return '#e74c3c';
-      case 'amarillo': return '#f39c12';
-      case 'verde': return '#27ae60';
-      default: return '#3498db';
-    }
-  };
-
-  /**
-   * Devuelve el emoji según el nivel de alerta
-   * @param {string} level - Nivel (rojo/amarillo/verde)
-   * @returns {string} Emoji
-   */
-  const getLevelIcon = level => {
-    switch (level) {
-      case 'rojo': return '🔴';
-      case 'amarillo': return '🟡';
-      case 'verde': return '🟢';
-      default: return '🔵';
-    }
-  };
-
-  /**
    * Devuelve el radio de una alerta (personalizado o por defecto)
    * @param {object} alert - Objeto de alerta
    * @returns {number} Radio en metros
    */
   const getAlertRadius = (alert) => {
-    return alert.radius || getDefaultRadius(alert.level);
+    const r = parseInt(alert?.radius, 10);
+    if (!Number.isNaN(r) && r > 0) return r;
+    return getDefaultRadius(alert?.level || alert?.nivel);
+  };
+
+  /**
+   * ¿La alerta está en la zona de interés?
+   * - Dentro: centro de la alerta dentro del círculo de la zona (lo que ves en el mapa).
+   * - Afecta: el centro de la zona cae dentro del radio de la alerta (peligro cubre la zona).
+   */
+  const alertAffectsInterestZone = (zoneLat, zoneLng, zoneRadiusM, alert) => {
+    const alertLat = parseFloat(alert.lat);
+    const alertLng = parseFloat(alert.lng);
+    if (isNaN(alertLat) || isNaN(alertLng)) return null;
+
+    const alertRadiusM = getAlertRadius(alert);
+    const distanceM = calculateDistance(zoneLat, zoneLng, alertLat, alertLng);
+    const centerInside = distanceM <= zoneRadiusM;
+    const zoneCenterInsideAlert = distanceM <= alertRadiusM;
+
+    return {
+      affects: centerInside || zoneCenterInsideAlert,
+      centerInside,
+      zoneCenterInsideAlert,
+      distanceM: Math.round(distanceM),
+      alertRadiusM
+    };
   };
 
   /**
@@ -1137,7 +1280,7 @@ const MapPage = ({ user, onLogout }) => {
     }
 
     const dataUrl = await fileToDataUrl(file);
-    const res = await fetch('http://localhost:4000/api/upload-image', {
+    const res = await fetch(apiUrl('/api/upload-image'), {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -1194,17 +1337,17 @@ const MapPage = ({ user, onLogout }) => {
     
     // Validaciones básicas
     if (!newAlert.title || !newAlert.title.trim()) {
-      alert('⚠️ Por favor, ingresa un título para la alerta');
+      alert('Por favor, ingresa un título para la alerta');
       return;
     }
     
     if (!newAlert.description || !newAlert.description.trim()) {
-      alert('⚠️ Por favor, ingresa una descripción para la alerta');
+      alert('Por favor, ingresa una descripción para la alerta');
       return;
     }
     
     if (!newAlert.lat || !newAlert.lng) {
-      alert('⚠️ Por favor, haz clic en el mapa para seleccionar una ubicación');
+      alert('Por favor, haz clic en el mapa para seleccionar una ubicación');
       return;
     }
     
@@ -1213,14 +1356,14 @@ const MapPage = ({ user, onLogout }) => {
     const lng = parseFloat(newAlert.lng);
     
     if (isNaN(lat) || isNaN(lng)) {
-      alert('⚠️ Las coordenadas deben ser números válidos');
+      alert('Las coordenadas deben ser números válidos');
       return;
     }
     
     if (!validarComunidadValenciana(lat, lng)) {
       showAppModal(
         'Ubicación no permitida',
-        '⚠️ Solo se pueden crear alertas dentro de la Comunidad Valenciana',
+        'Solo se pueden crear alertas dentro de la Comunidad Valenciana',
         'warning'
       );
       return;
@@ -1228,7 +1371,7 @@ const MapPage = ({ user, onLogout }) => {
     
     // Validar que el usuario tenga token
     if (!user?.token) {
-      alert('⚠️ No estás autenticado. Por favor, inicia sesión de nuevo.');
+      alert('No estás autenticado. Por favor, inicia sesión de nuevo.');
       onLogout();
       return;
     }
@@ -1248,7 +1391,7 @@ const MapPage = ({ user, onLogout }) => {
         radius: clampAlertRadiusMeters(newAlert.radius, getDefaultRadius(newAlert.level || 'verde'))
       };
       
-      const response = await fetch('http://localhost:4000/api/alerts', {
+      const response = await fetch(apiUrl('/api/alerts'), {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -1277,7 +1420,6 @@ const MapPage = ({ user, onLogout }) => {
       
       // Limpiar formulario
         setNewAlert({ title: '', description: '', image_url: '', level: 'verde', categoria: 'otro', lat: '', lng: '', radius: '' });
-      
       // Mostrar mensaje de éxito
         showAppModal('Alerta creada', 'La alerta se ha creado correctamente.', 'success');
       
@@ -1286,7 +1428,7 @@ const MapPage = ({ user, onLogout }) => {
       
     } catch (err) {
         console.error('Error al crear alerta:', err);
-      alert(`❌ Error al crear alerta: ${err.message || 'Error desconocido'}`);
+      alert(`Error al crear alerta: ${err.message || 'Error desconocido'}`);
     } finally {
         setLoading(false);
     }
@@ -1311,6 +1453,7 @@ const MapPage = ({ user, onLogout }) => {
     });
     setMapCenter([parseFloat(alert.lat), parseFloat(alert.lng)]);
     setSelectedAlert(alert.id);
+    setShowAdminPanel(true);
   };
 
   /**
@@ -1322,14 +1465,14 @@ const MapPage = ({ user, onLogout }) => {
     e.preventDefault();
     
     if (!editingAlert.lat || !editingAlert.lng) {
-      alert('⚠️ Por favor, selecciona una ubicación');
+      alert('Por favor, selecciona una ubicación');
       return;
     }
     
     if (!validarComunidadValenciana(editingAlert.lat, editingAlert.lng)) {
       showAppModal(
         'Ubicación no permitida',
-        '⚠️ Solo se pueden crear alertas dentro de la Comunidad Valenciana',
+        'Solo se pueden crear alertas dentro de la Comunidad Valenciana',
         'warning'
       );
       return;
@@ -1338,7 +1481,7 @@ const MapPage = ({ user, onLogout }) => {
     setLoading(true);
     
     try {
-      const res = await fetch(`http://localhost:4000/api/alerts/${editingAlert.id}`, {
+      const res = await fetch(apiUrl(`/api/alerts/${editingAlert.id}`), {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
@@ -1415,7 +1558,7 @@ const MapPage = ({ user, onLogout }) => {
     const id = deleteConfirmModal.alertId;
     if (id == null) return;
 
-    fetch(`http://localhost:4000/api/alerts/${id}`, {
+    fetch(apiUrl(`/api/alerts/${id}`), {
       method: 'DELETE',
       headers: { Authorization: `Bearer ${user?.token}` }
     })
@@ -1454,7 +1597,7 @@ const MapPage = ({ user, onLogout }) => {
    */
   const handleConfirmAlert = async (alertId) => {
     if (!user?.token) {
-      alert('⚠️ Debes iniciar sesión para confirmar alertas');
+      alert('Debes iniciar sesión para confirmar alertas');
       return;
     }
     if (user?.role !== 'admin') {
@@ -1462,7 +1605,7 @@ const MapPage = ({ user, onLogout }) => {
     }
 
     try {
-      const res = await fetch(`http://localhost:4000/api/alerts/${alertId}/confirm`, {
+      const res = await fetch(apiUrl(`/api/alerts/${alertId}/confirm`), {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -1478,7 +1621,7 @@ const MapPage = ({ user, onLogout }) => {
       if (fetchAlertsRef.current) {
         fetchAlertsRef.current();
       }
-      alert('✅ Alerta confirmada');
+      alert('Alerta confirmada');
     } catch (err) {
       console.error('Error al confirmar alerta:', err);
       alert('Error al confirmar alerta');
@@ -1493,7 +1636,7 @@ const MapPage = ({ user, onLogout }) => {
    */
   const handleReportAlert = async (alertId, tipo, motivo = '') => {
     if (!user?.token) {
-      alert('⚠️ Debes iniciar sesión para reportar alertas');
+      alert('Debes iniciar sesión para reportar alertas');
       return false;
     }
     if (user?.role !== 'admin') {
@@ -1501,7 +1644,7 @@ const MapPage = ({ user, onLogout }) => {
     }
 
     try {
-      const res = await fetch(`http://localhost:4000/api/alerts/${alertId}/report`, {
+      const res = await fetch(apiUrl(`/api/alerts/${alertId}/report`), {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -1514,7 +1657,7 @@ const MapPage = ({ user, onLogout }) => {
         alert('Error: ' + data.error);
         return false;
       }
-      alert('✅ Alerta reportada. Los administradores la revisarán.');
+      alert('Alerta reportada. Los administradores la revisarán.');
       return true;
     } catch (err) {
       console.error('Error al reportar alerta:', err);
@@ -1556,35 +1699,34 @@ const MapPage = ({ user, onLogout }) => {
     });
   }, [userLocation, alerts]);
 
-  // Alertas cercanas a zonas de interés (ej: "Mi casa", "Trabajo")
+  // Alertas dentro o que afectan zonas de interés (ej: "Escuela")
   const nearbySubscriptionAlerts = useMemo(() => {
     if (!subscriptions.length || alerts.length === 0) return [];
 
-    const activeAlerts = alerts.filter(alert => alert.estado === 'activa' || !alert.estado);
+    const activeAlerts = alerts.filter(
+      (alert) => !alert.estado || String(alert.estado).toLowerCase() === 'activa'
+    );
     const matches = [];
 
-    subscriptions.forEach(subscription => {
+    subscriptions.forEach((subscription) => {
       const subLat = parseFloat(subscription.lat);
       const subLng = parseFloat(subscription.lng);
       const subRadius = parseInt(subscription.radius, 10) || 1000;
 
       if (isNaN(subLat) || isNaN(subLng)) return;
 
-      activeAlerts.forEach(alert => {
-        const alertLat = parseFloat(alert.lat);
-        const alertLng = parseFloat(alert.lng);
-        if (isNaN(alertLat) || isNaN(alertLng)) return;
+      activeAlerts.forEach((alert) => {
+        const zoneHit = alertAffectsInterestZone(subLat, subLng, subRadius, alert);
+        if (!zoneHit?.affects) return;
 
-        const distance = calculateDistance(subLat, subLng, alertLat, alertLng);
-        if (distance <= subRadius) {
-          matches.push({
-            key: `${subscription.id}-${alert.id}`,
-            subscriptionId: subscription.id,
-            subscriptionName: subscription.nombre_zona,
-            alert,
-            distance: Math.round(distance)
-          });
-        }
+        matches.push({
+          key: `${subscription.id}-${alert.id}`,
+          subscriptionId: subscription.id,
+          subscriptionName: subscription.nombre_zona,
+          alert,
+          distance: zoneHit.distanceM,
+          centerInside: zoneHit.centerInside
+        });
       });
     });
 
@@ -1594,71 +1736,101 @@ const MapPage = ({ user, onLogout }) => {
   useEffect(() => {
     setProximityAlerts(nearbyAlerts);
 
-    // Notificar solo alertas nuevas (evitar duplicados)
-    if (nearbyAlerts.length > 0 && 'Notification' in window && notificationPermission === 'granted') {
-      const newAlerts = nearbyAlerts.filter(alert => !notifiedAlertsRef.current.has(alert.id));
-      
-      if (newAlerts.length > 0) {
-        // Marcar como notificadas
-        newAlerts.forEach(alert => notifiedAlertsRef.current.add(alert.id));
+    if (!subscriptionsLoaded || !userLocation) {
+      return;
+    }
 
-        // Limpiar IDs antiguos que ya no están cerca (para permitir re-notificación si vuelven)
-        const currentIds = new Set(nearbyAlerts.map(a => a.id));
-        notifiedAlertsRef.current.forEach(id => {
-          if (!currentIds.has(id)) {
-            notifiedAlertsRef.current.delete(id);
-          }
+    const currentInsideIds = new Set(nearbyAlerts.map((a) => a.id));
+
+    // Entraste en una zona si antes no estabas dentro y ahora sí (también al recargar dentro).
+    const enteredNow = nearbyAlerts.filter((a) => !wasInsideAlertIdsRef.current.has(a.id));
+
+    wasInsideAlertIdsRef.current = currentInsideIds;
+
+    // Si sales de una zona, permitir volver a avisar al re-entrar.
+    notifiedAlertsRef.current.forEach((id) => {
+      if (!currentInsideIds.has(id)) {
+        notifiedAlertsRef.current.delete(id);
+      }
+    });
+
+    const canNotifyEntered =
+      'Notification' in window &&
+      notificationPermission === 'granted' &&
+      enteredNow.length > 0;
+
+    if (canNotifyEntered) {
+      if (enteredNow.length === 1) {
+        const alert = enteredNow[0];
+        sendDeviceNotification('Has entrado en la zona de una alerta', {
+          body: alert.title || alert.titulo,
+          tag: `alert-enter-${alert.id}`,
+          alert
         });
-        
-        // Crear notificación solo para nuevas alertas
-        if (newAlerts.length === 1) {
-          sendDeviceNotification(`⚠️ Has entrado en la zona de una alerta`, {
-            body: newAlerts[0].title,
-            tag: `alert-${newAlerts[0].id}` // Tag para evitar duplicados del sistema
-          });
-        } else {
-          sendDeviceNotification(`⚠️ Has entrado en ${newAlerts.length} zonas de alerta`, {
-            body: newAlerts.map(a => a.title).join(', '),
-            tag: 'multiple-alerts'
-          });
-        }
+      } else {
+        sendDeviceNotification(`Has entrado en ${enteredNow.length} zonas de alerta`, {
+          body: enteredNow.map((a) => a.title || a.titulo).join(', '),
+          tag: 'multiple-alerts-enter',
+          alert: enteredNow[0]
+        });
       }
     }
-  }, [nearbyAlerts, notificationPermission]);
+  }, [nearbyAlerts, notificationPermission, userLocation, subscriptionsLoaded]);
 
   useEffect(() => {
     setSubscriptionProximityAlerts(nearbySubscriptionAlerts);
 
-    if (nearbySubscriptionAlerts.length > 0 && 'Notification' in window && notificationPermission === 'granted') {
-      const newMatches = nearbySubscriptionAlerts.filter(
-        item => !notifiedSubscriptionAlertsRef.current.has(item.key)
-      );
+    if (!subscriptionsLoaded) return;
 
-      if (newMatches.length > 0) {
-        newMatches.forEach(item => notifiedSubscriptionAlertsRef.current.add(item.key));
+    const currentKeys = new Set(nearbySubscriptionAlerts.map((item) => item.key));
 
-        const currentKeys = new Set(nearbySubscriptionAlerts.map(item => item.key));
-        notifiedSubscriptionAlertsRef.current.forEach(key => {
-          if (!currentKeys.has(key)) {
-            notifiedSubscriptionAlertsRef.current.delete(key);
-          }
+    // Entró una alerta en la zona (o es la primera detección tras cargar).
+    const enteredInZone = nearbySubscriptionAlerts.filter(
+      (item) => !wasInsideSubscriptionKeysRef.current.has(item.key)
+    );
+
+    wasInsideSubscriptionKeysRef.current = currentKeys;
+
+    notifiedSubscriptionAlertsRef.current.forEach((key) => {
+      if (!currentKeys.has(key)) {
+        notifiedSubscriptionAlertsRef.current.delete(key);
+      }
+    });
+
+    if (enteredInZone.length > 0) {
+      setSubscriptionAlertDismissed(false);
+      localStorage.removeItem('subscriptionAlertDismissed');
+    }
+
+    if (
+      enteredInZone.length > 0 &&
+      'Notification' in window &&
+      notificationPermission === 'granted'
+    ) {
+      enteredInZone.forEach((item) => notifiedSubscriptionAlertsRef.current.add(item.key));
+
+      if (enteredInZone.length === 1) {
+        const hit = enteredInZone[0];
+        const alertTitle = hit.alert.title || hit.alert.titulo || 'Alerta';
+        sendDeviceNotification(`Hay una alerta en tu zona "${hit.subscriptionName}"`, {
+          body: hit.centerInside
+            ? `${alertTitle} (dentro de la zona)`
+            : `${alertTitle} (la zona está dentro del radio de la alerta)`,
+          tag: `subscription-zone-${hit.key}`,
+          alert: hit.alert
         });
-
-        if (newMatches.length === 1) {
-          const hit = newMatches[0];
-          sendDeviceNotification(`⚠️ Alerta cerca de "${hit.subscriptionName}"`, {
-            body: `${hit.alert.title} (${hit.distance}m)`,
-            tag: `subscription-${hit.key}`
-          });
-        } else {
-          sendDeviceNotification(`⚠️ ${newMatches.length} alertas en tus zonas`, {
-            body: newMatches.slice(0, 3).map(item => `${item.subscriptionName}: ${item.alert.title}`).join(' | '),
-            tag: 'multiple-subscription-alerts'
-          });
-        }
+      } else {
+        sendDeviceNotification(`${enteredInZone.length} alertas en tus zonas de interés`, {
+          body: enteredInZone
+            .slice(0, 3)
+            .map((item) => `"${item.subscriptionName}": ${item.alert.title || item.alert.titulo}`)
+            .join(' | '),
+          tag: 'multiple-subscription-zone-alerts',
+          alert: enteredInZone[0].alert
+        });
       }
     }
-  }, [nearbySubscriptionAlerts, notificationPermission]);
+  }, [nearbySubscriptionAlerts, notificationPermission, subscriptionsLoaded]);
 
   const handleTestNotification = async () => {
     if (!('Notification' in window)) {
@@ -1711,10 +1883,10 @@ const MapPage = ({ user, onLogout }) => {
     } else {
       // Fallback: copiar al portapapeles
       navigator.clipboard.writeText(url).then(() => {
-        alert('✅ Enlace copiado al portapapeles');
+        alert('Enlace copiado al portapapeles');
       }).catch(err => {
         console.error('Error al copiar al portapapeles:', err);
-        alert('❌ Error al copiar el enlace');
+        alert('Error al copiar el enlace');
       });
     }
   };
@@ -1734,8 +1906,7 @@ const MapPage = ({ user, onLogout }) => {
       },
       () => {
         showAppModal('Ubicación', 'Activa la ubicación del navegador para detectar si entras en una zona de alerta.', 'warning');
-      },
-      { enableHighAccuracy: true, timeout: 15000, maximumAge: 0 }
+      }
     );
 
     if (!('Notification' in window)) {
@@ -1759,26 +1930,44 @@ const MapPage = ({ user, onLogout }) => {
     }
   };
 
-  const useCurrentLocationForSubscription = () => {
-    if (!navigator.geolocation) {
-      alert('Tu navegador no soporta geolocalización');
-      return;
-    }
+  const useCurrentLocationForSubscription = async () => {
+    try {
+      // Si ya tenemos ubicación en el mapa (punto azul), reutilizarla.
+      let lat = Number(userLocation?.lat);
+      let lng = Number(userLocation?.lng);
 
-    navigator.geolocation.getCurrentPosition(
-      (position) => {
-        setNewSubscription(prev => ({
-          ...prev,
-          lat: position.coords.latitude.toFixed(6),
-          lng: position.coords.longitude.toFixed(6)
-        }));
-      },
-      () => {
-        alert('No se pudo obtener tu ubicación actual');
-      },
-      { enableHighAccuracy: true, timeout: 10000, maximumAge: 30000 }
-    );
+      if (!Number.isFinite(lat) || !Number.isFinite(lng)) {
+        const position = await requestUserLocation(false);
+        lat = Number(position?.coords?.latitude);
+        lng = Number(position?.coords?.longitude);
+      }
+
+      if (!Number.isFinite(lat) || !Number.isFinite(lng)) {
+        throw new Error('invalid-coords');
+      }
+      setNewSubscription(prev => ({
+        ...prev,
+        lat: lat.toFixed(6),
+        lng: lng.toFixed(6)
+      }));
+    } catch {
+      alert('No se pudo obtener tu ubicación actual');
+    }
   };
+
+  // Al abrir el modal de zonas, precargar coordenadas desde tu ubicación actual si están vacías.
+  useEffect(() => {
+    if (!showSubscriptions) return;
+    if (!Number.isFinite(userLocation?.lat) || !Number.isFinite(userLocation?.lng)) return;
+    setNewSubscription((prev) => {
+      if (prev.lat && prev.lng) return prev;
+      return {
+        ...prev,
+        lat: Number(userLocation.lat).toFixed(6),
+        lng: Number(userLocation.lng).toFixed(6)
+      };
+    });
+  }, [showSubscriptions, userLocation]);
 
   // Función para verificar si un token JWT está expirado
   const isTokenExpired = (token) => {
@@ -1803,13 +1992,16 @@ const MapPage = ({ user, onLogout }) => {
 
   // Cargar zonas de interés
   const loadSubscriptions = async () => {
+    setSubscriptionsLoaded(false);
     // Si el token ya fue marcado como inválido, no intentar cargar
     if (tokenInvalidRef.current) {
+      setSubscriptionsLoaded(true);
       return;
     }
     
     if (!user?.token) {
       setSubscriptions([]);
+      setSubscriptionsLoaded(true);
       return;
     }
     
@@ -1818,6 +2010,7 @@ const MapPage = ({ user, onLogout }) => {
       tokenInvalidRef.current = true;
       setSubscriptions([]);
       localStorage.removeItem('user');
+      setSubscriptionsLoaded(true);
       if (onLogout) {
         onLogout();
       }
@@ -1827,7 +2020,7 @@ const MapPage = ({ user, onLogout }) => {
     
     try {
       // Cada usuario debe ver únicamente sus propias zonas de interés
-      const res = await fetch('http://localhost:4000/api/subscriptions', {
+      const res = await fetch(apiUrl('/api/subscriptions'), {
         headers: { Authorization: `Bearer ${user.token}` }
       });
       
@@ -1835,6 +2028,7 @@ const MapPage = ({ user, onLogout }) => {
       if (res.status === 403 || res.status === 401) {
         tokenInvalidRef.current = true;
         setSubscriptions([]);
+        setSubscriptionsLoaded(true);
         // Intentar leer el mensaje de error pero no mostrar en consola
         try {
           await res.json();
@@ -1873,17 +2067,18 @@ const MapPage = ({ user, onLogout }) => {
         }
         setSubscriptions([]);
       }
+      setSubscriptionsLoaded(true);
     };
 
   // Crear zona de interés
   const handleCreateSubscription = async () => {
     if (!newSubscription.nombre_zona || !newSubscription.lat || !newSubscription.lng) {
-      alert('⚠️ Completa todos los campos');
+      alert('Completa todos los campos');
       return;
     }
 
     try {
-      const res = await fetch('http://localhost:4000/api/subscriptions', {
+      const res = await fetch(apiUrl('/api/subscriptions'), {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -2009,19 +2204,16 @@ const MapPage = ({ user, onLogout }) => {
           </div>
           <div className="map-header-stats">
             <span className="map-stat-item">
-              <span className="map-stat-icon">🚨</span>
               <span className="map-stat-value">{alerts.length}</span>
               <span className="map-stat-label">Alertas</span>
             </span>
             <span className="map-stat-divider">|</span>
             <span className="map-stat-item">
-              <span className="map-stat-icon">👤</span>
               <span className="map-stat-label">{user?.username}</span>
             </span>
             <span className="map-stat-divider">|</span>
             <span className="map-stat-item">
-              <span className="map-stat-icon">🔑</span>
-              <span className="map-stat-label">{user?.role}</span>
+              <span className="map-stat-label" style={{ textTransform: 'lowercase' }}>{user?.role}</span>
             </span>
           </div>
           <div className={`map-user-info ${user?.role !== 'admin' ? 'map-user-info-normal' : ''}`}>
@@ -2030,7 +2222,7 @@ const MapPage = ({ user, onLogout }) => {
               className="map-btn map-btn-help"
               title="Ver tutorial"
             >
-              Ayuda
+              ❓ Ayuda
             </button>
             {user?.role === 'admin' && (
               <button 
@@ -2063,9 +2255,9 @@ const MapPage = ({ user, onLogout }) => {
               className="map-filter-select"
               title="Filtrar por categoría"
             >
-              <option value="todos">Todas las categorías</option>
+              <option value="todos">📂 Todas las categorías</option>
               {CATEGORIAS.map(cat => (
-                <option key={cat.value} value={cat.value}>{cat.label}</option>
+                <option key={cat.value} value={cat.value}>{cat.emoji} {cat.label}</option>
               ))}
             </select>
             <select
@@ -2084,7 +2276,7 @@ const MapPage = ({ user, onLogout }) => {
               id="map-search-input"
               name="map-search-input"
               type="text"
-              placeholder="🔍 Buscar alertas..."
+              placeholder="Buscar alertas…"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               className="map-search-input"
@@ -2092,7 +2284,7 @@ const MapPage = ({ user, onLogout }) => {
             {user?.role === 'admin' && (
               <button
                 onClick={() => {
-                  fetch('http://localhost:4000/api/stats')
+                  fetch(apiUrl('/api/stats'))
                     .then(res => res.json())
                     .then(data => {
                       setStats(data);
@@ -2148,7 +2340,7 @@ const MapPage = ({ user, onLogout }) => {
         <div className="tutorial-overlay">
           <div className="tutorial-card">
             <div className="tutorial-header">
-              <h2>{user?.role === 'admin' ? '📖 Guía de Uso · Administración' : '📖 Guía de Uso · Usuario'}</h2>
+              <h2>{user?.role === 'admin' ? 'Guía de uso · Administración' : 'Guía de uso · Usuario'}</h2>
               <button onClick={() => setShowTutorial(false)} className="btn-close">✕</button>
             </div>
             <div className="tutorial-content">
@@ -2158,16 +2350,16 @@ const MapPage = ({ user, onLogout }) => {
                   <strong>Ver Alertas:</strong> Las alertas aparecen como círculos de colores en el mapa.
                   <div className="tutorial-legend">
                     <div className="tutorial-legend-item">
-                      <span className="tutorial-legend-icon" style={{ color: '#e74c3c' }}>🔴</span>
-                      <span>Rojo - Alto riesgo</span>
+                      <span className="tutorial-legend-icon" aria-hidden="true">🔴</span>
+                      <span>Rojo — Alto riesgo</span>
                     </div>
                     <div className="tutorial-legend-item">
-                      <span className="tutorial-legend-icon" style={{ color: '#f39c12' }}>🟡</span>
-                      <span>Amarillo - Riesgo medio</span>
+                      <span className="tutorial-legend-icon" aria-hidden="true">🟡</span>
+                      <span>Amarillo — Riesgo medio</span>
                     </div>
                     <div className="tutorial-legend-item">
-                      <span className="tutorial-legend-icon" style={{ color: '#27ae60' }}>🟢</span>
-                      <span>Verde - Bajo riesgo</span>
+                      <span className="tutorial-legend-icon" aria-hidden="true">🟢</span>
+                      <span>Verde — Bajo riesgo</span>
                     </div>
                   </div>
                 </div>
@@ -2193,7 +2385,7 @@ const MapPage = ({ user, onLogout }) => {
                   <ul style={{ margin: '8px 0', paddingLeft: '20px' }}>
                     <li>Haz clic en los círculos de colores para ver detalles</li>
                     <li>Arrastra el mapa para navegar</li>
-                    <li>Usa el botón "📋 Alertas" para ver la lista completa</li>
+                    <li>Usa el botón «Alertas» para ver la lista completa</li>
                   </ul>
                 </div>
               </div>
@@ -2224,13 +2416,13 @@ const MapPage = ({ user, onLogout }) => {
       {showAlertsList && (
         <div className="alerts-list">
           <div className="alerts-list-header">
-            <h3>📋 Alertas Activas ({alerts.length})</h3>
+            <h3>Alertas activas ({alerts.length})</h3>
             <button onClick={() => setShowAlertsList(false)} className="btn-close">✕</button>
           </div>
           <div className="alerts-list-content">
             {alerts.length === 0 ? (
               <div style={{ padding: '40px 20px', textAlign: 'center', color: '#7f8c8d' }}>
-                <div style={{ fontSize: '48px', marginBottom: '16px' }}>✅</div>
+                <div style={{ fontSize: '13px', fontWeight: 700, letterSpacing: '0.06em', color: '#95a5a6', marginBottom: '16px' }}>SIN ALERTAS</div>
                 <p style={{ fontSize: '16px', fontWeight: '500' }}>No hay alertas activas</p>
                 <p style={{ fontSize: '14px', marginTop: '8px' }}>Todas las alertas están resueltas o no hay alertas en este momento.</p>
               </div>
@@ -2242,13 +2434,13 @@ const MapPage = ({ user, onLogout }) => {
                   key={alert.id} 
                   className={`alert-list-item ${selectedAlert === alert.id ? 'alert-list-item-selected' : ''}`}
                   style={{
-                    borderLeft: `4px solid ${getColor(alert.level)}`,
-                    background: selectedAlert === alert.id ? getColor(alert.level) + '10' : 'white'
+                    borderLeft: `4px solid ${getLevelColor(alert.level)}`,
+                    background: selectedAlert === alert.id ? getLevelColor(alert.level) + '10' : 'white'
                   }}
                   onClick={() => focusAlert(alert)}
                 >
                   <div className="alert-list-item-content">
-                    <span className="alert-list-item-icon">{getLevelIcon(alert.level)}</span>
+                    <span className="alert-list-item-icon"><LevelChip level={alert.level} /></span>
                     <div className="alert-list-item-info">
                       <div className="alert-list-item-title">{alert.title}</div>
                       <div className="alert-list-item-description">
@@ -2268,13 +2460,25 @@ const MapPage = ({ user, onLogout }) => {
 
       {/* Mapa */}
       <div className="map-container">
-        <MapContainer 
-          center={mapCenter} 
-          zoom={alerts.length > 0 ? 8 : 7} 
+        <button
+          type="button"
+          className="map-locate-btn"
+          onClick={goToMyLocation}
+          disabled={locatingUser}
+          title="Ir a mi ubicación"
+          aria-label="Ir a mi ubicación"
+        >
+          {locatingUser ? '…' : '◎'}
+        </button>
+        {geoHint && (
+          <div className="map-geo-hint">{geoHint}</div>
+        )}
+        <MapContainer
+          center={DEFAULT_MAP_CENTER}
+          zoom={DEFAULT_MAP_ZOOM}
           className="map-leaflet-container"
-          whenCreated={(mapInstance) => {
-            leafletMapRef.current = mapInstance;
-          }}
+          dragging
+          scrollWheelZoom
           maxBounds={[
             [COMUNIDAD_VALENCIANA_BOUNDS.LAT_MIN, COMUNIDAD_VALENCIANA_BOUNDS.LNG_MIN],
             [COMUNIDAD_VALENCIANA_BOUNDS.LAT_MAX, COMUNIDAD_VALENCIANA_BOUNDS.LNG_MAX]
@@ -2300,8 +2504,8 @@ const MapPage = ({ user, onLogout }) => {
             }
           />
           {user?.role === 'admin' && (
-            <MapClickHandler 
-              setNewAlert={setNewAlert} 
+            <MapClickHandler
+              setNewAlert={setNewAlert}
               setEditingAlert={setEditingAlert}
               editingAlert={editingAlert}
               showAppModal={showAppModal}
@@ -2316,26 +2520,23 @@ const MapPage = ({ user, onLogout }) => {
               icon={L.divIcon({
                 className: 'custom-marker',
                 html: `<div style="
-                  background: #3498db;
-                  width: 32px;
-                  height: 32px;
-                  border-radius: 50%;
-                  border: 3px solid white;
-                  box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+                  width: 40px;
+                  height: 40px;
                   display: flex;
                   align-items: center;
                   justify-content: center;
-                  font-size: 18px;
-                  color: white;
+                  font-size: 28px;
+                  line-height: 1;
+                  filter: drop-shadow(0 1px 2px rgba(0,0,0,0.35));
                 ">📍</div>`,
-                iconSize: [32, 32],
-                iconAnchor: [16, 16],
-                popupAnchor: [0, -16]
+                iconSize: [40, 40],
+                iconAnchor: [20, 36],
+                popupAnchor: [0, -32]
               })}
             >
               <Popup>
                 <div style={{ textAlign: 'center', padding: '5px' }}>
-                  <strong>📍 Ubicación seleccionada</strong><br/>
+                  <strong>Ubicación seleccionada</strong><br/>
                   <small>Lat: {newAlert.lat}<br/>Lng: {newAlert.lng}</small>
                 </div>
               </Popup>
@@ -2354,13 +2555,9 @@ const MapPage = ({ user, onLogout }) => {
                   height: 32px;
                   border-radius: 50%;
                   border: 3px solid white;
-                  box-shadow: 0 2px 8px rgba(0,0,0,0.3);
-                  display: flex;
-                  align-items: center;
-                  justify-content: center;
-                  font-size: 18px;
-                  color: white;
-                ">ED</div>`,
+                  box-shadow: 0 0 0 3px rgba(230, 126, 34, 0.45), 0 2px 8px rgba(0,0,0,0.3);
+                  box-sizing: border-box;
+                "></div>`,
                 iconSize: [32, 32],
                 iconAnchor: [16, 16],
                 popupAnchor: [0, -16]
@@ -2368,7 +2565,7 @@ const MapPage = ({ user, onLogout }) => {
             >
               <Popup>
                 <div style={{ textAlign: 'center', padding: '5px' }}>
-                  <strong>ED Editando ubicación</strong><br/>
+                  <strong>Editando ubicación</strong><br/>
                   <small>Lat: {editingAlert.lat}<br/>Lng: {editingAlert.lng}</small>
                 </div>
               </Popup>
@@ -2393,8 +2590,8 @@ const MapPage = ({ user, onLogout }) => {
                 <Circle
                   center={[parseFloat(alert.lat), parseFloat(alert.lng)]}
                   radius={getAlertRadius(alert)}
-                  color={getColor(alert.level)}
-                  fillColor={getColor(alert.level)}
+                  color={getLevelColor(alert.level)}
+                  fillColor={getLevelColor(alert.level)}
                   fillOpacity={selectedAlert === alert.id ? 0.25 : 0.12}
                   weight={selectedAlert === alert.id ? 3 : 1.5}
                 />
@@ -2431,35 +2628,27 @@ const MapPage = ({ user, onLogout }) => {
                 <Popup className="custom-popup" autoClose closeOnClick>
                   <div className="alert-popup-content">
                     <div className={`alert-popup-header ${alert.level === 'rojo' ? 'bg-red' : alert.level === 'amarillo' ? 'bg-yellow' : 'bg-green'}`}>
-                      <span style={{ fontSize: '20px' }}>{getLevelIcon(alert.level)}</span>
+                      <span style={{ display: 'inline-flex', alignItems: 'center' }}><LevelChip level={alert.level} style={{ minWidth: 26, height: 26, fontSize: 13 }} /></span>
                       <span>{alert.title}</span>
                     </div>
                     <p className="alert-popup-title">{alert.description}</p>
-                    <div style={{ marginBottom: '8px' }}>
-                      <span style={{ 
-                        background: getCategoryColor(alert.categoria || 'otro'), 
-                        color: 'white', 
-                        padding: '4px 8px', 
-                        borderRadius: '4px', 
-                        fontSize: '12px',
-                        marginRight: '8px'
-                      }}>
-                        {getCategoryIcon(alert.categoria || 'otro')} {alert.categoria || 'otro'}
-                      </span>
+                    <div style={{ marginBottom: '8px', display: 'flex', flexWrap: 'wrap', alignItems: 'center', gap: 8 }}>
+                      <CategoryBrief categoria={alert.categoria || 'otro'} />
                       {alert.confirmaciones > 0 && (
                         <span style={{ fontSize: '12px', color: '#27ae60' }}>
-                          ✅ {alert.confirmaciones} confirmaciones
+                          {alert.confirmaciones} confirmación{alert.confirmaciones !== 1 ? 'es' : ''}
                         </span>
                       )}
                     </div>
                     <div className="alert-popup-footer">
                       <div style={{ display: 'flex', flexDirection: 'column', gap: '4px' }}>
-                        <span className={`alert-popup-badge ${alert.level === 'rojo' ? 'badge-red' : alert.level === 'amarillo' ? 'badge-yellow' : 'badge-green'}`}>
-                          {getLevelIcon(alert.level)} {alert.level}
+                        <span className={`alert-popup-badge ${alert.level === 'rojo' ? 'badge-red' : alert.level === 'amarillo' ? 'badge-yellow' : 'badge-green'}`} style={{ display: 'inline-flex', alignItems: 'center', gap: 6 }}>
+                          <LevelChip level={alert.level} />
+                          {getLevelLabelText(alert.level)}
                         </span>
                         {alert.created_at && (
                           <span className="alert-popup-date">
-                            📅 {new Date(alert.created_at).toLocaleDateString('es-ES', { 
+                            {new Date(alert.created_at).toLocaleDateString('es-ES', { 
                               day: 'numeric', 
                               month: 'short', 
                               hour: '2-digit', 
@@ -2503,7 +2692,7 @@ const MapPage = ({ user, onLogout }) => {
                               }}
                               title="Confirmar esta alerta"
                             >
-                              Confirmar
+                              ✅ Confirmar
                             </button>
                             <button 
                               onClick={() => openReportModal(alert.id)}
@@ -2518,19 +2707,19 @@ const MapPage = ({ user, onLogout }) => {
                               }}
                               title="Reportar esta alerta"
                             >
-                              Reportar
+                              🚩 Reportar
                             </button>
                             <button 
                               onClick={() => handleEditAlert(alert)} 
                               className="alert-popup-edit-btn"
                             >
-                              Editar
+                              ✏️ Editar
                             </button>
                             <button 
                               onClick={() => handleDeleteAlert(alert.id)} 
                               className="alert-popup-delete-btn"
                             >
-                              Eliminar
+                              🗑️ Eliminar
                             </button>
                           </>
                         )}
@@ -2564,13 +2753,9 @@ const MapPage = ({ user, onLogout }) => {
                     height: 24px;
                     border-radius: 50%;
                     border: 3px solid white;
-                    box-shadow: 0 2px 8px rgba(0,0,0,0.3);
-                    display: flex;
-                    align-items: center;
-                    justify-content: center;
-                    font-size: 14px;
-                    color: white;
-                  ">🏠</div>`,
+                    box-shadow: 0 0 0 2px rgba(155, 89, 182, 0.5), 0 2px 8px rgba(0,0,0,0.3);
+                    box-sizing: border-box;
+                  "></div>`,
                   iconSize: [24, 24],
                   iconAnchor: [12, 12],
                   popupAnchor: [0, -12]
@@ -2578,7 +2763,7 @@ const MapPage = ({ user, onLogout }) => {
               >
                 <Popup>
                   <div style={{ textAlign: 'center', padding: '8px', minWidth: '150px' }}>
-                    <div style={{ fontSize: '20px', marginBottom: '4px' }}>🏠</div>
+                    <div style={{ fontSize: '11px', fontWeight: 800, letterSpacing: '0.12em', color: '#9b59b6', marginBottom: '4px' }}>ZONA</div>
                     <strong>{subscription.nombre_zona}</strong>
                     <div style={{ fontSize: '12px', color: '#666', marginTop: '4px' }}>
                       Radio: {(subscription.radius || 1000) / 1000} km
@@ -2588,38 +2773,8 @@ const MapPage = ({ user, onLogout }) => {
               </Marker>
             </React.Fragment>
           ))}
-          
-          {/* Marcador de ubicación del usuario */}
-          {userLocation && (
-            <>
-              {/* Círculo de área alrededor de la ubicación */}
-              <Circle
-                center={[userLocation.lat, userLocation.lng]}
-                radius={50}
-                color="#3498db"
-                fillColor="#3498db"
-                fillOpacity={0.15}
-                weight={2}
-                dashArray="5, 5"
-              />
-              <Marker
-                position={[userLocation.lat, userLocation.lng]}
-                icon={createUserLocationIcon()}
-                zIndexOffset={1000}
-              >
-                <Popup>
-                  <div style={{ textAlign: 'center', padding: '8px' }}>
-                    <div style={{ fontSize: '24px', marginBottom: '8px' }}>📍</div>
-                    <strong>Tu ubicación</strong>
-                    <div style={{ fontSize: '12px', color: '#666', marginTop: '4px' }}>
-                      Lat: {userLocation.lat.toFixed(6)}<br />
-                      Lng: {userLocation.lng.toFixed(6)}
-                    </div>
-                  </div>
-                </Popup>
-              </Marker>
-            </>
-          )}
+
+          <UserLocationPainter location={userLocation} />
         </MapContainer>
       </div>
 
@@ -2658,7 +2813,7 @@ const MapPage = ({ user, onLogout }) => {
                 e.target.style.transform = 'scale(1)';
               }}
             >
-              <span>➕</span>
+              <span style={{ fontWeight: 800, fontSize: '18px', lineHeight: 1 }}>+</span>
               <span>Mostrar Panel Admin</span>
             </button>
           )}
@@ -2704,12 +2859,12 @@ const MapPage = ({ user, onLogout }) => {
           {!editingAlert ? (
             <div className="alert-form">
               <div className="alert-form-title">
-                <span style={{ fontSize: '24px' }}>➕</span>
+                <span style={{ fontWeight: 800, fontSize: '20px', lineHeight: 1 }}>+</span>
                 <h3>Nueva Alerta</h3>
               </div>
             {newAlert.lat && newAlert.lng && (
               <div className="alert-location-indicator">
-                <span style={{ fontSize: '20px' }}>📍</span>
+                <span style={{ width: 10, height: 10, borderRadius: 2, background: '#3498db', flexShrink: 0, marginTop: 4 }} aria-hidden="true" />
                 <div className="alert-location-indicator-content">
                   <div className="alert-location-indicator-label">Ubicación seleccionada</div>
                   <div className="alert-location-indicator-coords">
@@ -2783,7 +2938,7 @@ const MapPage = ({ user, onLogout }) => {
                   disabled={loading}
                 >
                   {CATEGORIAS.map(cat => (
-                    <option key={cat.value} value={cat.value}>{cat.label}</option>
+                    <option key={cat.value} value={cat.value}>{cat.emoji} {cat.label}</option>
                   ))}
                 </select>
                 <small style={{ fontSize: '11px', color: '#7f8c8d', marginTop: '4px', display: 'block' }}>
@@ -2809,9 +2964,9 @@ const MapPage = ({ user, onLogout }) => {
                   className="form-input"
                   disabled={loading}
                 >
-                  <option value="verde">🟢 Verde - Bajo riesgo</option>
-                  <option value="amarillo">🟡 Amarillo - Riesgo medio</option>
-                  <option value="rojo">🔴 Rojo - Alto riesgo</option>
+                  <option value="verde">Verde — Bajo riesgo</option>
+                  <option value="amarillo">Amarillo — Riesgo medio</option>
+                  <option value="rojo">Rojo — Alto riesgo</option>
                 </select>
               </div>
               <div className="form-group">
@@ -2844,7 +2999,7 @@ const MapPage = ({ user, onLogout }) => {
                     name="lat" 
                     type="number" 
                     step="any"
-                    placeholder="40.4168" 
+                    placeholder="39.4287" 
                     value={newAlert.lat} 
                     onChange={handleAlertChange} 
                     className="form-input"
@@ -2858,7 +3013,7 @@ const MapPage = ({ user, onLogout }) => {
                     name="lng" 
                     type="number" 
                     step="any"
-                    placeholder="-3.7038" 
+                    placeholder="-0.4175" 
                     value={newAlert.lng} 
                     onChange={handleAlertChange} 
                     className="form-input"
@@ -2868,11 +3023,11 @@ const MapPage = ({ user, onLogout }) => {
                 </div>
               </div>
               <div className="form-instructions">
-                <span style={{ fontSize: '18px' }}>💡</span>
+                <span style={{ fontSize: '11px', fontWeight: 800, letterSpacing: '0.08em', color: '#2980b9', flexShrink: 0 }}>Nota</span>
                 <div className="form-instructions-content">
                   <div className="form-instructions-title">Instrucciones</div>
                   <div className="form-instructions-text">
-                    Haz clic en el mapa para seleccionar la ubicación. Solo se permiten alertas dentro de la Comunidad Valenciana.
+                    Haz clic en el mapa para seleccionar la ubicación (aparece el marcador 📍). Solo dentro de la Comunidad Valenciana.
                   </div>
                 </div>
               </div>
@@ -2881,7 +3036,7 @@ const MapPage = ({ user, onLogout }) => {
                 className="btn-primary"
                 disabled={loading}
               >
-                {loading ? 'Creando alerta...' : 'Crear Alerta'}
+                {loading ? '⏳ Creando alerta...' : '➕ Crear Alerta'}
               </button>
             </form>
             </div>
@@ -2889,11 +3044,11 @@ const MapPage = ({ user, onLogout }) => {
             <div className="alert-form">
               <div className="alert-form-title">
                 <span style={{ fontSize: '24px' }}>ED</span>
-                <h3>Editar Alerta</h3>
+                <h3>✏️ Editar Alerta</h3>
               </div>
               {editingAlert.lat && editingAlert.lng && (
                 <div className="alert-location-indicator">
-                  <span style={{ fontSize: '20px' }}>📍</span>
+                  <span style={{ width: 10, height: 10, borderRadius: 2, background: '#3498db', flexShrink: 0, marginTop: 4 }} aria-hidden="true" />
                   <div className="alert-location-indicator-content">
                     <div className="alert-location-indicator-label">Ubicación seleccionada</div>
                     <div className="alert-location-indicator-coords">
@@ -2967,7 +3122,7 @@ const MapPage = ({ user, onLogout }) => {
                     disabled={loading}
                   >
                     {CATEGORIAS.map(cat => (
-                      <option key={cat.value} value={cat.value}>{cat.label}</option>
+                      <option key={cat.value} value={cat.value}>{cat.emoji} {cat.label}</option>
                     ))}
                   </select>
                 </div>
@@ -3053,7 +3208,7 @@ const MapPage = ({ user, onLogout }) => {
                   </div>
                 </div>
                 <div className="form-instructions">
-                  <span style={{ fontSize: '18px' }}>💡</span>
+                  <span style={{ fontSize: '11px', fontWeight: 800, letterSpacing: '0.08em', color: '#2980b9', flexShrink: 0 }}>Nota</span>
                   <div className="form-instructions-content">
                     <div className="form-instructions-title">Instrucciones</div>
                     <div className="form-instructions-text">
@@ -3085,28 +3240,28 @@ const MapPage = ({ user, onLogout }) => {
 
           {/* Estadísticas */}
           <div className="stats-container">
-            <h4 className="stats-title">📊 Resumen</h4>
+            <h4 className="stats-title">Resumen</h4>
             <div className="stats-card">
               <div className="stats-card-number">{alerts.length}</div>
               <div className="stats-card-label">Total alertas</div>
             </div>
             <div className="stats-grid">
               <div className="stats-card-mini stats-card-mini-red">
-                <span style={{ fontSize: '20px' }}>🔴</span>
+                <span style={{ display: 'inline-block', width: 14, height: 14, borderRadius: '50%', background: '#e74c3c', verticalAlign: 'middle', marginRight: 6 }} aria-hidden="true" />
                 <strong className="alert-level-red" style={{ fontSize: '18px' }}>
                   {alerts.filter(a => a.level === 'rojo').length}
                 </strong>
                 <span style={{ fontSize: '11px', color: '#7f8c8d' }}>Alto riesgo</span>
               </div>
               <div className="stats-card-mini stats-card-mini-yellow">
-                <span style={{ fontSize: '20px' }}>🟡</span>
+                <span style={{ display: 'inline-block', width: 14, height: 14, borderRadius: '50%', background: '#f39c12', verticalAlign: 'middle', marginRight: 6 }} aria-hidden="true" />
                 <strong className="alert-level-yellow" style={{ fontSize: '18px' }}>
                   {alerts.filter(a => a.level === 'amarillo').length}
                 </strong>
                 <span style={{ fontSize: '11px', color: '#7f8c8d' }}>Riesgo medio</span>
               </div>
               <div className="stats-card-mini stats-card-mini-green">
-                <span style={{ fontSize: '20px' }}>🟢</span>
+                <span style={{ display: 'inline-block', width: 14, height: 14, borderRadius: '50%', background: '#27ae60', verticalAlign: 'middle', marginRight: 6 }} aria-hidden="true" />
                 <strong className="alert-level-green" style={{ fontSize: '18px' }}>
                   {alerts.filter(a => a.level === 'verde').length}
                 </strong>
@@ -3146,7 +3301,7 @@ const MapPage = ({ user, onLogout }) => {
             boxShadow: '0 10px 40px rgba(0,0,0,0.3)'
           }}>
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '20px' }}>
-              <h2 style={{ margin: 0 }}>📊 Estadísticas</h2>
+              <h2 style={{ margin: 0 }}>Estadísticas</h2>
               <button 
                 onClick={() => setShowStats(false)}
                 style={{
@@ -3181,7 +3336,10 @@ const MapPage = ({ user, onLogout }) => {
               {stats.por_nivel.map(item => (
                 <div key={item.nivel} style={{ marginBottom: '12px' }}>
                   <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '4px' }}>
-                    <span>{getLevelIcon(item.nivel)} {item.nivel}</span>
+                    <span style={{ display: 'inline-flex', alignItems: 'center', gap: 8 }}>
+                      <LevelChip level={item.nivel} />
+                      {getLevelLabelText(item.nivel)}
+                    </span>
                     <strong>{item.total}</strong>
                   </div>
                   <div style={{ 
@@ -3193,7 +3351,7 @@ const MapPage = ({ user, onLogout }) => {
                     <div style={{
                       height: '100%',
                       width: `${(item.total / stats.total_activas) * 100}%`,
-                      background: getColor(item.nivel),
+                      background: getLevelColor(item.nivel),
                       transition: 'width 0.3s ease'
                     }}></div>
                   </div>
@@ -3212,7 +3370,7 @@ const MapPage = ({ user, onLogout }) => {
                   marginBottom: '4px',
                   borderRadius: '4px'
                 }}>
-                  <span>{getCategoryIcon(item.categoria)} {item.categoria}</span>
+                  <span><CategoryBrief categoria={item.categoria} /></span>
                   <strong>{item.total}</strong>
                 </div>
               ))}
@@ -3237,7 +3395,7 @@ const MapPage = ({ user, onLogout }) => {
           boxShadow: '0 4px 15px rgba(0,0,0,0.3)'
         }}>
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '8px' }}>
-            <strong>⚠️ {proximityAlerts.length} alerta(s): estás dentro de su zona</strong>
+            <strong>{proximityAlerts.length} alerta(s): estás dentro de su zona</strong>
             <button
               onClick={() => {
                 setProximityAlertDismissed(true);
@@ -3290,7 +3448,7 @@ const MapPage = ({ user, onLogout }) => {
           boxShadow: '0 4px 15px rgba(0,0,0,0.3)'
         }}>
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '8px' }}>
-            <strong>🏠 {subscriptionProximityAlerts.length} alerta(s) cerca de tus zonas</strong>
+            <strong>{subscriptionProximityAlerts.length} alerta(s) en tus zonas de interés</strong>
             <button
               onClick={() => {
                 setSubscriptionAlertDismissed(true);
@@ -3302,9 +3460,24 @@ const MapPage = ({ user, onLogout }) => {
             </button>
           </div>
           <div style={{ fontSize: '14px' }}>
-            {subscriptionProximityAlerts.slice(0, 3).map(item => (
-              <div key={item.key} style={{ marginBottom: '4px' }}>
-                • {item.subscriptionName}: {item.alert.title} ({item.distance}m)
+            {Array.from(
+              subscriptionProximityAlerts.reduce((groups, item) => {
+                const list = groups.get(item.subscriptionName) || [];
+                list.push(item);
+                groups.set(item.subscriptionName, list);
+                return groups;
+              }, new Map())
+            ).map(([zoneName, items]) => (
+              <div key={zoneName} style={{ marginBottom: '8px' }}>
+                <div style={{ fontWeight: 700, marginBottom: '4px' }}>{zoneName}</div>
+                {items.map((item) => (
+                  <div key={item.key} style={{ marginBottom: '2px', paddingLeft: '8px' }}>
+                    • {item.alert.title || item.alert.titulo}
+                    {item.centerInside
+                      ? ' (dentro de la zona)'
+                      : ' (tu zona está dentro del radio de la alerta)'}
+                  </div>
+                ))}
               </div>
             ))}
           </div>
@@ -3329,7 +3502,7 @@ const MapPage = ({ user, onLogout }) => {
           zIndex: 1000
         }}>
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '16px' }}>
-            <h3 style={{ margin: 0 }}>📍 Zonas de Interés</h3>
+            <h3 style={{ margin: 0 }}>Zonas de interés</h3>
             <button
               onClick={() => setShowSubscriptions(false)}
               style={{ background: 'none', border: 'none', fontSize: '20px', cursor: 'pointer' }}
@@ -3395,7 +3568,7 @@ const MapPage = ({ user, onLogout }) => {
                 marginBottom: '8px'
               }}
             >
-              📍 Usar mi ubicación actual
+              Usar mi ubicación actual
             </button>
             <button
               onClick={handleCreateSubscription}
@@ -3441,7 +3614,7 @@ const MapPage = ({ user, onLogout }) => {
                     <button
                       onClick={async () => {
                         try {
-                          const res = await fetch(`http://localhost:4000/api/subscriptions/${sub.id}`, {
+                          const res = await fetch(apiUrl(`/api/subscriptions/${sub.id}`), {
                             method: 'DELETE',
                             headers: { Authorization: `Bearer ${user.token}` }
                           });
@@ -3625,7 +3798,7 @@ const MapPage = ({ user, onLogout }) => {
             onClick={(e) => e.stopPropagation()}
           >
             <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '12px' }}>
-              <h3 style={{ margin: 0, color: '#2c3e50' }}>Eliminar alerta</h3>
+              <h3 style={{ margin: 0, color: '#2c3e50' }}>🗑️ Eliminar alerta</h3>
               <button
                 type="button"
                 onClick={closeDeleteConfirmModal}
@@ -3726,12 +3899,12 @@ const MapPage = ({ user, onLogout }) => {
             <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '10px' }}>
               <h3 style={{ margin: 0 }}>
                 {appModal.type === 'success'
-                  ? '✅'
+                  ? 'Correcto · '
                   : appModal.type === 'warning'
-                  ? '⚠️'
+                  ? 'Aviso · '
                   : appModal.type === 'error'
-                  ? '❌'
-                  : 'ℹ️'}{' '}
+                  ? 'Error · '
+                  : 'Información · '}
                 {appModal.title}
               </h3>
               <button
