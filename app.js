@@ -121,10 +121,10 @@ const dbConfig = {
   enableKeepAlive: true
 };
 
+// Aiven y otros MySQL en la nube exigen SSL; el certificado suele ser de CA interna.
 if (process.env.DB_SSL === 'true') {
-  dbConfig.ssl = {
-    rejectUnauthorized: process.env.DB_SSL_REJECT_UNAUTHORIZED !== 'false'
-  };
+  const rejectUnauthorized = process.env.DB_SSL_REJECT_UNAUTHORIZED === 'true';
+  dbConfig.ssl = { rejectUnauthorized };
 }
 
 // Mostrar configuración (sin mostrar contraseña)
@@ -133,6 +133,9 @@ console.log(`   Host: ${dbConfig.host}`);
 console.log(`   Usuario: ${dbConfig.user}`);
 console.log(`   Base de datos: ${dbConfig.database}`);
 console.log(`   Puerto: ${dbConfig.port}`);
+if (dbConfig.ssl) {
+  console.log(`   SSL: activo (rejectUnauthorized: ${dbConfig.ssl.rejectUnauthorized})`);
+}
 
 const pool = mysql.createPool(dbConfig);
 

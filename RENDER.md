@@ -106,9 +106,8 @@ En el servicio → **Environment** → añade:
 
 `PORT` lo asigna Render solo; no hace falta ponerlo.
 
-Si el certificado SSL de MySQL falla, prueba:
-
-`DB_SSL_REJECT_UNAUTHORIZED` = `false`
+Con `DB_SSL=true`, la app ya usa `rejectUnauthorized: false` por defecto (certificados Aiven).
+Si aún falla el login con error de certificado, añade en Render: `DB_SSL_REJECT_UNAUTHORIZED` = `false`
 
 ---
 
