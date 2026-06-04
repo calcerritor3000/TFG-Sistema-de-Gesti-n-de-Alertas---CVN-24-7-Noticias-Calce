@@ -145,7 +145,7 @@ const LoginPage = ({ onLogin }) => {
                   disabled={loading}
                   aria-label={showLoginPassword ? "Ocultar contraseña" : "Mostrar contraseña"}
                 >
-                  {showLoginPassword ? '🙈' : '👁️'}
+                  {showLoginPassword ? '🔒' : '👁️'}
                 </button>
               </div>
             </div>
@@ -210,7 +210,7 @@ const LoginPage = ({ onLogin }) => {
                   disabled={loading}
                   aria-label={showRegisterPassword ? "Ocultar contraseña" : "Mostrar contraseña"}
                 >
-                  {showRegisterPassword ? '🙈' : '👁️'}
+                  {showRegisterPassword ? '🔒' : '👁️'}
                 </button>
               </div>
             </div>
