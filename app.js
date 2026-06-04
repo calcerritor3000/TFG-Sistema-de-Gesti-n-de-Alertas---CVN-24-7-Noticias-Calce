@@ -562,6 +562,33 @@ function validarNivel(nivel) {
   return VALID_LEVELS.includes(nivel);
 }
 
+/** COUNT(*) y DECIMAL de MySQL → número seguro para JSON (Aiven devuelve BigInt a veces). */
+function sqlNumber(value, fallback = 0) {
+  if (value == null || value === '') return fallback;
+  const n = Number(value);
+  return Number.isFinite(n) ? n : fallback;
+}
+
+function mapAlertaToJson(alerta, extras = {}) {
+  return {
+    id: alerta.id,
+    title: alerta.titulo,
+    description: alerta.descripcion,
+    image_url: alerta.image_url || null,
+    level: alerta.nivel,
+    categoria: alerta.categoria || 'otro',
+    estado: alerta.estado || 'activa',
+    lat: sqlNumber(alerta.lat),
+    lng: sqlNumber(alerta.lng),
+    radius: sqlNumber(alerta.radius, 500),
+    is_maintenance: Boolean(alerta.is_maintenance),
+    maintenance_start: alerta.maintenance_start,
+    maintenance_end: alerta.maintenance_end,
+    created_at: alerta.created_at,
+    ...extras
+  };
+}
+
 const ALERT_CATEGORY_COLORS = {
   incendio: '#e74c3c',
   inundacion: '#3498db',
@@ -1079,24 +1106,10 @@ app.get('/api/alerts', async (req, res) => {
         console.log('Tabla alert_reports no existe todavía');
       }
       
-      return {
-        id: alerta.id,
-        title: alerta.titulo,
-        description: alerta.descripcion,
-        image_url: alerta.image_url || null,
-        level: alerta.nivel,
-        categoria: alerta.categoria || 'otro', // Asegurar que siempre haya una categoría
-        estado: alerta.estado || 'activa',
-        lat: alerta.lat,
-        lng: alerta.lng,
-        radius: alerta.radius,
-        is_maintenance: alerta.is_maintenance,
-        maintenance_start: alerta.maintenance_start,
-        maintenance_end: alerta.maintenance_end,
-        created_at: alerta.created_at,
-        confirmaciones: confirmaciones[0]?.total || 0,
-        reportes_pendientes: reportes[0]?.total || 0
-      };
+      return mapAlertaToJson(alerta, {
+        confirmaciones: sqlNumber(confirmaciones[0]?.total),
+        reportes_pendientes: sqlNumber(reportes[0]?.total)
+      });
     }));
     
     res.json(alertasConStats);
@@ -1388,21 +1401,10 @@ app.get('/api/alerts/:id', async (req, res) => {
     );
 
     res.json({
-      id: alerta.id,
-      title: alerta.titulo,
-      description: alerta.descripcion,
-      level: alerta.nivel,
-      categoria: alerta.categoria || 'otro',
-      estado: alerta.estado || 'activa',
-      lat: alerta.lat,
-      lng: alerta.lng,
-      radius: alerta.radius,
-      is_maintenance: alerta.is_maintenance,
-      maintenance_start: alerta.maintenance_start,
-      maintenance_end: alerta.maintenance_end,
-      created_at: alerta.created_at,
-      confirmaciones: confirmaciones[0].total,
-      reportes_pendientes: reportes[0].total,
+      ...mapAlertaToJson(alerta, {
+        confirmaciones: sqlNumber(confirmaciones[0]?.total),
+        reportes_pendientes: sqlNumber(reportes[0]?.total)
+      }),
       comentarios: comentarios.map(c => ({
         id: c.id,
         comentario: c.comentario,
@@ -2191,11 +2193,11 @@ app.get('/api/stats', async (req, res) => {
     );
 
     res.json({
-      por_nivel: porNivel,
-      por_categoria: porCategoria,
-      total_activas: totalActivas[0].total,
-      total_confirmaciones: totalConfirmaciones[0].total,
-      reportes_pendientes: reportesPendientes[0].total
+      por_nivel: porNivel.map((r) => ({ nivel: r.nivel, total: sqlNumber(r.total) })),
+      por_categoria: porCategoria.map((r) => ({ categoria: r.categoria, total: sqlNumber(r.total) })),
+      total_activas: sqlNumber(totalActivas[0]?.total),
+      total_confirmaciones: sqlNumber(totalConfirmaciones[0]?.total),
+      reportes_pendientes: sqlNumber(reportesPendientes[0]?.total)
     });
   } catch (err) {
     console.error('Error al obtener estadísticas:', err.message);
