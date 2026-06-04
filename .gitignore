@@ -13,10 +13,10 @@ alertas-frontend/.env.local
 # Build (Render lo genera en deploy)
 alertas-frontend/build/
 
-# Subidas de usuarios
+# Subidas de usuarios (las de ejemplo en uploads/alerts/ sí van al repo)
 uploads/*
 !uploads/alerts/
-!uploads/alerts/.gitkeep
+!uploads/alerts/**
 
 # Logs y caché
 *.log

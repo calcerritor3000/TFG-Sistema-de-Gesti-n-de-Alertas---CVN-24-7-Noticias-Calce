@@ -9,7 +9,7 @@ import { useNavigate } from 'react-router-dom';
 import './NewsPage.css';
 import { CATEGORIAS_OPTIONS, getLevelEmoji, getLevelLabelText } from '../alertVisuals';
 import { CategoryBrief } from './AlertChips';
-import { apiUrl, LOGO_URL } from '../config';
+import { apiUrl, LOGO_URL, mediaUrl } from '../config';
 
 const NewsPage = ({ user, onLogout }) => {
   const [news, setNews] = useState([]);
@@ -34,34 +34,7 @@ const NewsPage = ({ user, onLogout }) => {
     });
   };
 
-  const resolveImageUrl = (imagePath) => {
-    if (!imagePath) return null;
-
-    const backendBaseUrl = apiUrl('');
-    const normalizedPath = String(imagePath).trim().replace(/\\/g, '/');
-
-    if (/^https?:\/\//i.test(normalizedPath)) {
-      return normalizedPath;
-    }
-
-    if (normalizedPath.startsWith('//')) {
-      return `http:${normalizedPath}`;
-    }
-
-    if (normalizedPath.startsWith('data:image/')) {
-      return normalizedPath;
-    }
-
-    if (normalizedPath.startsWith('/uploads/')) {
-      return `${backendBaseUrl}${normalizedPath}`;
-    }
-
-    if (normalizedPath.startsWith('uploads/')) {
-      return `${backendBaseUrl}/${normalizedPath}`;
-    }
-
-    return `${backendBaseUrl}/uploads/alerts/${normalizedPath}`;
-  };
+  const resolveImageUrl = (imagePath) => mediaUrl(imagePath);
 
   const NEWS_IMAGE_FALLBACK =
     'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="800" height="450"><rect width="100%" height="100%" fill="%23ecf0f1"/><text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" fill="%237f8c8d" font-family="Arial" font-size="24">Imagen no disponible</text></svg>';

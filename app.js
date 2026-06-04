@@ -76,6 +76,9 @@ const uploadsAlertsDir = path.join(uploadsRoot, 'alerts');
 if (!fs.existsSync(uploadsRoot)) fs.mkdirSync(uploadsRoot, { recursive: true });
 if (!fs.existsSync(uploadsAlertsDir)) fs.mkdirSync(uploadsAlertsDir, { recursive: true });
 
+const publicAssetsDir = path.join(__dirname, 'alertas-frontend/public');
+const publicUploadsAlerts = path.join(publicAssetsDir, 'uploads/alerts');
+
 // ============================================
 // CONFIGURACIÓN INICIAL
 // ============================================
@@ -95,7 +98,26 @@ app.use((req, res, next) => {
 
 // Configurar JSON
 app.use(express.json({ limit: '10mb' }));
-app.use('/uploads', express.static(uploadsRoot));
+app.use('/uploads', express.static(uploadsRoot, { maxAge: '1d', fallthrough: true }));
+
+// Imágenes de alertas por nombre (respaldo si falla express.static)
+app.get('/uploads/alerts/:fileName', (req, res, next) => {
+  const safeName = path.basename(req.params.fileName || '');
+  if (!safeName || safeName !== req.params.fileName) {
+    return res.status(400).send('Nombre de archivo no válido');
+  }
+  const candidatos = [
+    path.join(uploadsAlertsDir, safeName),
+    path.join(publicUploadsAlerts, safeName),
+    path.join(__dirname, 'alertas-frontend/build/uploads/alerts', safeName)
+  ];
+  for (const filePath of candidatos) {
+    if (fs.existsSync(filePath)) {
+      return res.sendFile(filePath);
+    }
+  }
+  next();
+});
 
 // Verificar variables de entorno críticas
 if (!process.env.JWT_SECRET) {
@@ -2311,12 +2333,19 @@ if (rutaFrontend) {
     if (req.path.startsWith('/api/')) {
       return res.status(404).json({ error: 'Ruta API no encontrada' });
     }
+    if (req.path.startsWith('/uploads/')) {
+      return res.status(404).send('Archivo no encontrado');
+    }
     if (/\.[a-zA-Z0-9]{2,8}$/.test(req.path)) {
       return res.status(404).send('Archivo no encontrado');
     }
     res.sendFile(indexHtml);
   });
+  const nUploads = fs.existsSync(uploadsAlertsDir)
+    ? fs.readdirSync(uploadsAlertsDir).filter((f) => /\.(png|jpe?g|webp|gif)$/i.test(f)).length
+    : 0;
   console.log('SPA React activa: / sirve index.html desde', rutaFrontend);
+  console.log(`Imágenes de alertas en disco (uploads/alerts): ${nUploads}`);
 } else {
   console.log('Frontend no encontrado. Ejecuta: npm run build en la carpeta del frontend');
   app.get('/', (req, res) => {

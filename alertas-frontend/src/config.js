@@ -17,3 +17,13 @@ export function publicAsset(filePath) {
 }
 
 export const LOGO_URL = publicAsset('/CVN_Noticias.png');
+
+/** Rutas de imágenes de alertas (/uploads/alerts/...) o URLs absolutas */
+export function mediaUrl(imagePath) {
+  if (!imagePath) return null;
+  const p = String(imagePath).trim().replace(/\\/g, '/');
+  if (/^https?:\/\//i.test(p) || p.startsWith('data:image/')) return p;
+  if (p.startsWith('/')) return apiUrl(p);
+  if (p.startsWith('uploads/')) return apiUrl(`/${p}`);
+  return apiUrl(`/uploads/alerts/${p}`);
+}
