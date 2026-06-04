@@ -1403,6 +1403,12 @@ const MapPage = ({ user, onLogout }) => {
       // Verificar si la respuesta es OK
       if (!response.ok) {
         const errorData = await response.json().catch(() => ({ error: `Error HTTP: ${response.status}` }));
+        if (response.status === 403) {
+          throw new Error(
+            errorData.error ||
+              'Solo los administradores pueden crear alertas. Inicia sesión con el usuario admin.'
+          );
+        }
         throw new Error(errorData.error || `Error HTTP: ${response.status}`);
       }
       

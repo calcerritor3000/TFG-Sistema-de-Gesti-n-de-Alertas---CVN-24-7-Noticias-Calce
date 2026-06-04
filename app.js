@@ -486,9 +486,14 @@ async function inicializarBaseDatos() {
 
     await repararTablasSinClavePrimaria();
 
-    // Crear usuario admin por defecto (solo en desarrollo)
-    if (process.env.NODE_ENV !== 'production') {
-      const [existe] = await pool.execute('SELECT id FROM users_new WHERE nombre_usuario = ?', ['admin']);
+    // Admin por defecto: en desarrollo siempre; en producción si ADMIN_DEFAULT_PASSWORD está definido
+    const crearAdminSiFalta =
+      process.env.NODE_ENV !== 'production' || Boolean(process.env.ADMIN_DEFAULT_PASSWORD);
+    if (crearAdminSiFalta) {
+      const [existe] = await pool.execute(
+        'SELECT id FROM users_new WHERE nombre_usuario = ? OR role = ? LIMIT 1',
+        ['admin', 'admin']
+      );
       if (existe.length === 0) {
         const password = process.env.ADMIN_DEFAULT_PASSWORD || 'admin123';
         const hash = await bcrypt.hash(password, 10);
@@ -496,8 +501,12 @@ async function inicializarBaseDatos() {
           'INSERT INTO users_new (nombre_usuario, email, password_hash, role) VALUES (?, ?, ?, ?)',
           ['admin', 'admin@example.com', hash, 'admin']
         );
-        console.log("Usuario admin creado (solo desarrollo)");
-        console.log("   Usuario: admin | Contraseña:", password);
+        console.log(
+          process.env.NODE_ENV === 'production'
+            ? 'Usuario admin creado en producción (ADMIN_DEFAULT_PASSWORD)'
+            : 'Usuario admin creado (desarrollo)'
+        );
+        console.log('   Usuario: admin');
       }
     }
   } catch (err) {
@@ -972,8 +981,8 @@ app.get('/api/alerts', async (req, res) => {
       return res.status(503).json({ error: 'Servicio no disponible. La base de datos no está conectada.' });
     }
 
-    const limite = Math.min(parseInt(req.query.limit) || 100, 1000);
-    const offset = Math.max(parseInt(req.query.offset) || 0, 0);
+    const limite = Math.min(Math.max(parseInt(req.query.limit, 10) || 100, 1), 1000);
+    const offset = Math.max(parseInt(req.query.offset, 10) || 0, 0);
 
     // Filtros opcionales
     const categoria = req.query.categoria;
@@ -1002,8 +1011,8 @@ app.get('/api/alerts', async (req, res) => {
       params.push(nivelNormalizado);
     }
     
-    query += ' ORDER BY created_at DESC LIMIT ? OFFSET ?';
-    params.push(limite, offset);
+    // LIMIT/OFFSET como enteros (evita error ER_WRONG_ARGUMENTS con placeholders en MySQL/Aiven)
+    query += ` ORDER BY created_at DESC LIMIT ${limite} OFFSET ${offset}`;
     
     let alertas = [];
     try {
@@ -1029,12 +1038,16 @@ app.get('/api/alerts', async (req, res) => {
             basicParams.push(nivelNormalizado);
           }
         }
-        basicQuery += ' ORDER BY created_at DESC LIMIT ? OFFSET ?';
-        basicParams.push(limite, offset);
+        basicQuery += ` ORDER BY created_at DESC LIMIT ${limite} OFFSET ${offset}`;
         const [result] = await pool.execute(basicQuery, basicParams);
         alertas = result;
+      } else if (err.code === 'ER_NO_SUCH_TABLE') {
+        console.error('Tabla alerts_new no existe. Ejecuta scripts/schema-aiven.sql en Aiven.');
+        return res.status(503).json({
+          error: 'Base de datos sin tablas de alertas. Importa el esquema SQL en Aiven.'
+        });
       } else {
-        console.error('Error en consulta SQL:', err);
+        console.error('Error en consulta SQL:', err.message, err.code);
         throw err;
       }
     }
@@ -1191,8 +1204,11 @@ app.post('/api/alerts', autenticar, soloAdmin, async (req, res) => {
     
     res.json({ message: 'Alerta creada correctamente', id: result.insertId });
   } catch (err) {
-    console.error('Error al crear alerta:', err.message);
-    res.status(500).json({ error: 'Error al crear alerta' });
+    console.error('Error al crear alerta:', err.message, err.code || '');
+    res.status(500).json({
+      error: 'Error al crear alerta',
+      details: process.env.NODE_ENV === 'development' ? err.message : undefined
+    });
   }
 });
 
