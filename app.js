@@ -153,6 +153,49 @@ pool.getConnection()
   });
 
 /**
+ * Aiven y otros hosts exigen PRIMARY KEY en cada tabla.
+ * Añade columna `id` si alguna tabla legacy no tiene clave primaria.
+ */
+async function repararTablasSinClavePrimaria() {
+  try {
+    const [sinPk] = await pool.execute(`
+      SELECT t.TABLE_NAME AS table_name
+      FROM information_schema.TABLES t
+      LEFT JOIN information_schema.TABLE_CONSTRAINTS tc
+        ON t.TABLE_SCHEMA = tc.TABLE_SCHEMA
+        AND t.TABLE_NAME = tc.TABLE_NAME
+        AND tc.CONSTRAINT_TYPE = 'PRIMARY KEY'
+      WHERE t.TABLE_SCHEMA = DATABASE()
+        AND t.TABLE_TYPE = 'BASE TABLE'
+        AND tc.CONSTRAINT_NAME IS NULL
+    `);
+
+    for (const row of sinPk) {
+      const tabla = row.table_name;
+      try {
+        await pool.execute(
+          `ALTER TABLE \`${tabla}\` ADD COLUMN id INT NOT NULL AUTO_INCREMENT PRIMARY KEY FIRST`
+        );
+        console.log(`Clave primaria añadida a tabla: ${tabla}`);
+      } catch (err) {
+        if (err.code === 'ER_DUP_FIELDNAME') {
+          try {
+            await pool.execute(`ALTER TABLE \`${tabla}\` ADD PRIMARY KEY (id)`);
+            console.log(`PRIMARY KEY (id) en ${tabla}`);
+          } catch (err2) {
+            console.warn(`No se pudo reparar ${tabla}:`, err2.message);
+          }
+        } else {
+          console.warn(`No se pudo reparar ${tabla}:`, err.message);
+        }
+      }
+    }
+  } catch (err) {
+    console.warn('Comprobación de claves primarias:', err.message);
+  }
+}
+
+/**
  * Crea tablas si no existen y ejecuta ALTER tolerantes a fallos por columnas ya existentes.
  * Se invoca al arrancar el proceso (`inicializarBaseDatos()` tras crear el pool).
  */
@@ -437,6 +480,8 @@ async function inicializarBaseDatos() {
         console.log("Columna estado ya existe o no se pudo agregar");
       }
     }
+
+    await repararTablasSinClavePrimaria();
 
     // Crear usuario admin por defecto (solo en desarrollo)
     if (process.env.NODE_ENV !== 'production') {
@@ -2143,7 +2188,7 @@ app.get('/api/stats', async (req, res) => {
 // RUTAS DE DEBUG (solo desarrollo)
 // ============================================
 
-app.get('/', (req, res) => {
+app.get('/api/health', (req, res) => {
   res.send('🚀 API de Alertas funcionando correctamente');
 });
 
@@ -2219,13 +2264,24 @@ for (const ruta of rutasFrontend) {
 }
 
 if (rutaFrontend) {
+  const indexHtml = path.join(rutaFrontend, 'index.html');
   app.use(express.static(rutaFrontend));
-  app.get('*', (req, res, next) => {
-    if (req.path.startsWith('/api/')) return next();
-    res.sendFile(path.join(rutaFrontend, 'index.html'));
+  // Raíz y rutas de React Router (no pisar /api/*)
+  app.get('/', (_req, res) => {
+    res.sendFile(indexHtml);
   });
+  app.get('*', (req, res) => {
+    if (req.path.startsWith('/api/')) {
+      return res.status(404).json({ error: 'Ruta API no encontrada' });
+    }
+    res.sendFile(indexHtml);
+  });
+  console.log('SPA React activa: / sirve index.html desde', rutaFrontend);
 } else {
   console.log('Frontend no encontrado. Ejecuta: npm run build en la carpeta del frontend');
+  app.get('/', (req, res) => {
+    res.send('🚀 API de Alertas funcionando correctamente');
+  });
   app.get('*', (req, res) => {
     res.send(`
       <html>
