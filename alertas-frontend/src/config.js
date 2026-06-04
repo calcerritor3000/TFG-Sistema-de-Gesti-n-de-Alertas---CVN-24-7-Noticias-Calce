@@ -8,3 +8,12 @@ export function apiUrl(path) {
   const p = path.startsWith('/') ? path : `/${path}`;
   return API_BASE_URL ? `${API_BASE_URL}${p}` : p;
 }
+
+/** Archivos en public/ (logo, favicon, etc.) */
+export function publicAsset(filePath) {
+  const base = (process.env.PUBLIC_URL || '').replace(/\/$/, '');
+  const p = filePath.startsWith('/') ? filePath : `/${filePath}`;
+  return `${base}${p}`;
+}
+
+export const LOGO_URL = publicAsset('/CVN_Noticias.png');

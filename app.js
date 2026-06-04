@@ -2268,14 +2268,33 @@ for (const ruta of rutasFrontend) {
 
 if (rutaFrontend) {
   const indexHtml = path.join(rutaFrontend, 'index.html');
-  app.use(express.static(rutaFrontend));
-  // Raíz y rutas de React Router (no pisar /api/*)
+  const rutasLogo = [
+    path.join(rutaFrontend, 'CVN_Noticias.png'),
+    path.join(__dirname, 'alertas-frontend/public/CVN_Noticias.png'),
+    path.join(__dirname, 'alertas-frontend/build/CVN_Noticias.png')
+  ];
+
+  app.use(express.static(rutaFrontend, { index: false }));
+
+  app.get('/CVN_Noticias.png', (_req, res) => {
+    for (const logoPath of rutasLogo) {
+      if (fs.existsSync(logoPath)) {
+        return res.sendFile(logoPath);
+      }
+    }
+    res.status(404).send('Logo no encontrado');
+  });
+
   app.get('/', (_req, res) => {
     res.sendFile(indexHtml);
   });
+
   app.get('*', (req, res) => {
     if (req.path.startsWith('/api/')) {
       return res.status(404).json({ error: 'Ruta API no encontrada' });
+    }
+    if (/\.[a-zA-Z0-9]{2,8}$/.test(req.path)) {
+      return res.status(404).send('Archivo no encontrado');
     }
     res.sendFile(indexHtml);
   });

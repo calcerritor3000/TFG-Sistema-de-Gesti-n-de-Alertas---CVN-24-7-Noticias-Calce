@@ -9,7 +9,7 @@ import { useNavigate } from 'react-router-dom';
 import './NewsPage.css';
 import { CATEGORIAS_OPTIONS, getLevelEmoji, getLevelLabelText } from '../alertVisuals';
 import { CategoryBrief } from './AlertChips';
-import { apiUrl } from '../config';
+import { apiUrl, LOGO_URL } from '../config';
 
 const NewsPage = ({ user, onLogout }) => {
   const [news, setNews] = useState([]);
@@ -190,7 +190,7 @@ const NewsPage = ({ user, onLogout }) => {
         <div className="news-header-content">
           <div className="news-logo-container">
             <img 
-              src="/CVN_Noticias.png" 
+              src={LOGO_URL} 
               alt="CVN Noticias" 
               className="news-logo"
             />

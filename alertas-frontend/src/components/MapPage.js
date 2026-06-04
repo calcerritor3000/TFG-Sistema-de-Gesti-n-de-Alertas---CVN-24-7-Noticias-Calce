@@ -36,7 +36,7 @@ import {
   resolveAlertNotificationIcon
 } from '../alertVisuals';
 import { LevelChip, CategoryBrief } from './AlertChips';
-import { apiUrl } from '../config';
+import { apiUrl, LOGO_URL } from '../config';
 
 const API_ORIGIN = apiUrl('');
 
@@ -2197,7 +2197,7 @@ const MapPage = ({ user, onLogout }) => {
         <div className="map-header-content">
           <div className="map-logo-container">
             <img 
-              src="/CVN_Noticias.png" 
+              src={LOGO_URL} 
               alt="CVN Noticias" 
               className="map-logo-image"
             />

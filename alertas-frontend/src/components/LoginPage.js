@@ -6,7 +6,7 @@
 import React, { useState } from 'react';
 import './LoginPage.css';
 import './LoginPageAnimations.css';
-import { apiUrl } from '../config';
+import { apiUrl, LOGO_URL } from '../config';
 
 const LoginPage = ({ onLogin }) => {
   const [activeTab, setActiveTab] = useState('login');
@@ -83,7 +83,7 @@ const LoginPage = ({ onLogin }) => {
       <div style={logoContainerStyle}>
         <div style={logoStyle}>
           <img 
-            src="/CVN_Noticias.png" 
+            src={LOGO_URL} 
             alt="CVN Noticias" 
             style={logoImageStyle}
           />
