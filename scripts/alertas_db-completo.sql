@@ -1,4 +1,4 @@
-﻿-- =============================================================================
+-- =============================================================================
 -- alertas_db COMPLETO: estructura + datos de tu TFG
 -- Orden: 1) Crear/seleccionar base  2) Ejecutar TODO este archivo
 -- En Aiven/Railway: la base ya existe; comenta CREATE DATABASE y usa USE.
