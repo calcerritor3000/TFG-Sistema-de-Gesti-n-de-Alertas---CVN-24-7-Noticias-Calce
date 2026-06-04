@@ -145,7 +145,7 @@ const LoginPage = ({ onLogin }) => {
                   disabled={loading}
                   aria-label={showLoginPassword ? "Ocultar contraseña" : "Mostrar contraseña"}
                 >
-                  {showLoginPassword ? 'Ocultar' : 'Mostrar'}
+                  {showLoginPassword ? '🙈' : '👁️'}
                 </button>
               </div>
             </div>
@@ -210,7 +210,7 @@ const LoginPage = ({ onLogin }) => {
                   disabled={loading}
                   aria-label={showRegisterPassword ? "Ocultar contraseña" : "Mostrar contraseña"}
                 >
-                  {showRegisterPassword ? 'Ocultar' : 'Mostrar'}
+                  {showRegisterPassword ? '🙈' : '👁️'}
                 </button>
               </div>
             </div>
@@ -358,8 +358,9 @@ const passwordToggleStyle = {
   background: 'transparent',
   border: 'none',
   cursor: 'pointer',
-  fontSize: '18px',
-  padding: '5px 8px',
+  fontSize: '20px',
+  padding: '5px 10px',
+  lineHeight: 1,
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'center',
