@@ -4,7 +4,7 @@
 
 services:
   - type: web
-    name: alertas-cvn
+    name: alertascvn
     runtime: node
     plan: free
     buildCommand: npm install && npm run build

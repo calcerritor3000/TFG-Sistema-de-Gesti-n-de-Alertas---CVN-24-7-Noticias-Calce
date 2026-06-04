@@ -38,13 +38,15 @@ Elige **una** opción:
 
 ### Migrar datos desde tu PC (opcional)
 
-```powershell
-mysqldump -u root -p alertas_db > backup_alertas.sql
-```
+Aiven **no acepta tablas sin PRIMARY KEY**. Lee **`scripts/AIVEN-IMPORTAR.md`**.
 
-Importa ese `.sql` en el MySQL de Aiven/Railway desde su consola web.
+Lo más fiable:
 
-Si empiezas vacío, al arrancar Render el servidor **crea las tablas** y el usuario `admin`.
+1. En Aiven (base vacía), ejecuta **`scripts/schema-aiven.sql`**.
+2. Conecta Render con `DB_*` y `DB_SSL=true`.
+3. Arranca la app (crea `admin` en desarrollo).
+
+Si importas un dump de XAMPP y falla, antes en local ejecuta **`scripts/fix-missing-primary-keys.sql`** y vuelve a exportar.
 
 ---
 
@@ -97,8 +99,8 @@ En el servicio → **Environment** → añade:
 | `DB_PASSWORD` | Contraseña | Sí |
 | `DB_NAME` | Nombre de la base | Sí |
 | `DB_SSL` | `true` | Sí (casi siempre en la nube) |
-| `FRONTEND_URL` | `https://TU-SERVICIO.onrender.com` | Sí |
-| `API_PUBLIC_URL` | Igual que arriba | Sí |
+| `FRONTEND_URL` | `https://alertascvn.onrender.com` (tu URL exacta de Render) | Sí |
+| `API_PUBLIC_URL` | Igual que `FRONTEND_URL` | Sí |
 | `REACT_APP_API_URL` | *(vacío)* | Sí (build) |
 | `ADMIN_DEFAULT_PASSWORD` | Contraseña segura para admin | Recomendado |
 
@@ -118,7 +120,9 @@ Si el certificado SSL de MySQL falla, prueba:
    - `Conexión a MySQL correcta`
    - `Tabla users_new lista`
    - `Frontend encontrado en: .../alertas-frontend/build`
-4. Abre la URL: `https://alertas-cvn-xxxx.onrender.com`
+4. Abre la URL: `https://alertascvn.onrender.com` (o la que te asigne Render al crear el servicio).
+
+**Si cambias el nombre del servicio en Render:** la URL cambia, pero el código es el mismo. Actualiza `FRONTEND_URL` y `API_PUBLIC_URL` con la URL nueva y haz **Manual Deploy** del último commit de `main`.
 
 Login por defecto (si no migraste datos): usuario `admin` y la contraseña de `ADMIN_DEFAULT_PASSWORD` o `admin123` si no la cambiaste.
 
