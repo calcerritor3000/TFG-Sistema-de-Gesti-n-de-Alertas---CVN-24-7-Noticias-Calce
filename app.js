@@ -98,9 +98,29 @@ app.use((req, res, next) => {
 
 // Configurar JSON
 app.use(express.json({ limit: '10mb' }));
+
+/** Sirve logo e imágenes copiadas al build (public/ → build/) */
+if (fs.existsSync(publicAssetsDir)) {
+  app.use(express.static(publicAssetsDir, { maxAge: '1d', fallthrough: true }));
+}
 app.use('/uploads', express.static(uploadsRoot, { maxAge: '1d', fallthrough: true }));
 
-// Imágenes de alertas por nombre (respaldo si falla express.static)
+const buildUploadsDir = path.join(__dirname, 'alertas-frontend/build/uploads');
+if (fs.existsSync(buildUploadsDir)) {
+  app.use('/uploads', express.static(buildUploadsDir, { maxAge: '1d', fallthrough: true }));
+}
+
+function enviarArchivoImagen(res, filePath) {
+  const absoluto = path.resolve(filePath);
+  res.sendFile(absoluto, (err) => {
+    if (err) {
+      console.error('sendFile error:', absoluto, err.message);
+      if (!res.headersSent) res.status(404).end();
+    }
+  });
+}
+
+// Imágenes de alertas por nombre (rutas absolutas — obligatorio en Render/Linux)
 app.get('/uploads/alerts/:fileName', (req, res, next) => {
   const safeName = path.basename(req.params.fileName || '');
   if (!safeName || safeName !== req.params.fileName) {
@@ -113,7 +133,7 @@ app.get('/uploads/alerts/:fileName', (req, res, next) => {
   ];
   for (const filePath of candidatos) {
     if (fs.existsSync(filePath)) {
-      return res.sendFile(filePath);
+      return enviarArchivoImagen(res, filePath);
     }
   }
   next();
@@ -2319,7 +2339,7 @@ if (rutaFrontend) {
   app.get('/CVN_Noticias.png', (_req, res) => {
     for (const logoPath of rutasLogo) {
       if (fs.existsSync(logoPath)) {
-        return res.sendFile(logoPath);
+        return enviarArchivoImagen(res, logoPath);
       }
     }
     res.status(404).send('Logo no encontrado');
