@@ -1827,6 +1827,93 @@ function formatLocalDateYYYYMMDD(dateObj) {
   return `${year}-${month}-${day}`;
 }
 
+/** Normaliza DATE/DATETIME de MySQL a YYYY-MM-DD sin corrimiento de día. */
+function formatWeatherDate(value) {
+  if (value == null || value === '') return null;
+  if (typeof value === 'string') return value.split('T')[0].split(' ')[0];
+  if (value instanceof Date && !Number.isNaN(value.getTime())) {
+    const y = value.getUTCFullYear();
+    const m = String(value.getUTCMonth() + 1).padStart(2, '0');
+    const d = String(value.getUTCDate()).padStart(2, '0');
+    return `${y}-${m}-${d}`;
+  }
+  return String(value).split('T')[0].split(' ')[0];
+}
+
+function normalizeWeatherRow(row) {
+  if (!row) return row;
+  return {
+    ...row,
+    id: row.id != null ? Number(row.id) : row.id,
+    fecha: formatWeatherDate(row.fecha),
+    temperatura: row.temperatura != null ? sqlNumber(row.temperatura, null) : null,
+    temp_minima: row.temp_minima != null ? sqlNumber(row.temp_minima, null) : null,
+    temp_maxima: row.temp_maxima != null ? sqlNumber(row.temp_maxima, null) : null,
+    probabilidad_precipitacion: sqlNumber(row.probabilidad_precipitacion, 0),
+    velocidad_viento: sqlNumber(row.velocidad_viento, 0)
+  };
+}
+
+/** Hasta el jueves de la semana siguiente (igual que el frontend). */
+function getExtendedForecastEndDateStr(baseDate = new Date()) {
+  const today = new Date(baseDate);
+  today.setHours(0, 0, 0, 0);
+  const dayOfWeek = today.getDay();
+  const todayIndex = dayOfWeek === 0 ? 6 : dayOfWeek - 1;
+  const daysUntilSunday = 6 - todayIndex;
+  const sunday = new Date(today);
+  sunday.setDate(today.getDate() + daysUntilSunday);
+  const nextThursday = new Date(sunday);
+  nextThursday.setDate(sunday.getDate() + 4);
+  return formatLocalDateYYYYMMDD(nextThursday);
+}
+
+function resolveWeatherCoordinates(municipalityRaw, latQuery, lngQuery) {
+  const municipality = municipalityRaw
+    ? WEATHER_SUPPORTED_MUNICIPALITIES[municipalityRaw]
+    : null;
+  const hasCoords = Number.isFinite(latQuery) && Number.isFinite(lngQuery);
+
+  let targetLat = WEATHER_DEFAULT_LAT;
+  let targetLng = WEATHER_DEFAULT_LNG;
+  let label = 'Valencia';
+
+  if (municipality) {
+    targetLat = municipality.lat;
+    targetLng = municipality.lng;
+    label = municipality.name;
+  } else if (hasCoords) {
+    targetLat = latQuery;
+    targetLng = lngQuery;
+    label = 'Tu ubicación';
+  }
+
+  return { targetLat, targetLng, label, municipality, hasCoords };
+}
+
+async function fetchWeatherRowsForLocation(targetLat, targetLng) {
+  try {
+    const daily = await fetchOpenMeteoDailyForecast(targetLat, targetLng);
+    return buildWeatherRowsFromDaily(daily);
+  } catch (openMeteoErr) {
+    console.warn('Open-Meteo no disponible, usando BD:', openMeteoErr.message);
+    await syncWeatherIfNeeded().catch((syncErr) => {
+      console.warn('Sync meteo BD:', syncErr.message);
+    });
+    const [rows] = await pool.execute(
+      'SELECT * FROM weather_forecast WHERE fecha >= CURDATE() ORDER BY fecha ASC, hora_inicio ASC LIMIT 30'
+    );
+    return rows.map(normalizeWeatherRow);
+  }
+}
+
+function filterWeatherByDateRange(rows, startStr, endStr) {
+  return rows.filter((item) => {
+    const f = formatWeatherDate(item.fecha);
+    return f >= startStr && f <= endStr;
+  });
+}
+
 function weatherCodeToIcon(code) {
   if ([0].includes(code)) return 'soleado';
   if ([1, 2].includes(code)) return 'parcialmente_nublado';
@@ -1964,10 +2051,14 @@ async function syncWeatherIfNeeded({ force = false } = {}) {
 // Obtener todas las previsiones meteorológicas
 app.get('/api/weather', async (req, res) => {
   try {
-    await syncWeatherIfNeeded();
-    const [previsiones] = await pool.execute(
-      'SELECT * FROM weather_forecast ORDER BY fecha ASC, hora_inicio ASC'
-    );
+    let previsiones = await fetchWeatherRowsForLocation(WEATHER_DEFAULT_LAT, WEATHER_DEFAULT_LNG);
+    if (previsiones.length === 0) {
+      await syncWeatherIfNeeded().catch(() => {});
+      const [rows] = await pool.execute(
+        'SELECT * FROM weather_forecast ORDER BY fecha ASC, hora_inicio ASC'
+      );
+      previsiones = rows.map(normalizeWeatherRow);
+    }
     res.json(previsiones);
   } catch (err) {
     console.error('Error al obtener previsiones:', err.message);
@@ -1986,90 +2077,41 @@ app.get('/api/weather/weekdays', async (req, res) => {
     const municipalityRaw = String(req.query.municipality || '').trim().toLowerCase();
     const latQuery = req.query.lat !== undefined ? parseFloat(req.query.lat) : null;
     const lngQuery = req.query.lng !== undefined ? parseFloat(req.query.lng) : null;
-    const baseDate = startDateRaw ? new Date(startDateRaw) : new Date();
+    const baseDate = startDateRaw ? new Date(`${startDateRaw}T12:00:00`) : new Date();
 
     if (startDateRaw && Number.isNaN(baseDate.getTime())) {
       return res.status(400).json({ error: 'start_date inválida. Usa formato YYYY-MM-DD' });
     }
-
-    const municipality = municipalityRaw ? WEATHER_SUPPORTED_MUNICIPALITIES[municipalityRaw] : null;
-    const hasCoords = Number.isFinite(latQuery) && Number.isFinite(lngQuery);
-    const useDynamicLocation = Boolean(municipality || hasCoords);
-    let weatherRows = [];
-
-    if (useDynamicLocation) {
-      let targetLat = WEATHER_DEFAULT_LAT;
-      let targetLng = WEATHER_DEFAULT_LNG;
-
-      if (municipality) {
-        targetLat = municipality.lat;
-        targetLng = municipality.lng;
-      } else if (hasCoords) {
-        targetLat = latQuery;
-        targetLng = lngQuery;
-      }
-
-      if (!validarCoordenadas(targetLat, targetLng)) {
-        return res.status(400).json({ error: 'lat/lng inválidos para la consulta meteorológica' });
-      }
-      if (!validarComunidadValenciana(targetLat, targetLng)) {
-        return res.status(400).json({ error: 'La consulta meteorológica debe estar dentro de la Comunidad Valenciana' });
-      }
-
-      const daily = await fetchOpenMeteoDailyForecast(targetLat, targetLng);
-      weatherRows = buildWeatherRowsFromDaily(daily);
-    } else {
-      await syncWeatherIfNeeded();
-    }
-
-    let query = `
-      SELECT *
-      FROM weather_forecast
-      WHERE 1=1
-    `;
-    const params = [];
-
-    if (weekMode === 'current') {
-      // Lunes de la semana actual (en función de baseDate)
-      const day = baseDate.getDay(); // 0=Domingo, 1=Lunes...
-      const diffToMonday = day === 0 ? -6 : 1 - day;
-      const monday = new Date(baseDate);
-      monday.setDate(baseDate.getDate() + diffToMonday);
-      monday.setHours(0, 0, 0, 0);
-
-      const sunday = new Date(monday);
-      sunday.setDate(monday.getDate() + 6);
-
-      // Hasta el jueves de la semana siguiente (domingo + 4)
-      const nextThursday = new Date(sunday);
-      nextThursday.setDate(sunday.getDate() + 4);
-
-      const mondayStr = formatLocalDateYYYYMMDD(monday);
-      const endStr = formatLocalDateYYYYMMDD(nextThursday);
-
-      query += ' AND fecha BETWEEN ? AND ?';
-      params.push(mondayStr, endStr);
-    } else if (weekMode !== 'all') {
+    if (weekMode !== 'current' && weekMode !== 'all') {
       return res.status(400).json({ error: 'Parámetro week inválido. Usa "current" o "all".' });
     }
 
-    query += ' ORDER BY fecha ASC, hora_inicio ASC';
+    const { targetLat, targetLng } = resolveWeatherCoordinates(
+      municipalityRaw,
+      latQuery,
+      lngQuery
+    );
 
-    let previsiones = [];
-    if (useDynamicLocation) {
-      const byDateRange = weatherRows.filter((item) => {
-        if (params.length !== 2) return true;
-        return item.fecha >= params[0] && item.fecha <= params[1];
-      });
-      previsiones = byDateRange.sort((a, b) => {
-        const byDate = String(a.fecha).localeCompare(String(b.fecha));
-        if (byDate !== 0) return byDate;
-        return String(a.hora_inicio).localeCompare(String(b.hora_inicio));
-      });
-    } else {
-      const [rows] = await pool.execute(query, params);
-      previsiones = rows;
+    if (!validarCoordenadas(targetLat, targetLng)) {
+      return res.status(400).json({ error: 'lat/lng inválidos para la consulta meteorológica' });
     }
+    if (!validarComunidadValenciana(targetLat, targetLng)) {
+      return res.status(400).json({ error: 'La consulta meteorológica debe estar dentro de la Comunidad Valenciana' });
+    }
+
+    let previsiones = (await fetchWeatherRowsForLocation(targetLat, targetLng)).map(normalizeWeatherRow);
+
+    if (weekMode === 'current') {
+      const startStr = formatLocalDateYYYYMMDD(baseDate);
+      const endStr = getExtendedForecastEndDateStr(baseDate);
+      previsiones = filterWeatherByDateRange(previsiones, startStr, endStr);
+    }
+
+    previsiones.sort((a, b) => {
+      const byDate = String(a.fecha).localeCompare(String(b.fecha));
+      if (byDate !== 0) return byDate;
+      return String(a.hora_inicio || '').localeCompare(String(b.hora_inicio || ''));
+    });
 
     res.json(previsiones);
   } catch (err) {
@@ -2412,6 +2454,9 @@ function emitDeletedAlert(_alertId) {
 
 const puerto = process.env.PORT || 4000;
 app.listen(puerto, () => {
+  syncWeatherIfNeeded().catch((err) => {
+    console.warn('Sync meteo al arrancar:', err.message);
+  });
   console.log(`Servidor escuchando en http://localhost:${puerto}`);
   console.log(`Endpoints:`);
   console.log(`   POST /api/register - Registrar usuario`);

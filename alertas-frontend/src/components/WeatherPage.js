@@ -115,17 +115,21 @@ const WeatherPage = ({ user, onLogout }) => {
           params.set('lng', String(coords.lng));
           setLocationLabel('Tu ubicación actual');
         } else {
-          setLocationLabel('Comunidad Valenciana');
+          params.set('municipality', 'valencia');
+          setLocationLabel('Valencia (por defecto)');
         }
       } else {
-        setLocationLabel('Comunidad Valenciana');
+        params.set('municipality', 'valencia');
+        setLocationLabel('Valencia (por defecto)');
       }
 
-      const response = await fetch(`${API_URL}/api/weather/weekdays?${params.toString()}`);
+      const response = await fetch(apiUrl(`/api/weather/weekdays?${params.toString()}`));
       if (response.ok) {
         const data = await response.json();
-        setForecast(data);
+        setForecast(Array.isArray(data) ? data : []);
       } else {
+        const errBody = await response.json().catch(() => ({}));
+        console.error('Error API tiempo:', errBody.error || response.status);
         setForecast([]);
       }
     } catch (error) {
