@@ -161,13 +161,37 @@ if (!process.env.JWT_SECRET) {
 // ============================================
 
 // Configuración de conexión MySQL
+function limpiarEnv(valor) {
+  if (valor == null) return '';
+  return String(valor).trim().replace(/^["']|["']$/g, '');
+}
+
+function logAyudaConexionDb(err) {
+  if (err.code === 'ENOTFOUND') {
+    console.error('DNS no encuentra el host de MySQL (DB_HOST incorrecto o servicio Aiven borrado).');
+    console.error(`   Host actual en Render: ${dbConfig.host}`);
+    console.error('   1. Entra en Aiven → tu servicio MySQL → Connection information');
+    console.error('   2. Copia el Host NUEVO (suele terminar en .aivencloud.com, a menudo con .l. no .k.)');
+    console.error('   3. Pégalo en Render → Environment → DB_HOST (sin espacios ni comillas)');
+    console.error('   4. Guarda y haz Manual Deploy');
+  } else if (err.code === 'ECONNREFUSED') {
+    console.error('MySQL no está corriendo o el puerto es incorrecto');
+    console.error(`   Intenta: mysql -h ${dbConfig.host} -P ${dbConfig.port} -u ${dbConfig.user} -p`);
+  } else if (err.code === 'ER_ACCESS_DENIED_ERROR') {
+    console.error('Credenciales incorrectas. Verifica DB_USER y DB_PASSWORD en Render');
+  } else if (err.code === 'ER_BAD_DB_ERROR') {
+    console.error('La base de datos no existe. Verifica DB_NAME en Render');
+    console.error(`   CREATE DATABASE ${dbConfig.database};`);
+  }
+}
+
 // Usar 127.0.0.1 en lugar de localhost para forzar IPv4
-const dbHost = process.env.DB_HOST || '127.0.0.1';
+const dbHost = limpiarEnv(process.env.DB_HOST) || '127.0.0.1';
 const dbConfig = {
   host: dbHost === 'localhost' ? '127.0.0.1' : dbHost,
-  user: process.env.DB_USER || 'root',
-  password: process.env.DB_PASSWORD || '',
-  database: process.env.DB_NAME || 'alertas_db',
+  user: limpiarEnv(process.env.DB_USER) || 'root',
+  password: limpiarEnv(process.env.DB_PASSWORD),
+  database: limpiarEnv(process.env.DB_NAME) || 'alertas_db',
   port: parseInt(process.env.DB_PORT, 10) || 3306,
   waitForConnections: true,
   connectionLimit: 10,
@@ -199,13 +223,8 @@ pool.getConnection()
     conn.release();
   })
   .catch(err => {
-    console.error("Error al conectar a MySQL:", err.message);
-    console.error("Verifica que:");
-    console.error("   1. MySQL esté corriendo");
-    console.error("   2. El puerto sea correcto (por defecto 3306)");
-    console.error("   3. Las credenciales en .env sean correctas");
-    console.error("   4. La base de datos exista");
-    console.error(`   Intenta conectarte con: mysql -h ${dbConfig.host} -P ${dbConfig.port} -u ${dbConfig.user} -p`);
+    console.error('Error al conectar a MySQL:', err.message);
+    logAyudaConexionDb(err);
   });
 
 /**
@@ -574,16 +593,8 @@ async function inicializarBaseDatos() {
       }
     }
   } catch (err) {
-    console.error("Error inicializando base de datos:", err.message);
-    if (err.code === 'ECONNREFUSED') {
-      console.error("MySQL no está corriendo o el puerto es incorrecto");
-      console.error(`   Intenta: mysql -h ${dbConfig.host} -P ${dbConfig.port} -u ${dbConfig.user} -p`);
-    } else if (err.code === 'ER_ACCESS_DENIED_ERROR') {
-      console.error("Credenciales incorrectas. Verifica usuario y contraseña en .env");
-    } else if (err.code === 'ER_BAD_DB_ERROR') {
-      console.error("La base de datos no existe. Créala primero:");
-      console.error(`   CREATE DATABASE ${dbConfig.database};`);
-    }
+    console.error('Error inicializando base de datos:', err.message);
+    logAyudaConexionDb(err);
   }
 }
 

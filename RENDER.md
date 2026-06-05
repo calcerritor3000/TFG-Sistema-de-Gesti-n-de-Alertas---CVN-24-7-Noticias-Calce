@@ -109,6 +109,18 @@ En el servicio → **Environment** → añade:
 Con `DB_SSL=true`, la app ya usa `rejectUnauthorized: false` por defecto (certificados Aiven).
 Si aún falla el login con error de certificado, añade en Render: `DB_SSL_REJECT_UNAUTHORIZED` = `false`
 
+### Error `ENOTFOUND mysql-....aivencloud.com`
+
+Significa que **el host en `DB_HOST` no existe** (servicio Aiven borrado, pausado o hostname viejo).
+
+1. [Aiven Console](https://console.aiven.io) → tu servicio **MySQL** → **Connection information**.
+2. Copia de nuevo **Host**, **Port**, **User**, **Password**, **Database**.
+3. En Render → **Environment** → actualiza `DB_HOST`, `DB_PORT`, `DB_USER`, `DB_PASSWORD`, `DB_NAME`.
+4. **Sin comillas** ni espacios al pegar. El host suele ser tipo `mysql-xxxxx-nombre.l.aivencloud.com`.
+5. **Save** → **Manual Deploy**.
+
+Si recreaste el servicio MySQL en Aiven, el host **cambia** aunque el nombre del proyecto sea el mismo.
+
 ---
 
 ## Paso 5 — Deploy
