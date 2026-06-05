@@ -102,7 +102,7 @@ En el servicio → **Environment** → añade:
 | `FRONTEND_URL` | `https://alertascvn.onrender.com` (tu URL exacta de Render) | Sí |
 | `API_PUBLIC_URL` | Igual que `FRONTEND_URL` | Sí |
 | `REACT_APP_API_URL` | *(vacío)* | Sí (build) |
-| `ADMIN_DEFAULT_PASSWORD` | Contraseña del usuario `admin` (se crea solo si no hay admin en la BD) | Recomendado en producción |
+| `ADMIN_DEFAULT_PASSWORD` | Contraseña del usuario `admin` (obligatoria en producción; se sincroniza al arrancar) | **Sí** |
 
 `PORT` lo asigna Render solo; no hace falta ponerlo.
 

@@ -7,26 +7,23 @@
  * Mensajes desde la app: SKIP_WAITING, CACHE_ALERTS (opcional).
  */
 // Service Worker para PWA - Funciona completamente offline
-const CACHE_NAME = 'alertas-cvn-v2';
-const RUNTIME_CACHE = 'alertas-runtime-v2';
+const CACHE_NAME = 'alertas-cvn-v3';
+const RUNTIME_CACHE = 'alertas-runtime-v3';
 
-// Archivos estáticos a cachear
-const STATIC_ASSETS = [
-  '/',
-  '/static/css/main.css',
-  '/static/js/main.js',
-  '/manifest.json',
-  '/favicon.ico'
-];
+// Solo recursos que existen siempre (CRA usa nombres con hash en /static/)
+const STATIC_ASSETS = ['/', '/manifest.json', '/CVN_Noticias.png'];
 
 // Instalar Service Worker
 self.addEventListener('install', (event) => {
   console.log('Service Worker: Instalando...');
   event.waitUntil(
     caches.open(CACHE_NAME)
-      .then((cache) => {
-        console.log('Service Worker: Cache abierto');
-        return cache.addAll(STATIC_ASSETS);
+      .then(async (cache) => {
+        await Promise.allSettled(
+          STATIC_ASSETS.map((url) => cache.add(url).catch((err) => {
+            console.warn('SW: no cacheado', url, err.message);
+          }))
+        );
       })
       .then(() => self.skipWaiting())
   );
@@ -110,45 +107,18 @@ self.addEventListener('fetch', (event) => {
         })
     );
   }
-  // Para API calls: Network First con fallback a cache
+  // API GET: red primero; no devolver respuestas cacheadas viejas de login/alertas
   else if (url.pathname.startsWith('/api/')) {
     event.respondWith(
       fetch(request)
-        .then((response) => {
-          // Si la respuesta es exitosa y el esquema es soportado, cachearla
-          if (response.ok && (url.protocol === 'http:' || url.protocol === 'https:')) {
-            const responseToCache = response.clone();
-            caches.open(RUNTIME_CACHE)
-              .then((cache) => {
-                try {
-                  cache.put(request, responseToCache);
-                } catch (error) {
-                  // Ignorar errores de cacheo
-                  console.warn('No se pudo cachear:', request.url, error.message);
-                }
-              });
-          }
-          return response;
-        })
-        .catch(() => {
-          // Si falla la red, intentar desde cache
-          return caches.match(request)
-            .then((cachedResponse) => {
-              if (cachedResponse) {
-                return cachedResponse;
-              }
-              // Si no hay cache, devolver respuesta offline
-              return new Response(
-                JSON.stringify({ 
-                  error: 'Sin conexión. Mostrando datos en caché.',
-                  offline: true 
-                }),
-                {
-                  headers: { 'Content-Type': 'application/json' }
-                }
-              );
-            });
-        })
+        .then((response) => response)
+        .catch(() => new Response(
+          JSON.stringify({
+            error: 'Sin conexión con el servidor. En Render free espera 30-60 s y reintenta.',
+            offline: true
+          }),
+          { status: 503, headers: { 'Content-Type': 'application/json' } }
+        ))
     );
   }
   // Para tiles del mapa (Leaflet)

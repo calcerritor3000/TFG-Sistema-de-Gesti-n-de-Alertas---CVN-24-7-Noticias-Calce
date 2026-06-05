@@ -19,31 +19,49 @@ const LoginPage = ({ onLogin }) => {
   const handleLoginChange = e => setLoginForm({ ...loginForm, [e.target.name]: e.target.value });
   const handleRegisterChange = e => setRegisterForm({ ...registerForm, [e.target.name]: e.target.value });
 
+  const fetchWithTimeout = async (url, options, ms = 90000) => {
+    const controller = new AbortController();
+    const timer = setTimeout(() => controller.abort(), ms);
+    try {
+      return await fetch(url, { ...options, signal: controller.signal });
+    } finally {
+      clearTimeout(timer);
+    }
+  };
+
   const handleLogin = async (e) => {
     e.preventDefault();
     setLoading(true);
     
     try {
-      const response = await fetch(apiUrl('/api/login'), {
+      const response = await fetchWithTimeout(apiUrl('/api/login'), {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(loginForm)
       });
       
-      const data = await response.json();
+      const data = await response.json().catch(() => ({}));
       
-      if (data.token) {
+      if (response.ok && data.token) {
         onLogin({ 
           username: data.username, 
           role: data.role, 
           token: data.token 
         });
+      } else if (response.status === 401) {
+        alert(data.error || 'Usuario o contraseña incorrectos');
+      } else if (response.status === 503 || data.offline) {
+        alert('El servidor no responde. En el plan free de Render puede tardar hasta 60 segundos en despertar. Espera y vuelve a intentar.');
       } else {
-        alert(data.error || 'Error en el inicio de sesión');
+        alert(data.error || `Error en el inicio de sesión (${response.status})`);
       }
     } catch (err) {
       console.error('Error en login:', err);
-      alert('Error de conexión con el servidor');
+      if (err.name === 'AbortError') {
+        alert('El servidor tarda en responder (Render despertando). Espera un minuto y pulsa Iniciar sesión otra vez.');
+      } else {
+        alert('Error de conexión con el servidor. Comprueba que usas https://cvnalertas.onrender.com');
+      }
     } finally {
       setLoading(false);
     }

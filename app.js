@@ -83,10 +83,21 @@ const publicUploadsAlerts = path.join(publicAssetsDir, 'uploads/alerts');
 // CONFIGURACIÓN INICIAL
 // ============================================
 
-// Configurar CORS manualmente
+// Configurar CORS manualmente (acepta el mismo host Render aunque cambie la URL del servicio)
 app.use((req, res, next) => {
-  const origin = process.env.FRONTEND_URL || '*';
-  res.header('Access-Control-Allow-Origin', origin);
+  const requestOrigin = req.headers.origin;
+  const configured = (process.env.FRONTEND_URL || '').replace(/\/$/, '');
+  let allowOrigin = configured || '*';
+
+  if (requestOrigin) {
+    const isRender = /\.onrender\.com$/i.test(new URL(requestOrigin).hostname);
+    const matchesConfigured = configured && requestOrigin === configured;
+    if (matchesConfigured || isRender || !configured) {
+      allowOrigin = requestOrigin;
+    }
+  }
+
+  res.header('Access-Control-Allow-Origin', allowOrigin);
   res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
   res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization');
   res.header('Access-Control-Allow-Credentials', 'true');
@@ -528,27 +539,38 @@ async function inicializarBaseDatos() {
 
     await repararTablasSinClavePrimaria();
 
-    // Admin por defecto: en desarrollo siempre; en producción si ADMIN_DEFAULT_PASSWORD está definido
-    const crearAdminSiFalta =
-      process.env.NODE_ENV !== 'production' || Boolean(process.env.ADMIN_DEFAULT_PASSWORD);
-    if (crearAdminSiFalta) {
+    // Admin: en producción la contraseña la marca ADMIN_DEFAULT_PASSWORD en Render
+    const adminPassword =
+      process.env.ADMIN_DEFAULT_PASSWORD ||
+      (process.env.NODE_ENV !== 'production' ? 'admin123' : null);
+
+    if (adminPassword) {
+      const hash = await bcrypt.hash(adminPassword, 10);
       const [existe] = await pool.execute(
-        'SELECT id FROM users_new WHERE nombre_usuario = ? OR role = ? LIMIT 1',
-        ['admin', 'admin']
+        'SELECT id FROM users_new WHERE nombre_usuario = ? LIMIT 1',
+        ['admin']
       );
       if (existe.length === 0) {
-        const password = process.env.ADMIN_DEFAULT_PASSWORD || 'admin123';
-        const hash = await bcrypt.hash(password, 10);
         await pool.execute(
           'INSERT INTO users_new (nombre_usuario, email, password_hash, role) VALUES (?, ?, ?, ?)',
           ['admin', 'admin@example.com', hash, 'admin']
         );
-        console.log(
-          process.env.NODE_ENV === 'production'
-            ? 'Usuario admin creado en producción (ADMIN_DEFAULT_PASSWORD)'
-            : 'Usuario admin creado (desarrollo)'
+        console.log('Usuario admin creado');
+      } else {
+        await pool.execute(
+          'UPDATE users_new SET password_hash = ?, role = ? WHERE nombre_usuario = ?',
+          [hash, 'admin', 'admin']
         );
-        console.log('   Usuario: admin');
+        console.log('Contraseña de admin sincronizada con ADMIN_DEFAULT_PASSWORD');
+      }
+      console.log('   Usuario: admin');
+    } else {
+      const [hayAdmin] = await pool.execute(
+        'SELECT id FROM users_new WHERE nombre_usuario = ? OR role = ? LIMIT 1',
+        ['admin', 'admin']
+      );
+      if (hayAdmin.length === 0) {
+        console.warn('No hay usuario admin. Define ADMIN_DEFAULT_PASSWORD en Render o importa datos SQL.');
       }
     }
   } catch (err) {
