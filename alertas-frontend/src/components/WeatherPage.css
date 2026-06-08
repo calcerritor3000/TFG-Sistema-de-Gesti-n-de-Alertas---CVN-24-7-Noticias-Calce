@@ -682,10 +682,35 @@
 @media (max-width: 480px) {
   .weather-page {
     padding: 10px;
+    padding-left: max(10px, env(safe-area-inset-left));
+    padding-right: max(10px, env(safe-area-inset-right));
+    padding-bottom: max(10px, env(safe-area-inset-bottom));
   }
 
   .weather-header {
-    padding: 15px;
+    padding: max(12px, env(safe-area-inset-top)) 12px 12px;
+  }
+
+  .weather-location-controls select {
+    min-width: 0;
+    width: 100%;
+    font-size: 16px;
+    min-height: 48px;
+  }
+
+  .weather-header-actions {
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .nav-btn,
+  .btn-add-forecast,
+  .btn-logout {
+    min-width: 0;
+    flex: 1 1 calc(50% - 4px);
+    min-height: 44px;
+    font-size: 14px;
+    padding: 10px 8px;
   }
 
   .weather-header h1 {

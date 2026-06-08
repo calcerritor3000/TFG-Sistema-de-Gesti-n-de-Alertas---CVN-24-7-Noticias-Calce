@@ -26,8 +26,19 @@ code {
     monospace;
 }
 
-/* Asegurar que el mapa ocupe toda la pantalla */
+/* Asegurar que el mapa ocupe toda la pantalla (dvh = barra Safari iOS) */
 .leaflet-container {
   height: 100vh;
+  height: 100dvh;
   width: 100%;
+}
+
+@media (max-width: 768px) {
+  html, body {
+    overscroll-behavior-y: none;
+  }
+
+  input, select, textarea, button {
+    font-size: max(16px, 1em);
+  }
 }

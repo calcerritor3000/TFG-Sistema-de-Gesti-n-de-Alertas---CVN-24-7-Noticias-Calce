@@ -548,14 +548,66 @@
 
 /* iPhone y móviles pequeños (hasta 480px) */
 @media (max-width: 480px) {
+  .news-page {
+    padding-bottom: max(2rem, env(safe-area-inset-bottom));
+  }
+
   .news-header {
-    padding: 15px 12px;
+    padding: max(12px, env(safe-area-inset-top)) 12px 12px;
   }
 
   .news-header-content {
     flex-direction: column;
-    align-items: flex-start;
-    gap: 12px;
+    align-items: stretch;
+    gap: 10px;
+  }
+
+  .news-logo-container {
+    height: 44px;
+    justify-content: center;
+    width: 100%;
+  }
+
+  .news-logo {
+    height: 44px;
+    max-width: 200px;
+  }
+
+  .news-header-stats {
+    width: 100%;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    padding: 0.5rem 0.75rem;
+    font-size: 0.8rem;
+  }
+
+  .news-stat-label {
+    display: none;
+  }
+
+  .news-header-actions {
+    width: 100%;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .news-header-actions .btn-secondary,
+  .news-header-actions .btn-logout {
+    flex: 1 1 calc(50% - 4px);
+    min-height: 44px;
+    padding: 0.65rem 0.5rem;
+    font-size: 0.85rem;
+    text-align: center;
+  }
+
+  .news-container {
+    padding: 0 12px;
+  }
+
+  .news-filters {
+    padding: 12px;
+    margin: 0 12px 1rem;
   }
 
   .news-header h1 {

@@ -1,6 +1,154 @@
+/* Layout login */
+.login-logo-container {
+  text-align: center;
+  margin-bottom: 10px;
+  animation: slideInDown 0.6s ease-out both;
+  width: 100%;
+  max-width: 420px;
+}
+
+.login-logo-box {
+  background: rgba(30, 30, 30, 0.95);
+  padding: 10px 20px;
+  border-radius: 15px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: scaleIn 0.5s ease-out 0.2s both;
+}
+
+.login-logo-img {
+  height: 130px;
+  width: auto;
+  max-width: 100%;
+  object-fit: contain;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
+}
+
+.login-auth-panel {
+  width: 100%;
+  max-width: 380px;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  padding: 18px;
+  border-radius: 15px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  animation: slideInUp 0.6s ease-out 0.3s both;
+}
+
+.login-tab-container {
+  display: flex;
+  margin-bottom: 12px;
+  background: #f8f9fa;
+  border-radius: 10px;
+  padding: 3px;
+  animation: fadeIn 0.5s ease-out 0.5s both;
+}
+
+.login-tab {
+  flex: 1;
+  padding: 10px;
+  border: none;
+  background: transparent;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  color: #6c757d;
+  transition: all 0.2s ease;
+  font-size: 14px;
+  min-height: 44px;
+  font-family: inherit;
+}
+
+.login-tab.active {
+  background: white;
+  color: #000000;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.login-input-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.login-label {
+  font-size: 14px;
+  font-weight: 600;
+  color: #2c3e50;
+}
+
+.login-input {
+  padding: 12px 14px;
+  border: 2px solid #e9ecef;
+  border-radius: 8px;
+  font-size: 16px;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  background: white;
+  color: #2c3e50;
+  font-family: inherit;
+  width: 100%;
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+.login-input:focus {
+  outline: none;
+  border-color: #007bff;
+  box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.12);
+}
+
+.login-input-password {
+  padding-right: 48px;
+}
+
+.login-submit-btn {
+  padding: 14px 18px;
+  background: linear-gradient(135deg, #000000 0%, #1a1a1a 100%);
+  color: white;
+  border: 2px solid #000000;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: opacity 0.2s ease;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+  font-family: inherit;
+  margin-top: 4px;
+  min-height: 48px;
+  width: 100%;
+}
+
+.login-submit-btn:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+.login-footer {
+  margin-top: 24px;
+  text-align: center;
+  color: white;
+  font-size: 13px;
+  opacity: 0.85;
+  padding: 0 12px;
+  max-width: 380px;
+}
+
 /* Estilos para la página de login */
 .login-page {
   min-height: 100vh;
+  min-height: 100dvh;
   background: linear-gradient(135deg, #000000 0%, #1a1a1a 50%, #0d0d0d 100%);
   background-size: 200% 200%;
   background-attachment: fixed;
@@ -224,29 +372,32 @@
 
 .password-toggle-btn {
   position: absolute;
-  right: 8px;
+  right: 4px;
+  top: 50%;
+  transform: translateY(-50%);
   background: transparent;
   border: none;
   cursor: pointer;
-  font-size: 18px;
-  padding: 5px 8px;
+  font-size: 20px;
+  padding: 8px 10px;
+  min-width: 44px;
+  min-height: 44px;
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: all 0.2s ease;
-  border-radius: 4px;
-  opacity: 0.7;
+  transition: opacity 0.2s ease;
+  border-radius: 6px;
+  opacity: 0.75;
   z-index: 10;
 }
 
 .password-toggle-btn:hover {
   opacity: 1;
-  transform: scale(1.1);
   background: rgba(0, 123, 255, 0.1);
 }
 
 .password-toggle-btn:active {
-  transform: scale(0.95);
+  opacity: 1;
 }
 
 .password-toggle-btn:disabled {
@@ -261,52 +412,46 @@
 /* iPhone y móviles pequeños (hasta 480px) */
 @media (max-width: 480px) {
   .login-page {
-    padding: 20px 15px;
-    min-height: 100vh;
-    min-height: -webkit-fill-available; /* iOS Safari fix */
-  }
-
-  /* Logo más pequeño en móvil */
-  .login-page img {
-    max-width: 200px;
-    height: auto;
-  }
-
-  /* Panel de autenticación más compacto */
-  .login-page > div:nth-child(2) {
-    max-width: 100%;
-    width: 100%;
-    padding: 20px 15px;
-    margin: 0;
-  }
-
-  /* Inputs más grandes para mejor usabilidad táctil */
-  .login-page input {
-    font-size: 16px; /* Evita zoom automático en iOS */
-    padding: 14px 16px;
-  }
-
-  /* Botones más grandes y fáciles de tocar */
-  .login-page button {
-    padding: 14px 20px;
-    font-size: 16px;
-    min-height: 48px; /* Tamaño mínimo recomendado para touch */
-  }
-
-  /* Footer más compacto */
-  .login-page > div:last-child {
-    margin-top: 30px;
-    font-size: 12px;
-    padding: 0 15px;
-  }
-
-  /* Reducir animaciones en móvil para mejor rendimiento */
-  .login-page::before {
+    padding: 16px 12px;
+    justify-content: flex-start;
+    padding-top: max(16px, env(safe-area-inset-top));
+    padding-bottom: max(16px, env(safe-area-inset-bottom));
+    background-attachment: scroll;
     animation: none;
   }
 
-  .login-page input {
-    animation: fadeIn 0.3s ease-out both;
+  .login-logo-container,
+  .login-auth-panel,
+  .login-footer {
+    max-width: 100%;
+  }
+
+  .login-logo-img {
+    height: auto;
+    max-height: 72px;
+    max-width: 220px;
+  }
+
+  .login-logo-box {
+    padding: 8px 14px;
+  }
+
+  .login-auth-panel {
+    padding: 16px 14px;
+  }
+
+  .login-tab {
+    font-size: 15px;
+    padding: 12px 8px;
+  }
+
+  .login-footer {
+    margin-top: 16px;
+    font-size: 11px;
+  }
+
+  .login-page::before {
+    animation: none;
   }
 }
 

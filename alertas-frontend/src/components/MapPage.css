@@ -1160,15 +1160,17 @@
   }
 
   .map-btn {
-    padding: 0.4rem 0.7rem;
-    font-size: 0.7rem;
+    padding: 0.55rem 0.85rem;
+    font-size: 16px;
+    min-height: 44px;
   }
 
   .map-filter-select {
     width: 100%;
     min-width: auto;
-    font-size: 0.7rem;
-    padding: 0.4rem 1.8rem 0.4rem 0.6rem;
+    font-size: 16px;
+    min-height: 44px;
+    padding: 0.5rem 2rem 0.5rem 0.75rem;
   }
 
   .map-btn-logout {
@@ -1179,8 +1181,13 @@
     margin-top: 0.5rem;
   }
 
+  .map-page-container {
+    padding-top: env(safe-area-inset-top);
+  }
+
   .map-container {
-    padding-top: 120px; /* Más espacio para el header en móvil */
+    padding-top: min(150px, 32vh);
+    height: calc(100dvh - min(150px, 32vh));
   }
 
   .alert-panel {
