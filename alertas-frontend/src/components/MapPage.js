@@ -2202,11 +2202,13 @@ const MapPage = ({ user, onLogout }) => {
       }}>
         <div className="map-header-content">
           <div className="map-logo-container">
-            <img 
-              src={LOGO_URL} 
-              alt="CVN Noticias" 
-              className="map-logo-image"
-            />
+            <div className="map-logo-frame">
+              <img
+                src={LOGO_URL}
+                alt="CVN Noticias"
+                className="map-logo-image"
+              />
+            </div>
           </div>
           <div className="map-header-stats">
             <span className="map-stat-item">
@@ -2214,12 +2216,12 @@ const MapPage = ({ user, onLogout }) => {
               <span className="map-stat-label">Alertas</span>
             </span>
             <span className="map-stat-divider">|</span>
-            <span className="map-stat-item">
-              <span className="map-stat-label">{user?.username}</span>
+            <span className="map-stat-item map-stat-user">
+              <span className="map-stat-label">{user?.username || 'Usuario'}</span>
             </span>
             <span className="map-stat-divider">|</span>
-            <span className="map-stat-item">
-              <span className="map-stat-label" style={{ textTransform: 'lowercase' }}>{user?.role}</span>
+            <span className="map-stat-item map-stat-role">
+              <span className="map-stat-label">{user?.role || 'user'}</span>
             </span>
           </div>
           <div className={`map-user-info ${user?.role !== 'admin' ? 'map-user-info-normal' : ''}`}>
