@@ -41,17 +41,16 @@ function isTokenExpired(token) {
 
 function App() {
   const [user, setUser] = useState(null);
+  const [sessionReady, setSessionReady] = useState(false);
 
-  // Cargar usuario desde localStorage al iniciar
+  // Cargar usuario desde localStorage antes de decidir la ruta inicial
   useEffect(() => {
     const savedUser = localStorage.getItem('user');
     if (savedUser) {
       try {
         const parsedUser = JSON.parse(savedUser);
-        
-        // Verificar si el token está expirado
+
         if (isTokenExpired(parsedUser.token)) {
-          // Token expirado, limpiar sesión silenciosamente
           localStorage.removeItem('user');
           setUser(null);
         } else {
@@ -62,6 +61,7 @@ function App() {
         localStorage.removeItem('user');
       }
     }
+    setSessionReady(true);
   }, []);
 
   // Guardar usuario en localStorage cuando cambia
@@ -81,6 +81,16 @@ function App() {
     setUser(null);
   };
 
+  if (!sessionReady) {
+    return (
+      <div className="App app-loading" aria-busy="true">
+        <p>Cargando...</p>
+      </div>
+    );
+  }
+
+  const loginScreen = <LoginPage onLogin={handleLogin} />;
+
   return (
     <Router>
       <div className="App">
@@ -89,7 +99,7 @@ function App() {
             path="/login" 
             element={
               !user ? (
-                <LoginPage onLogin={handleLogin} />
+                loginScreen
               ) : (
                 <Navigate to="/mapa" replace />
               )
@@ -131,9 +141,19 @@ function App() {
               user ? (
                 <Navigate to="/mapa" replace />
               ) : (
-                <Navigate to="/login" replace />
+                loginScreen
               )
             } 
+          />
+          <Route
+            path="*"
+            element={
+              user ? (
+                <Navigate to="/mapa" replace />
+              ) : (
+                <Navigate to="/login" replace />
+              )
+            }
           />
         </Routes>
       </div>

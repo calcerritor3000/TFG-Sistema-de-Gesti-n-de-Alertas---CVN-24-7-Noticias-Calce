@@ -112,7 +112,8 @@ app.use(express.json({ limit: '10mb' }));
 
 /** Sirve logo e imágenes copiadas al build (public/ → build/) */
 if (fs.existsSync(publicAssetsDir)) {
-  app.use(express.static(publicAssetsDir, { maxAge: '1d', fallthrough: true }));
+  // index: false — si no, / sirve public/index.html (plantilla sin JS) en lugar del build
+  app.use(express.static(publicAssetsDir, { maxAge: '1d', fallthrough: true, index: false }));
 }
 app.use('/uploads', express.static(uploadsRoot, { maxAge: '1d', fallthrough: true }));
 

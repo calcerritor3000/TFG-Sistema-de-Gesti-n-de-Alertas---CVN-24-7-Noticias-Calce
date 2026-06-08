@@ -7,11 +7,11 @@
  * Mensajes desde la app: SKIP_WAITING, CACHE_ALERTS (opcional).
  */
 // Service Worker para PWA - Funciona completamente offline
-const CACHE_NAME = 'alertas-cvn-v3';
-const RUNTIME_CACHE = 'alertas-runtime-v3';
+const CACHE_NAME = 'alertas-cvn-v4';
+const RUNTIME_CACHE = 'alertas-runtime-v4';
 
-// Solo recursos que existen siempre (CRA usa nombres con hash en /static/)
-const STATIC_ASSETS = ['/', '/manifest.json', '/CVN_Noticias.png'];
+// No pre-cachear '/' (puede quedar una respuesta vieja); /login sirve la SPA
+const STATIC_ASSETS = ['/login', '/manifest.json', '/CVN_Noticias.png'];
 
 // Instalar Service Worker
 self.addEventListener('install', (event) => {
@@ -100,7 +100,10 @@ self.addEventListener('fetch', (event) => {
               return cachedResponse;
             }
             if (request.destination === 'document') {
-              return caches.match('/');
+              return caches.match('/login').then((loginPage) => {
+                if (loginPage) return loginPage;
+                return caches.match('/');
+              });
             }
             return new Response('Sin conexión', { status: 503, statusText: 'Offline' });
           });
