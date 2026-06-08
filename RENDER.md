@@ -103,6 +103,9 @@ En el servicio → **Environment** → añade:
 | `API_PUBLIC_URL` | Igual que `FRONTEND_URL` | Sí |
 | `REACT_APP_API_URL` | *(vacío)* | Sí (build) |
 | `ADMIN_DEFAULT_PASSWORD` | Contraseña del usuario `admin` (obligatoria en producción; se sincroniza al arrancar) | **Sí** |
+| `VAPID_PUBLIC_KEY` | Clave pública push (generar con `node scripts/generate-vapid-keys.js`) | **Sí** (notificaciones móvil) |
+| `VAPID_PRIVATE_KEY` | Clave privada push (misma pareja que la pública) | **Sí** (notificaciones móvil) |
+| `VAPID_EMAIL` | `mailto:tu@email.com` (contacto VAPID) | Recomendado |
 
 `PORT` lo asigna Render solo; no hace falta ponerlo.
 

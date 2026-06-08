@@ -464,6 +464,8 @@ const MapPage = ({ user, onLogout }) => {
   const [notificationPermission, setNotificationPermission] = useState(
     () => ('Notification' in window ? Notification.permission : 'denied')
   ); // Permiso real de notificaciones del navegador
+  const [pushSetupStatus, setPushSetupStatus] = useState('idle'); // idle | syncing | ok | error
+  const [pushSetupError, setPushSetupError] = useState('');
   const [appModal, setAppModal] = useState({
     visible: false,
     title: '',
@@ -619,7 +621,7 @@ const MapPage = ({ user, onLogout }) => {
     const { alert: _omitAlert, ...notificationOptions } = options;
     const alertIcon = alertForIcon
       ? resolveAlertNotificationIcon(alertForIcon, API_ORIGIN)
-      : '/logo192.png';
+      : '/CVN_Noticias.png';
 
     const payload = {
       icon: alertIcon,
@@ -645,20 +647,25 @@ const MapPage = ({ user, onLogout }) => {
     }
   };
 
-  const ensurePushSubscription = useCallback(async () => {
-    if (!user?.token) return;
+  const isIosDevice = () =>
+    /iPad|iPhone|iPod/i.test(navigator.userAgent)
+    || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+
+  const isPwaInstalled = () =>
+    window.matchMedia('(display-mode: standalone)').matches
+    || window.navigator.standalone === true;
+
+  const syncPushSubscription = useCallback(async () => {
+    if (!user?.token) return { ok: false, error: 'Sin sesión' };
     if (!('serviceWorker' in navigator) || !('PushManager' in window) || !('Notification' in window)) {
-      return;
+      return { ok: false, error: 'Navegador sin soporte push' };
+    }
+    if (Notification.permission !== 'granted') {
+      return { ok: false, error: 'Permiso de notificaciones no concedido' };
     }
 
-    let permission = Notification.permission;
-    if (permission === 'default') {
-      permission = await Notification.requestPermission();
-      setNotificationPermission(permission);
-    }
-    if (permission !== 'granted') {
-      return;
-    }
+    setPushSetupStatus('syncing');
+    setPushSetupError('');
 
     try {
       await navigator.serviceWorker.register('/service-worker.js');
@@ -666,14 +673,20 @@ const MapPage = ({ user, onLogout }) => {
 
       const keyResponse = await fetch(apiUrl('/api/push/public-key'));
       if (!keyResponse.ok) {
-        throw new Error(`No se pudo obtener VAPID key (${keyResponse.status})`);
+        throw new Error(`No se pudo obtener clave push (${keyResponse.status})`);
       }
       const { publicKey } = await keyResponse.json();
       if (!publicKey) {
-        throw new Error('Servidor sin clave pública VAPID');
+        throw new Error('El servidor no tiene claves VAPID configuradas');
       }
 
+      const storedVapid = localStorage.getItem('pushVapidPublicKey');
       let subscription = await registration.pushManager.getSubscription();
+      if (storedVapid && storedVapid !== publicKey && subscription) {
+        await subscription.unsubscribe();
+        subscription = null;
+      }
+
       if (!subscription) {
         subscription = await registration.pushManager.subscribe({
           userVisibleOnly: true,
@@ -681,7 +694,9 @@ const MapPage = ({ user, onLogout }) => {
         });
       }
 
-      await fetch(apiUrl('/api/push/subscribe'), {
+      localStorage.setItem('pushVapidPublicKey', publicKey);
+
+      const saveResponse = await fetch(apiUrl('/api/push/subscribe'), {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -689,10 +704,79 @@ const MapPage = ({ user, onLogout }) => {
         },
         body: JSON.stringify({ subscription })
       });
+
+      if (!saveResponse.ok) {
+        const errBody = await saveResponse.json().catch(() => ({}));
+        throw new Error(errBody.error || `Error guardando suscripción (${saveResponse.status})`);
+      }
+
+      setPushSetupStatus('ok');
+      return { ok: true };
     } catch (error) {
       console.error('Error configurando notificaciones push:', error);
+      const msg = error.message || 'Error desconocido';
+      setPushSetupStatus('error');
+      setPushSetupError(msg);
+      return { ok: false, error: msg };
     }
   }, [user?.token]);
+
+  const activateNotifications = useCallback(async () => {
+    if (!('Notification' in window)) {
+      showAppModal(
+        'No disponible',
+        'Este navegador no soporta notificaciones. Prueba Chrome en Android o Safari añadiendo la app a la pantalla de inicio (iPhone).',
+        'warning'
+      );
+      return false;
+    }
+
+    if (isIosDevice() && !isPwaInstalled()) {
+      showAppModal(
+        'iPhone: añade la app al inicio',
+        'En iPhone las notificaciones push solo funcionan si abres el menú Compartir → «Añadir a pantalla de inicio» y entras desde ese icono. Luego pulsa «Activar notificaciones» otra vez.',
+        'info'
+      );
+    }
+
+    let permission = Notification.permission;
+    if (permission === 'default') {
+      permission = await Notification.requestPermission();
+      setNotificationPermission(permission);
+    }
+
+    if (permission !== 'granted') {
+      showAppModal(
+        'Permiso denegado',
+        'Activa las notificaciones para cvnalertas.onrender.com en Ajustes del teléfono → Apps → tu navegador → Notificaciones.',
+        'warning'
+      );
+      return false;
+    }
+
+    const syncResult = await syncPushSubscription();
+    if (syncResult.ok) {
+      const test = await sendDeviceNotification('CVN Alertas activadas', {
+        body: 'Recibirás avisos cuando haya alertas en tus zonas de interés.',
+        tag: 'push-activated',
+        icon: '/CVN_Noticias.png',
+        badge: '/CVN_Noticias.png'
+      });
+      if (test.ok) {
+        showAppModal('Notificaciones activas', 'Push configurado. También te avisaremos al entrar en zonas de alerta.', 'success');
+      } else {
+        showAppModal('Push guardado', 'Suscripción registrada. Si no ves el aviso, revisa que el teléfono no tenga el modo «No molestar» activo.', 'info');
+      }
+      return true;
+    }
+
+    showAppModal(
+      'Error al activar push',
+      syncResult.error || 'No se pudo registrar la suscripción en el servidor.',
+      'error'
+    );
+    return false;
+  }, [syncPushSubscription]);
 
   // ============================================
   // FUNCIONES AUXILIARES (declaradas antes de las funciones de carga)
@@ -925,8 +1009,10 @@ const MapPage = ({ user, onLogout }) => {
   }, []);
 
   useEffect(() => {
-    ensurePushSubscription();
-  }, [ensurePushSubscription]);
+    if (notificationPermission === 'granted') {
+      syncPushSubscription();
+    }
+  }, [notificationPermission, syncPushSubscription]);
 
   // ============================================
   // EFECTOS (USE EFFECT) - Código que se ejecuta automáticamente
@@ -983,13 +1069,6 @@ const MapPage = ({ user, onLogout }) => {
     // Cargar alertas desde servidor o caché local
     loadAlerts();
     
-    // Solicitar permiso para notificaciones (si aún no se ha decidido)
-    if ('Notification' in window && Notification.permission === 'default') {
-      Notification.requestPermission().then((permission) => {
-        setNotificationPermission(permission);
-      });
-    }
-
     // Polling automático cada 60 segundos para actualizar alertas (reducido para mejor rendimiento)
     const pollingInterval = setInterval(() => {
       if (fetchAlertsRef.current && !isLoadingRef.current) {
@@ -1839,41 +1918,24 @@ const MapPage = ({ user, onLogout }) => {
   }, [nearbySubscriptionAlerts, notificationPermission, subscriptionsLoaded]);
 
   const handleTestNotification = async () => {
-    if (!('Notification' in window)) {
-      showAppModal('Notificaciones no disponibles', 'Este navegador no soporta notificaciones.', 'error');
-      return;
-    }
-
     if (notificationPermission !== 'granted') {
-      Notification.requestPermission().then((permission) => {
-        setNotificationPermission(permission);
-        if (permission === 'granted') {
-          sendDeviceNotification('✅ Notificación de prueba', {
-            body: 'Las notificaciones funcionan correctamente en este dispositivo.',
-            tag: 'test-notification'
-          }).then((result) => {
-            if (result.ok) {
-              showAppModal('Notificación enviada', 'Se ha enviado una notificación de prueba al dispositivo.', 'success');
-            } else {
-              showAppModal('No se pudo enviar', 'No se pudo mostrar la notificación del sistema. Revisa permisos del navegador y de Windows.', 'warning');
-            }
-          });
-        } else {
-          showAppModal('Permiso denegado', 'Debes permitir notificaciones en el navegador y en Windows.', 'warning');
-        }
-      });
+      await activateNotifications();
       return;
     }
 
-    const result = await sendDeviceNotification('✅ Notificación de prueba', {
-      body: 'Las notificaciones funcionan correctamente en este dispositivo.',
-      tag: 'test-notification'
+    await syncPushSubscription();
+
+    const result = await sendDeviceNotification('Notificación de prueba CVN', {
+      body: 'Si ves este mensaje, las alertas en el móvil funcionan correctamente.',
+      tag: 'test-notification',
+      icon: '/CVN_Noticias.png',
+      badge: '/CVN_Noticias.png'
     });
 
     if (result.ok) {
-      showAppModal('Notificación enviada', `Canal: ${result.channel}. Si no aparece, revisa notificaciones de Windows.`, 'success');
+      showAppModal('Notificación enviada', `Canal: ${result.channel}. Revisa la barra de notificaciones del teléfono.`, 'success');
     } else {
-      showAppModal('No se pudo enviar', 'No se pudo mostrar la notificación del sistema. Activa notificaciones de Windows para el navegador.', 'warning');
+      showAppModal('No se pudo enviar', 'Pulsa «Activar notificaciones» y comprueba permisos del navegador en Ajustes del móvil.', 'warning');
     }
   };
 
@@ -1919,21 +1981,7 @@ const MapPage = ({ user, onLogout }) => {
       showAppModal('Notificaciones', 'Este navegador no muestra avisos del sistema; verás el aviso en pantalla en el mapa.', 'info');
       return;
     }
-    if (Notification.permission === 'granted') {
-      showAppModal('Listo', 'Cuando entres en el círculo de una alerta (su radio en el mapa), recibirás un aviso si el navegador lo permite.', 'success');
-      return;
-    }
-    if (Notification.permission === 'denied') {
-      showAppModal('Notificaciones bloqueadas', 'Desbloquea las notificaciones para este sitio en la configuración del navegador.', 'warning');
-      return;
-    }
-    const permission = await Notification.requestPermission();
-    setNotificationPermission(permission);
-    if (permission === 'granted') {
-      showAppModal('Listo', 'Te avisaremos al entrar en la zona de afectación de una alerta (mientras la pestaña esté abierta o según permita el sistema).', 'success');
-    } else {
-      showAppModal('Sin notificaciones del sistema', 'Seguirás viendo el aviso en el mapa al estar dentro del radio de la alerta.', 'info');
-    }
+    await activateNotifications();
   };
 
   const useCurrentLocationForSubscription = async () => {
@@ -2232,6 +2280,14 @@ const MapPage = ({ user, onLogout }) => {
             >
               ❓ Ayuda
             </button>
+            <button
+              type="button"
+              onClick={activateNotifications}
+              className={`map-btn map-btn-notify${notificationPermission === 'granted' && pushSetupStatus === 'ok' ? ' map-btn-notify-active' : ''}`}
+              title="Activar notificaciones push en el móvil"
+            >
+              {notificationPermission === 'granted' && pushSetupStatus === 'ok' ? '🔔 Activas' : '🔔 Notificaciones'}
+            </button>
             {user?.role === 'admin' && (
               <button 
                 onClick={() => setShowAlertsList(!showAlertsList)} 
@@ -2463,6 +2519,18 @@ const MapPage = ({ user, onLogout }) => {
               ))
             )}
           </div>
+        </div>
+      )}
+
+      {notificationPermission !== 'granted' && (
+        <div className="map-notify-banner">
+          <p>
+            <strong>Activa las notificaciones</strong> para recibir alertas en el móvil
+            {isIosDevice() && !isPwaInstalled() ? ' (en iPhone: Añadir a pantalla de inicio primero).' : '.'}
+          </p>
+          <button type="button" className="map-notify-banner-btn" onClick={activateNotifications}>
+            Activar ahora
+          </button>
         </div>
       )}
 

@@ -10,7 +10,8 @@
     "dev": "nodemon app.js",
     "sync:assets": "node scripts/sync-static-assets.js",
     "build:frontend": "npm run sync:assets && cd alertas-frontend && npm run build",
-    "build": "npm run build:frontend"
+    "build": "npm run build:frontend",
+    "vapid:keys": "node scripts/generate-vapid-keys.js"
   },
   "dependencies": {
     "bcrypt": "^6.0.0",

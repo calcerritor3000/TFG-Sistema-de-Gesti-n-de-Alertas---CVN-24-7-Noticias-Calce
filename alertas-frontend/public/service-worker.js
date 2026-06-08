@@ -7,8 +7,8 @@
  * Mensajes desde la app: SKIP_WAITING, CACHE_ALERTS (opcional).
  */
 // Service Worker para PWA - Funciona completamente offline
-const CACHE_NAME = 'alertas-cvn-v4';
-const RUNTIME_CACHE = 'alertas-runtime-v4';
+const CACHE_NAME = 'alertas-cvn-v5';
+const RUNTIME_CACHE = 'alertas-runtime-v5';
 
 // No pre-cachear '/' (puede quedar una respuesta vieja); /login sirve la SPA
 const STATIC_ASSETS = ['/login', '/manifest.json', '/CVN_Noticias.png'];
@@ -180,22 +180,23 @@ self.addEventListener('message', (event) => {
 
 // Notificaciones push recibidas desde el backend
 self.addEventListener('push', (event) => {
-  if (!event.data) {
-    return;
-  }
-
   let payload = {};
-  try {
-    payload = event.data.json();
-  } catch (_error) {
-    payload = { title: 'Nueva alerta', body: event.data.text() };
+  if (event.data) {
+    try {
+      payload = event.data.json();
+    } catch (_error) {
+      payload = { title: 'Nueva alerta', body: event.data.text() };
+    }
   }
 
   const title = payload.title || 'Nueva alerta en tu zona';
   const options = {
     body: payload.body || 'Se ha detectado una alerta dentro de tu zona de interés.',
-    icon: payload.icon || '/logo192.png',
-    badge: payload.badge || payload.icon || '/logo192.png',
+    icon: payload.icon || '/CVN_Noticias.png',
+    badge: payload.badge || payload.icon || '/CVN_Noticias.png',
+    tag: payload.tag || (payload.alertId ? `alert-${payload.alertId}` : 'cvn-alert'),
+    renotify: true,
+    vibrate: [120, 60, 120],
     data: {
       url: payload.url || '/mapa',
       alertId: payload.alertId || null

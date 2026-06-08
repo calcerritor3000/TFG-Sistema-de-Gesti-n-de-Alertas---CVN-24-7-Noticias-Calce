@@ -996,6 +996,57 @@ app.post('/api/push/subscribe', autenticar, async (req, res) => {
   }
 });
 
+app.post('/api/push/test', autenticar, async (req, res) => {
+  try {
+    const [rows] = await pool.execute(
+      'SELECT id, endpoint, p256dh, auth FROM push_subscriptions WHERE user_id = ? AND activa = TRUE LIMIT 5',
+      [req.user.id]
+    );
+    if (!rows.length) {
+      return res.status(404).json({
+        error: 'No hay suscripción push. Pulsa «Activar notificaciones» en el mapa del móvil.'
+      });
+    }
+
+    const baseUrl = (process.env.API_PUBLIC_URL || process.env.FRONTEND_URL || '').replace(/\/$/, '');
+    const iconUrl = baseUrl ? `${baseUrl}/CVN_Noticias.png` : '/CVN_Noticias.png';
+
+    let sent = 0;
+    for (const row of rows) {
+      const payload = JSON.stringify({
+        title: 'Prueba CVN Alertas',
+        body: 'Push del servidor funcionando correctamente.',
+        icon: iconUrl,
+        badge: iconUrl,
+        url: '/mapa',
+        tag: 'server-push-test'
+      });
+      try {
+        await webpush.sendNotification(
+          { endpoint: row.endpoint, keys: { p256dh: row.p256dh, auth: row.auth } },
+          payload
+        );
+        sent += 1;
+      } catch (err) {
+        if (err.statusCode === 404 || err.statusCode === 410) {
+          await pool.execute('UPDATE push_subscriptions SET activa = FALSE WHERE id = ?', [row.id]);
+        }
+      }
+    }
+
+    if (sent === 0) {
+      return res.status(502).json({
+        error: 'No se pudo enviar push. En Render configura VAPID_PUBLIC_KEY y VAPID_PRIVATE_KEY fijas y vuelve a activar notificaciones.'
+      });
+    }
+
+    res.json({ message: `Push de prueba enviado a ${sent} dispositivo(s)` });
+  } catch (err) {
+    console.error('Error en push test:', err.message);
+    res.status(500).json({ error: 'Error enviando push de prueba' });
+  }
+});
+
 app.post('/api/push/unsubscribe', autenticar, async (req, res) => {
   const { endpoint } = req.body || {};
   if (!endpoint) {

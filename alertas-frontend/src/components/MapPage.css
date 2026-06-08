@@ -188,6 +188,58 @@
   border-color: rgba(52, 152, 219, 0.3);
 }
 
+.map-btn-notify {
+  background: linear-gradient(135deg, rgba(241, 196, 15, 0.2) 0%, rgba(243, 156, 18, 0.15) 100%);
+  color: #b7791f;
+  border-color: rgba(241, 196, 15, 0.45);
+}
+
+.map-btn-notify-active {
+  background: linear-gradient(135deg, rgba(39, 174, 96, 0.18) 0%, rgba(46, 204, 113, 0.12) 100%);
+  color: #1e8449;
+  border-color: rgba(39, 174, 96, 0.35);
+}
+
+.map-notify-banner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  flex-shrink: 0;
+  padding: 10px 12px;
+  background: linear-gradient(135deg, #fff8e1 0%, #ffecb3 100%);
+  border-bottom: 1px solid rgba(243, 156, 18, 0.35);
+  color: #5d4037;
+  font-size: 0.82rem;
+  z-index: 999;
+}
+
+.map-notify-banner p {
+  margin: 0;
+  flex: 1;
+  line-height: 1.35;
+}
+
+.map-notify-banner-btn {
+  flex-shrink: 0;
+  border: none;
+  background: #f39c12;
+  color: #fff;
+  font-weight: 700;
+  font-size: 0.8rem;
+  padding: 10px 14px;
+  border-radius: 8px;
+  min-height: 44px;
+  cursor: pointer;
+  font-family: inherit;
+}
+
+@media (min-width: 769px) {
+  .map-notify-banner {
+    display: none;
+  }
+}
+
 .map-btn-help:hover {
   background: linear-gradient(135deg, rgba(52, 152, 219, 0.25) 0%, rgba(41, 128, 185, 0.25) 100%);
   border-color: rgba(52, 152, 219, 0.4);
