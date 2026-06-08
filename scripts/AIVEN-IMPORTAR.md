@@ -36,7 +36,7 @@ Si necesitas **tus datos** del dump `127_0_0_1.sql`:
 
 Orden: **schema primero**, **datos después**.
 
-### Si no puedes abrir `importar-datos-aiven.sql` (Cursor, Bloc de notas o Aiven)
+### Si no puedes abrir `importar-datos-aiven.sql` (Bloc de notas o consola Aiven)
 
 El archivo completo pesa ~11 KB; aun así a veces el editor o la consola de Aiven fallan al pegar todo de golpe. Usa **tres archivos pequeños** en este orden:
 
@@ -46,7 +46,7 @@ El archivo completo pesa ~11 KB; aun así a veces el editor o la consola de Aive
 | 2 | `scripts/importar-datos-aiven-2-push.sql` | Push (opcional; si falla, sáltalo) |
 | 3 | `scripts/importar-datos-aiven-3-tiempo.sql` | Previsión meteorológica |
 
-**Abrir en Windows (fuera de Cursor):**
+**Abrir en Windows con Bloc de notas:**
 
 ```powershell
 notepad "C:\Users\PC\Desktop\AlertasBackend\scripts\importar-datos-aiven-1.sql"
