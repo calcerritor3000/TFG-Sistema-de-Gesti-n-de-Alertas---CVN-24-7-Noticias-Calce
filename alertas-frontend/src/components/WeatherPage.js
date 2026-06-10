@@ -10,7 +10,6 @@ import { useNavigate } from 'react-router-dom';
 import './WeatherPage.css';
 
 import { apiUrl } from '../config';
-const API_URL = apiUrl('');
 const DEFAULT_MUNICIPALITY_OPTIONS = [
   { value: 'auto', label: 'Automático (mi ubicación)' }
 ];
@@ -72,7 +71,7 @@ const WeatherPage = ({ user, onLogout }) => {
   useEffect(() => {
     const loadMunicipalities = async () => {
       try {
-        const response = await fetch(`${API_URL}/api/weather/municipalities`);
+        const response = await fetch(apiUrl('/api/weather/municipalities'));
         if (!response.ok) return;
         const data = await response.json();
         const fetched = Array.isArray(data?.municipalities) ? data.municipalities : [];
@@ -270,8 +269,8 @@ const WeatherPage = ({ user, onLogout }) => {
     try {
       const token = user?.token;
       const url = editingForecast.id 
-        ? `${API_URL}/api/weather/${editingForecast.id}`
-        : `${API_URL}/api/weather`;
+        ? apiUrl(`/api/weather/${editingForecast.id}`)
+        : apiUrl('/api/weather');
       
       const method = editingForecast.id ? 'PUT' : 'POST';
 
@@ -305,7 +304,7 @@ const WeatherPage = ({ user, onLogout }) => {
 
     try {
       const token = user?.token;
-      const response = await fetch(`${API_URL}/api/weather/${id}`, {
+      const response = await fetch(apiUrl(`/api/weather/${id}`), {
         method: 'DELETE',
         headers: {
           'Authorization': `Bearer ${token}`
