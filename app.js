@@ -665,6 +665,20 @@ function mapAlertaToJson(alerta, extras = {}) {
   };
 }
 
+/** Zona de interés → JSON seguro (BigInt/DECIMAL de Aiven rompen res.json directo). */
+function mapSubscriptionToJson(row, extras = {}) {
+  return {
+    id: sqlNumber(row.id),
+    nombre_zona: row.nombre_zona,
+    lat: sqlNumber(row.lat),
+    lng: sqlNumber(row.lng),
+    radius: sqlNumber(row.radius, 1000),
+    activa: Boolean(row.activa),
+    created_at: row.created_at,
+    ...extras
+  };
+}
+
 const ALERT_CATEGORY_COLORS = {
   incendio: '#e74c3c',
   inundacion: '#3498db',
@@ -1771,7 +1785,7 @@ app.post('/api/subscriptions', autenticar, async (req, res) => {
       'INSERT INTO zone_subscriptions (user_id, nombre_zona, lat, lng, radius) VALUES (?, ?, ?, ?, ?)',
       [userId, nombre_zona.trim(), parseFloat(lat), parseFloat(lng), radioFinal]
     );
-    res.json({ message: 'Suscripción creada', id: result.insertId });
+    res.json({ message: 'Suscripción creada', id: sqlNumber(result.insertId) });
   } catch (err) {
     console.error('Error al crear suscripción:', err.message);
     res.status(500).json({ error: 'Error al crear suscripción' });
@@ -1796,7 +1810,7 @@ app.get('/api/subscriptions', autenticar, async (req, res) => {
       'SELECT id, nombre_zona, lat, lng, radius, activa, created_at FROM zone_subscriptions WHERE user_id = ? AND activa = TRUE ORDER BY created_at DESC',
       [userId]
     );
-    res.json(suscripciones);
+    res.json(suscripciones.map(mapSubscriptionToJson));
   } catch (err) {
     console.error('Error al obtener suscripciones:', err.message);
     console.error('Stack trace:', err.stack);
@@ -1816,7 +1830,11 @@ app.get('/api/subscriptions/all', autenticar, soloAdmin, async (req, res) => {
        WHERE zs.activa = TRUE
        ORDER BY zs.created_at DESC`
     );
-    res.json(suscripciones);
+    res.json(suscripciones.map((row) => mapSubscriptionToJson(row, {
+      user_id: sqlNumber(row.user_id),
+      owner_name: row.owner_name,
+      owner_email: row.owner_email
+    })));
   } catch (err) {
     console.error('Error al obtener suscripciones globales:', err.message);
     res.status(500).json({ error: 'Error al obtener suscripciones globales' });
